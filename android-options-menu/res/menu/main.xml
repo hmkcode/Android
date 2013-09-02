@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/action_search"/>
+    <item
+        android:id="@+id/action_copy"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_content_copy"
+        android:title="@string/action_copy"/>
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_social_share"
+        android:title="@string/action_share"/>
+</menu>
