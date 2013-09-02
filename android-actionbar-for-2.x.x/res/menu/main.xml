@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:hmkcode="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        hmkcode:showAsAction="always"
+        android:icon="@drawable/ic_action_search"
+        android:title="Search"/>
+    <item
+        android:id="@+id/action_copy"
+        android:orderInCategory="100"
+        hmkcode:showAsAction="always"
+        android:icon="@drawable/ic_content_copy"
+        android:title="Copy"/>
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        hmkcode:showAsAction="always"
+        android:icon="@drawable/ic_social_share"
+        android:title="Share"/>
+</menu>
