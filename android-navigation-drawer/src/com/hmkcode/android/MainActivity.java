@@ -12,13 +12,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
 	private String[] drawerListViewItems;
     private DrawerLayout drawerLayout;
     private ListView drawerListView;
-    private ActionBarDrawerToggle mDrawerToggle;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
 
 	@Override
@@ -35,10 +37,11 @@ public class MainActivity extends Activity {
 		drawerListView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_listview_item, drawerListViewItems));
       
-		// App Icon 
+		// 2. App Icon 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		mDrawerToggle = new ActionBarDrawerToggle(
+		// 2.1 create ActionBarDrawerToggle
+		actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 drawerLayout,         /* DrawerLayout object */
                 R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
@@ -46,30 +49,54 @@ public class MainActivity extends Activity {
                 R.string.drawer_close  /* "close drawer" description */
                 );
 
-        // Set the drawer toggle as the DrawerListener
-        drawerLayout.setDrawerListener(mDrawerToggle);
+        // 2.2 Set actionBarDrawerToggle as the DrawerListener
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
         
+        // 2.3 enable and show "up" arrow
         getActionBar().setDisplayHomeAsUpEnabled(true); 
         
+        // just styling option
 		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+		
+		drawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
 
 	}
 
 	@Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+         actionBarDrawerToggle.syncState();
+    }
+
+	@Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        actionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
 
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
+		
+		 // call ActionBarDrawerToggle.onOptionsItemSelected(), if it returns true
+        // then it has handled the app icon touch event
+
+		if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 		return super.onOptionsItemSelected(item);
 	}
+	
+	private class DrawerItemClickListener implements ListView.OnItemClickListener {
+	    @Override
+	    public void onItemClick(AdapterView parent, View view, int position, long id) {
+	    	Toast.makeText(MainActivity.this, ((TextView)view).getText(), Toast.LENGTH_LONG).show();
+	    	drawerLayout.closeDrawer(drawerListView);
+
+	    }
+	}
+
 
 }
