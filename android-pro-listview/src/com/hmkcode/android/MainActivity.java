@@ -10,8 +10,8 @@ import android.widget.ListView;
 public class MainActivity extends ListActivity {
     
 
-	public void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
+	public void onCreate(Bundle bundle) {
+		super.onCreate(bundle);
 		
 		// if extending Activity
 		//setContentView(R.layout.activity_main);
@@ -28,14 +28,14 @@ public class MainActivity extends ListActivity {
 	}
 	
 	
-	private ArrayList<Item> generateData(){
-		ArrayList<Item> items = new ArrayList<Item>();
-	    items.add(new Item("Group Title"));
-	    items.add(new Item(R.drawable.action_help_32,"Menu Item 1","1"));
-	    items.add(new Item(R.drawable.action_search_32,"Menu Item 2","2"));
-	    items.add(new Item(R.drawable.collections_cloud_32,"Menu Item 3","12"));
+	private ArrayList<Model> generateData(){
+		ArrayList<Model> models = new ArrayList<Model>();
+	    models.add(new Model("Group Title"));
+	    models.add(new Model(R.drawable.action_help_32,"Menu Item 1","1"));
+	    models.add(new Model(R.drawable.action_search_32,"Menu Item 2","2"));
+	    models.add(new Model(R.drawable.collections_cloud_32,"Menu Item 3","12"));
 	    
-	    return items;
+	    return models;
 	}
 
 } 
