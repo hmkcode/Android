@@ -11,17 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MyAdapter extends ArrayAdapter<Item> {
+public class MyAdapter extends ArrayAdapter<Model> {
 
 		private final Context context;
-		private final ArrayList<Item> itemsArrayList;
+		private final ArrayList<Model> modelsArrayList;
 
-		public MyAdapter(Context context, ArrayList<Item> itemsArrayList) {
+		public MyAdapter(Context context, ArrayList<Model> modelsArrayList) {
 			 
-			super(context, R.layout.target_item, itemsArrayList);
+			super(context, R.layout.target_item, modelsArrayList);
 			
 			this.context = context;
-			this.itemsArrayList = itemsArrayList;
+			this.modelsArrayList = modelsArrayList;
 		}
 		
 		@Override
@@ -34,7 +34,7 @@ public class MyAdapter extends ArrayAdapter<Item> {
 			// 2. Get rowView from inflater
 			
 			View rowView = null;
-			if(!itemsArrayList.get(position).isGroupHeader()){
+			if(!modelsArrayList.get(position).isGroupHeader()){
 				rowView = inflater.inflate(R.layout.target_item, parent, false);
 			
 				// 3. Get icon,title & counter views from the rowView
@@ -43,14 +43,14 @@ public class MyAdapter extends ArrayAdapter<Item> {
 				TextView counterView = (TextView) rowView.findViewById(R.id.item_counter);
 		    
 			    // 4. Set the text for textView 
-			    imgView.setImageResource(itemsArrayList.get(position).getIcon());
-			    titleView.setText(itemsArrayList.get(position).getTitle());
-			    counterView.setText(itemsArrayList.get(position).getCounter());
+			    imgView.setImageResource(modelsArrayList.get(position).getIcon());
+			    titleView.setText(modelsArrayList.get(position).getTitle());
+			    counterView.setText(modelsArrayList.get(position).getCounter());
 			}
 			else{
 					rowView = inflater.inflate(R.layout.group_header_item, parent, false);
 					TextView titleView = (TextView) rowView.findViewById(R.id.header);
-				    titleView.setText(itemsArrayList.get(position).getTitle());
+				    titleView.setText(modelsArrayList.get(position).getTitle());
 
 			}
 		   
