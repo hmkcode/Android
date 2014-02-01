@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Java Servlet JSON</title>
+<script src="./js/jquery.1.9.1.min.js"></script>
+
+<!-- bootstrap just to have good looking page -->
+<link href="./bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
+
+<!-- we code these -->
+<script src="./js/myfunctions.js"></script>
+
+
+</head>
+
+<body>
+	<h1 style="text-align:center"><a href="http://hmkcode.com">HMKCode.com</a></h1>
+	<h1 style="text-align:center">Java Servlet that Receives POST Request with JSON Data<br></h1> 
+	
+	<div id="alert" class="alert alert-warning" style="width:200px;display:none">
+		<b>Warning!</b> Invalid input. 
+	</div>
+	<!-- article inputs -->
+	<div class="article" style="margin:10px;text-align:center">
+		<p>
+			<button class="btn btn-primary" type="button" onclick="getAjax()">Refresh</button>
+		</p>
+	</div>
+	
+	<!-- display all articles -->
+	<div style="width:700px;padding:20px">
+		<h5 style="text-align:center"><i style="color:#ccc"><small>Visitors</small></i></h5>
+		<table id="added-articles" class="table" >
+			<tr>
+				<th>Name</th>
+				<th>Country</th>
+				<th>Twitter</th>
+			</tr>
+		</table>
+	</div>
+</body> 
+</html>
