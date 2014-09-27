@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hmkcode.nearpime.activities.NewPostActivity"
+    android:weightSum="2"
+    android:orientation="vertical" >
+
+	<RelativeLayout
+	    android:layout_weight="1.5"   
+       	android:layout_width="match_parent"
+       	android:layout_height="0dp">
+       	    
+       	    <ImageView 
+       	        android:layout_width="match_parent"
+       	        android:layout_height="match_parent"
+       	        android:src="@drawable/balloon"
+       	        android:scaleType="fitXY"
+       	        android:contentDescription="Main Image"
+       	        android:padding="1dp"/>
+       	    
+       	    <ImageView 
+       	        android:layout_width="match_parent"
+       	        android:layout_height="match_parent"
+       	        android:background="@drawable/image_border"
+       	        android:contentDescription="Image Border"       	        
+       	        android:padding="0dp"/>
+       	    
+       	    <ImageView
+       	        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+				android:contentDescription="image"
+				android:clickable="true"
+				android:padding="4dp"
+				android:layout_margin="8dp"
+				android:scaleType="fitXY"
+				android:background="@drawable/edit_states"
+		        android:src="@drawable/ic_action_edit"
+		        android:layout_alignParentBottom="true"
+		        android:layout_alignParentRight="true"/>
+	</RelativeLayout>
+	    
+
+	<RelativeLayout
+		android:layout_width="wrap_content"
+     	android:layout_height="0dp"
+     	android:layout_weight="0.25"
+     	android:layout_marginTop="@dimen/activity_vertical_margin">
+        
+       <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/textview_border"
+            android:hint="Enter sample text..."
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="6dp"
+            android:textSize="18sp"
+            android:gravity="center_vertical"/>
+       
+       <ImageView
+       	  	android:layout_width="wrap_content"
+		   	android:layout_height="wrap_content"
+			android:contentDescription="Edit image icon"
+			android:clickable="true"
+			android:padding="4dp"
+			android:layout_margin="8dp"
+			android:scaleType="fitXY"
+			android:background="@drawable/edit_states"
+		   	android:src="@drawable/ic_action_edit"
+		   	android:layout_alignParentBottom="true"
+		   	android:layout_alignParentRight="true"/>
+	</RelativeLayout>
+</LinearLayout>
