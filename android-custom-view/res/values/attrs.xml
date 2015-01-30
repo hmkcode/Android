@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="SimpleView">
+        <attr name="shape" format="enum">
+            <enum name="circle" value="0"/>
+            <enum name="square" value="1"/>
+        </attr>
+        <attr name="dim" format="dimension"/>
+    </declare-styleable>
+</resources>
