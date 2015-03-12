@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip" >
+    
+    <ImageView android:id="@+id/favicon"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="20dp"
+        android:minWidth="20dp"
+        />
+ 
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       
+        android:text="Date:  "
+        android:layout_below="@+id/favicon"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvDate"
+        android:layout_below="@+id/tvDate"
+        android:text="Title:  "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+     <TextView
+        android:id="@+id/tvBoV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvTitle"
+        android:layout_below="@+id/tvTitle"
+        android:text="Type: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/tvUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvTitle"
+        android:layout_below="@+id/tvBoV"
+        android:text="URL: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+    
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/favicon"
+
+        android:layout_toRightOf="@+id/tvDate"
+        android:text="Date" />
+ 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDate"
+        android:layout_toRightOf="@+id/tvTitle"
+        android:text="Title" 
+        android:ellipsize="end"
+    	android:singleLine="true"/>
+    
+     <TextView
+        android:id="@+id/bov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+
+        android:layout_toRightOf="@+id/tvBoV"
+        android:text="Title" />
+ 
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tvUrl"
+                android:layout_below="@+id/tvBoV"
+        android:text="URL" />
+ 
+	
+ 
+</RelativeLayout>
