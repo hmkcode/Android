@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="FaceView">
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+</resources>
