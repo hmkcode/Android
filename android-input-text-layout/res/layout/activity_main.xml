@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hmkcode.inputtextlayout.MainActivity" >
+
+    
+     <android.support.design.widget.TextInputLayout
+        android:id="@+id/til"
+      	android:layout_width="fill_parent"
+      	android:layout_height="wrap_content">
+       	<EditText
+        	android:id="@+id/textDialog"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:hint="First Name"/>
+  	</android.support.design.widget.TextInputLayout>
+  
+  	<android.support.design.widget.TextInputLayout
+    	android:id="@+id/til2"
+      	android:layout_width="fill_parent"
+      	android:layout_height="wrap_content"
+      	android:layout_below="@+id/til">
+       	
+       	<EditText
+      	  	android:id="@+id/textDialog2"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:hint="Last Name"/>
+  	</android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>
