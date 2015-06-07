@@ -1,0 +1,5 @@
+<!-- image_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="2dp" android:color="@color/my_primary"  />
+    <corners android:radius="3dp" />
+</shape>

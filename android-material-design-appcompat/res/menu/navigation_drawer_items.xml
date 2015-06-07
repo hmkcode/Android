@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hmkcode.mongoz.MainActivity" >
+
+    <group android:checkableBehavior="all">
+	    <item
+	        android:id="@+id/navigation_item_1"
+	        android:icon="@drawable/ic_action_location_found_dark"
+	        android:title="Toolbar"/>
+	    <item
+	        android:id="@+id/navigation_item_2"
+	        android:icon="@drawable/ic_action_location_found_dark"
+	        android:title="FloatActionButton"/>
+	    
+	    <item
+	        android:id="@+id/navigation_item_3"
+	        android:icon="@drawable/ic_action_location_found_dark"
+	        android:title="NavigationView"/>
+	</group>
+
+</menu>

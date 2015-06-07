@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+  	<color name="window_background">#CC000000</color>
+  	
+  	  	
+	<color name="my_primary">#ED1C24</color>
+  	<color name="my_primary_dark">#CC0000</color>
+  	<color name="my_primary_light">#B3E5FC</color>
+  	<color name="my_accent">#ED1C24</color>
+  	<color name="my_primary_text">#ffffff</color>
+  	<color name="my_secondary_text">#ffffff</color>
+  	<color name="my_icons">#FFFFFF</color>
+  	<color name="my_divider">#B6B6B6</color>
+</resources>
