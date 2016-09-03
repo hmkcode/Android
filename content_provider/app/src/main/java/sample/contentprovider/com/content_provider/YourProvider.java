@@ -53,6 +53,7 @@ public class YourProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
+        return null;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class YourProvider extends ContentProvider {
         // if uri matches for more than one row : vnd.android.cursor.dir/
         // Provider specific part : vnd.<name>.<type>
         // for single row of table vnd.android.cursor.item/vnd.com.example.ourapp.provider.table
-
+        return  "";
     }
 
     //Please do some real coding, this is not upto the level of your standard.
@@ -69,7 +70,7 @@ public class YourProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues contentValues) {
 
         db = mOpenHelper.getWritableDatabase();
-
+        return null;
     }
 
     @Override
