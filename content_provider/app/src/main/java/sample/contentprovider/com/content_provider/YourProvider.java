@@ -53,6 +53,15 @@ public class YourProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
+       SQLiteDatabase database  = mOpenHelper.getReadableDatabase();
+        // get table name from uri and uri type
+        int type  = sUriMatcher.match(uri);
+        if(type==1){
+            // means full table query
+
+            //
+        }
+
         return null;
     }
 
