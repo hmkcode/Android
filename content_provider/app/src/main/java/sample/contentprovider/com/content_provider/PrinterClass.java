@@ -3,9 +3,7 @@ package sample.contentprovider.com.content_provider;
 import android.content.Context;
 import android.util.Log;
 
-/**
- * Created by Ankit on 9/4/2016.
- */
+
 public class PrinterClass {
     private static Context context;
     private static PrinterClass mInstance;

@@ -1,8 +1,5 @@
 package sample.contentprovider.com.content_provider;
 
-/**
- * Created by Ankit on 9/3/2016.
- */
 public class MethodResolver {
 
     public String announcement;
@@ -20,5 +17,8 @@ public class MethodResolver {
         this.timezone = timezone;
 
     }
+
+
+
 
 }
