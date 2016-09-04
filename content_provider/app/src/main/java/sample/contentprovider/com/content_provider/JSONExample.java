@@ -8,9 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by Ankit on 9/3/2016.
- */
+
 public class JSONExample {
 
     private static Context context;

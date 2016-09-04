@@ -8,9 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-/**
- * Created by Ankit on 9/3/2016.
- */
+
 public class YourProvider extends ContentProvider {
 
     private static final UriMatcher sUriMatcher =  new UriMatcher(UriMatcher.NO_MATCH);
