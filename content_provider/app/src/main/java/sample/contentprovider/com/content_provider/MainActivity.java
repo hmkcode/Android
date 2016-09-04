@@ -12,9 +12,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        JSONExample.getInstance(this).run();
+        new AbstractClass(){
+            @Override
+            public String getFullMessage() {
+                return "Ankit";
+            }
 
-
+            @Override
+            public int getRoll() {
+                return 1;
+            }
+        }
+        .printAll(this);
     }
 
     @Override
