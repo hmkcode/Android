@@ -119,6 +119,63 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        redSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean byUser) {
+                if (byUser) {
+                    ((TextView) findViewById(R.id.redDelay)).setText(seekBar.getProgress() + " ms");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        greenSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean byUser) {
+                if(byUser){
+                    ((TextView) findViewById(R.id.greenDelay)).setText(seekBar.getProgress()+" ms");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        blueSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean byUser) {
+                if(byUser){
+                    ((TextView) findViewById(R.id.blueDelay)).setText(seekBar.getProgress()+" ms");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void setColorChipBackground(int colorType , int value){
@@ -157,11 +214,11 @@ public class MainActivity extends AppCompatActivity {
         blueTag = (TextView) blueChipView.findViewById(R.id.Tag);
 
         redTag.setText("R");
-        redTag.setTextColor(R.color.Red);
+        redTag.setTextColor(Color.RED);
         greenTag.setText("G");
-        greenTag.setTextColor(R.color.Green);
+        greenTag.setTextColor(Color.GREEN);
         blueTag.setText("B");
-        blueTag.setTextColor(R.color.Blue);
+        blueTag.setTextColor(Color.BLUE);
 
 
     }

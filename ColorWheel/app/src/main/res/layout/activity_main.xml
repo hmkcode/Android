@@ -71,6 +71,13 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
+        <TextView
+            android:id="@+id/redDelay"
+            android:padding="12dp"
+            android:text="Delay : 100 ms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <SeekBar
             android:progress="4"
             android:max="100"
@@ -80,6 +87,14 @@
             android:layout_below="@+id/redSpeedJumper"
             android:layout_marginTop="20dp" />
 
+        <TextView
+            android:id="@+id/greenDelay"
+            android:padding="12dp"
+            android:text="Delay : 100 ms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
         <SeekBar
             android:progress="4"
             android:max="100"
@@ -88,6 +103,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/greenSpeedJumper"
             android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/blueDelay"
+            android:padding="12dp"
+            android:text="Delay : 100 ms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
