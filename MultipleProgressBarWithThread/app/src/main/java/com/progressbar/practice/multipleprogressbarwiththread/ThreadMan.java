@@ -1,5 +1,6 @@
 package com.progressbar.practice.multipleprogressbarwiththread;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -13,6 +14,20 @@ public class ThreadMan extends Thread {
     private int progressBarId;
 
     public ThreadMan() {
+    }
+
+    private static Context context;
+    private static ThreadMan mInstance;
+
+    public ThreadMan(Context context) {
+        this.context = context;
+    }
+
+    public static ThreadMan getInstance(Handler handler , int progressBarId) {
+        if (mInstance == null) {
+            mInstance = new ThreadMan(handler ,progressBarId);
+        }
+        return mInstance;
     }
 
     public ThreadMan(Handler handler , int progressBarId) {

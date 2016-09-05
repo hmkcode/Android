@@ -7,7 +7,6 @@
 
 
     <ProgressBar
-
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
@@ -24,28 +23,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar2"
-        android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp" />
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
-
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar3"
-        android:layout_below="@+id/progressBar2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp" />
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_margin="20dp"
+        android:layout_below="@+id/progressBar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Thread"
+        android:id="@+id/startThreadBtn"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Thread"
-        android:id="@+id/startThreadBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp" />
+        android:id="@+id/button"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Thread"
+        android:id="@+id/button2"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/progressBar2"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

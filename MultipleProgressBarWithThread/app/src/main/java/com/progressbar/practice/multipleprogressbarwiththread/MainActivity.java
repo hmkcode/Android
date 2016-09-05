@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 // arg1 : id of progress bar to update
                 // arg2 : progress value (0 - 100%)
                 int prog_id = msg.arg1;
-                Log.d("MainActivity "," Progress Handle for :"+prog_id);
                 ((ProgressBar) findViewById(prog_id)).setProgress(msg.arg2);
             }
         };
@@ -43,12 +42,24 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.startThreadBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               new ThreadMan(mHandler,R.id.progressBar3).start();
+                Log.d("Main ", " Started Prog 3");
+            }
+        });
+
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 new ThreadMan(mHandler,R.id.progressBar).start();
                 Log.d("Main ", " Started Prog 1");
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 new ThreadMan(mHandler,R.id.progressBar2).start();
                 Log.d("Main ", " Started Prog 2");
-                new ThreadMan(mHandler,R.id.progressBar3).start();
-                Log.d("Main ", " Started Prog 3");
             }
         });
     }
@@ -71,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
