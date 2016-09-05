@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private View redChipView;
     private View greenChipView;
     private View blueChipView;
-    private TextView tag;
+    private TextView redTag , greenTag , blueTag;
     private static Handler mHandler;
     private FrameLayout tagHolder;
 
@@ -73,15 +73,27 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // setbackground of color wheel from combining
+
                 ((GradientDrawable) colorWheel.getBackground()).setColor(Color.rgb(red, green, blue));
 
+                if(!(blue<255 || red<255 || green < 255)){
+                    findViewById(R.id.progressBar).setVisibility(View.GONE);
+                    //enable btn
+                    findViewById(R.id.startColorWheelBtn).setEnabled(true);
+                }
+
             }
+
+
+
         };
 
         findViewById(R.id.startColorWheelBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+                findViewById(R.id.startColorWheelBtn).setEnabled(false);
                 // starting red thread
                 new ThreadMas()
                         .setColorType(Constants.RED)
@@ -114,14 +126,17 @@ public class MainActivity extends AppCompatActivity {
         switch (colorType){
             case Constants.RED:
                 tagHolder = (FrameLayout) redChipView.findViewById(R.id.tagHolder);
-                ((GradientDrawable) tagHolder.getBackground()).setColor(Color.rgb(value,0,0));
+                ((TextView) redChipView.findViewById(R.id.indColorValue)).setText(value+"");
+                ((GradientDrawable) tagHolder.getBackground()).setColor(Color.rgb(value, 0, 0));
                 break;
             case Constants.GREEN:
                 tagHolder = (FrameLayout) greenChipView.findViewById(R.id.tagHolder);
+                ((TextView) greenChipView.findViewById(R.id.indColorValue)).setText(value+"");
                 ((GradientDrawable) tagHolder.getBackground()).setColor(Color.rgb(0,value,0));
                 break;
             case Constants.BLUE:
                 tagHolder = (FrameLayout) blueChipView.findViewById(R.id.tagHolder);
+                ((TextView) blueChipView.findViewById(R.id.indColorValue)).setText(value+"");
                 ((GradientDrawable) tagHolder.getBackground()).setColor(Color.rgb(0,0,value));
                 break;
         }
@@ -136,6 +151,17 @@ public class MainActivity extends AppCompatActivity {
 
         // init color wheel
         red = green = blue = 0;
+
+        redTag = (TextView) redChipView.findViewById(R.id.Tag);
+        greenTag  = (TextView) greenChipView.findViewById(R.id.Tag);
+        blueTag = (TextView) blueChipView.findViewById(R.id.Tag);
+
+        redTag.setText("R");
+        redTag.setTextColor(R.color.Red);
+        greenTag.setText("G");
+        greenTag.setTextColor(R.color.Green);
+        blueTag.setText("B");
+        blueTag.setTextColor(R.color.Blue);
 
 
     }

@@ -21,4 +21,13 @@
             android:textSize="20sp" />
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/indColorValue"
+        android:paddingTop="6dp"
+        android:paddingLeft="10dp"
+        android:text="255"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

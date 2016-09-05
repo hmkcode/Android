@@ -45,6 +45,7 @@
         android:layout_toRightOf="@+id/chipHolder">
 
         <TextView
+            android:paddingBottom="10dp"
             android:id="@+id/colorWheel"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -94,10 +95,18 @@
         android:id="@+id/startColorWheelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekerHolder"
+        android:layout_below="@+id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Start Color Wheel" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_below="@+id/seekerHolder" />
 
 
 </RelativeLayout>
