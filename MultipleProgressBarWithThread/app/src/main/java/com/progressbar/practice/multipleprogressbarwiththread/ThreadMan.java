@@ -39,7 +39,7 @@ public class ThreadMan extends Thread {
     public void run() {
 
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             Message msg = Message.obtain();
             msg.arg1 = this.progressBarId;
             msg.arg2 = i;
@@ -47,7 +47,7 @@ public class ThreadMan extends Thread {
 
             try {
                 Log.d(Thread.currentThread().getName()," Sleeping..");
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
