@@ -62,6 +62,8 @@
         android:orientation="vertical">
 
         <SeekBar
+            android:progress="4"
+            android:max="100"
             android:id="@+id/redSpeedJumper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,6 +71,8 @@
             android:layout_centerVertical="true" />
 
         <SeekBar
+            android:progress="4"
+            android:max="100"
             android:id="@+id/greenSpeedJumper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,6 +80,8 @@
             android:layout_marginTop="20dp" />
 
         <SeekBar
+            android:progress="4"
+            android:max="100"
             android:id="@+id/blueSpeedJumper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
