@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         new AbstractClass(){
             @Override
             public String getFullMessage() {
-                return "Ankit";
+                return "Rajesh Kumar dev";
             }
 
             @Override

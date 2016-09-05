@@ -15,7 +15,7 @@ class Social_linksModelParser {
 			try {
 					JSONObject jsobj = new JSONObject(json_object);
 
-					local_model = new Social_linksModel(jsobj.getInt("id") , jsobj.getString("link") , jsobj.getString("name") , );
+					local_model = new Social_linksModel(jsobj.getInt("id") , jsobj.getString("link") , jsobj.getString("name") );
  			} 
 			catch (JSONException e){
 
