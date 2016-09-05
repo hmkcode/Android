@@ -1,16 +1,56 @@
 package com.progressbar.practice.multipleprogressbarwiththread;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static Handler mHandler;
+    private ProgressBar progressBar1;
+    private ProgressBar progressBar2;
+    private ProgressBar progressBar3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar1 = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+        progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
+
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                // find the progress bar and set the progress
+                // arg1 : id of progress bar to update
+                // arg2 : progress value (0 - 100%)
+                int prog_id = msg.arg1;
+                Log.d("MainActivity "," Progress Handle for :"+prog_id);
+                ((ProgressBar) findViewById(prog_id)).setProgress(msg.arg2);
+            }
+        };
+
+        // set onClickListeners
+        findViewById(R.id.startThreadBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ThreadMan(mHandler,R.id.progressBar).start();
+                Log.d("Main ", " Started Prog 1");
+                new ThreadMan(mHandler,R.id.progressBar2).start();
+                Log.d("Main ", " Started Prog 2");
+                new ThreadMan(mHandler,R.id.progressBar3).start();
+                Log.d("Main ", " Started Prog 3");
+            }
+        });
     }
 
     @Override
