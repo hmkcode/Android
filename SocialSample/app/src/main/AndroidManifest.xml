@@ -32,6 +32,10 @@
             android:name=".PostDetailActivity"
             android:label="@string/title_activity_post_detail" >
         </activity>
+        <activity
+            android:name=".AuthenticationActivity"
+            android:label="@string/title_activity_authentication" >
+        </activity>
     </application>
 
 </manifest>

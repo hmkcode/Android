@@ -7,4 +7,5 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_post_detail">PostDetailActivity</string>
+    <string name="title_activity_authentication">AuthenticationActivity</string>
 </resources>

@@ -12,6 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class PostDetailActivity extends AppCompatActivity {
 
 
@@ -200,6 +208,233 @@ public class PostDetailActivity extends AppCompatActivity {
 
         }
 
+    }
+
+
+    private void like(final String PostID, final String UserId, final String UserToken) {
+
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                // Toast.makeText(context,response,Toast.LENGTH_LONG).show();
+                Log.e("IP", ""+response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("IP",""+volleyError);
+                Snackbar.make(userId, "Connection Problem ! ", Snackbar.LENGTH_LONG).show();
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "upvote");
+                Log.e("IP", UserId);
+                params.put("id", UserId);
+                params.put("postid", PostID);
+                Log.e("IP", PostID);
+                params.put("token", UserToken);
+                Log.e("IP", UserToken);;
+                return params;
+            }
+
+        };
+
+        // Log.e("instanse", "" + AppManager.getInstance());
+        AppManager.getInstance().addToRequestQueue(request, "lrq",this);
+
+    }
+
+
+    private void backoff(final String PostID,final String UserId,final String UserToken){
+        String TAG = "Backoff Vote";
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("IP","backoff>"+response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("IP",""+volleyError);
+                Snackbar.make(userId,"Connection Problem !",Snackbar.LENGTH_LONG).show();
+
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "none");
+                params.put("id", UserId);
+                params.put("postid",PostID);
+                params.put("token", UserToken);
+                return params;
+            }
+
+        };
+
+        AppManager.getInstance().addToRequestQueue(request, "likeReq", new Contexter().getContext());
+    }
+
+
+    public void dislike(final String PostID, final String UserId, final String UserToken) {
+        String TAG = "dislikeReqSEND";
+
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.e("Response", response);
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getString("status").equals("0")) {
+                        //  ((UpdateListener) pda).update(post, position);
+                    } else {
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("IP",""+volleyError);
+                Snackbar.make(userId, "Connection Problem ! ", Snackbar.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "downvote");
+
+                params.put("id", UserId);
+
+                params.put("postid", PostID);
+
+                params.put("token", UserToken);
+
+                return params;
+            }
+
+        };
+
+        AppManager.getInstance().addToRequestQueue(request, "drq", this);
+
+
+    }
+
+
+    private void requestData() {
+
+        final CollegareUser user = DatabaseManager.getInstance(this).getUser();
+        // Log.e("TT", "user id :" + user.id);
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Post_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                // Toast.makeText(context,response,Toast.LENGTH_LONG).show();
+                Log.e("IP", response + "");
+                parseAndSet(response);
+                progressDialoge.hide();
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                timeOut();
+                Log.e("volley", volleyError + "");
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "get");
+                params.put("postid", pID);
+                params.put("id", user.id);
+
+                return params;
+            }
+
+        };
+
+        AppManager.getInstance().addToRequestQueue(request, "reqPostSingle", this);
+
+    }
+
+
+    private void timeOut(){
+        progressDialoge.dismiss();
+        Snackbar.make(userId,"timeOut !!",Snackbar.LENGTH_LONG).show();
+
+    }
+
+
+    private void parseAndSet(String response) {
+        ArrayList<CollegareComment> comments = new ArrayList<>();
+
+        try {
+            JSONObject postObj = new JSONObject(response);
+
+            JSONArray comment = postObj.getJSONArray("comments");
+            // comments parsing
+            for (int i = 0; i < comment.length(); i++) {
+                JSONObject temp = (JSONObject) comment.get(i);
+                comments.add(new CollegareComment(
+                                postObj.getString("postid"),
+                                temp.getString("commentid"),
+                                temp.getString("id"),
+                                temp.getString("username"),
+                                temp.getString("content"),
+                                temp.getString("doc"))
+                );
+                CommentsAdapter.getInstance(this).setComments(comments);
+            }
+            post.comment=comments;
+            post.DisLikeCount = postObj.getString("downcount");
+            post.LikeCount = postObj.getString("upcount");
+            post.content = postObj.getString("content");
+            post.postid = postObj.getString("postid");
+
+            userId.setText(postObj.getString("id"));
+            userPic.setImageResource(R.drawable.user_pic);
+            likeText.setText(postObj.getString("upcount"));
+
+            unlikeText.setText(postObj.getString("downcount"));
+
+            nameDisplay.setText(postObj.getString("username"));
+            contentText.setText(postObj.getString("content"));
+            commentCount.setText(postObj.getString("commentcount"));
+            int resIdL = (postObj.getString("vote").equals("1")) ? R.drawable.upvote_48 : R.drawable.upvote_48_black;
+            int resIdD = (postObj.getString("vote").equals("-1")) ? R.drawable.downvote_48 : R.drawable.downvote_48_black;
+
+            likeImg.setImageResource(resIdL);
+            unlikeImg.setImageResource(resIdD);
+
+
+            return;
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
     }
 
 }
