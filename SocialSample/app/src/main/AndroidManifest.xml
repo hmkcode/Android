@@ -28,6 +28,10 @@
             android:name=".Home"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name=".PostDetailActivity"
+            android:label="@string/title_activity_post_detail" >
+        </activity>
     </application>
 
 </manifest>

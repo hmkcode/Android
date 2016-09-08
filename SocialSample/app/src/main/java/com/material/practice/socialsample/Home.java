@@ -166,24 +166,5 @@ public class Home extends AppCompatActivity {
 
     }
 
-/*
-    @Override
-    public void sent(int type) {
 
-        fragment = (Fragment) pagerAdapter.instantiateItem(viewPager, type);
-
-        if (type == 0) {
-            viewPager.setCurrentItem(0);
-            if (fragment instanceof RefressListener) {
-                ((RefressListener) fragment).refress();
-            }
-
-        } else {
-            viewPager.setCurrentItem(1);
-            if (fragment instanceof RefressListener) {
-                ((RefressListener) fragment).refress();
-            }
-        }
-
-    }*/
 }
