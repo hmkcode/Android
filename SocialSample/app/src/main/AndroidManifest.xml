@@ -40,6 +40,10 @@
             android:name=".CenterActivity"
             android:label="@string/title_activity_center" >
         </activity>
+        <activity
+            android:name=".MessageActivity"
+            android:label="@string/title_activity_message" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,4 +9,5 @@
     <string name="title_activity_post_detail">PostDetailActivity</string>
     <string name="title_activity_authentication">AuthenticationActivity</string>
     <string name="title_activity_center">CenterActivity</string>
+    <string name="title_activity_message">MessageActivity</string>
 </resources>
