@@ -1,28 +1,29 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:id="@+id/drawer"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:theme="@style/AppTheme">
 
-
-    <FrameLayout
-        android:id="@+id/mainArea"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
-    </FrameLayout>
-
+    </RelativeLayout>
 
     <fragment
         android:id="@+id/fragmentNav"
+        android:name="com.material.practice.materialnavigationdrawer.NavigationFragment"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         tools:layout="@layout/fragment_navigation_drawer" />
-
 
 
 </android.support.v4.widget.DrawerLayout>
