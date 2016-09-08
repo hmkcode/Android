@@ -44,6 +44,10 @@
             android:name=".MessageActivity"
             android:label="@string/title_activity_message" >
         </activity>
+        <activity
+            android:name=".TestActivityForPol"
+            android:label="@string/title_activity_test_activity_for_pol" >
+        </activity>
     </application>
 
 </manifest>

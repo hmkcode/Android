@@ -10,4 +10,5 @@
     <string name="title_activity_authentication">AuthenticationActivity</string>
     <string name="title_activity_center">CenterActivity</string>
     <string name="title_activity_message">MessageActivity</string>
+    <string name="title_activity_test_activity_for_pol">TestActivityForPol</string>
 </resources>
