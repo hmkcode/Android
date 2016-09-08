@@ -2,10 +2,17 @@ package com.material.practice.socialsample;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -172,25 +181,54 @@ public class ProfileActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
-        return true;
+
+    private void saveChanges(){
+
+    }
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Uri Selectionuri = data.getData();
+            String[] pathCols = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(Selectionuri, pathCols, null, null, null);
+            cursor.moveToFirst();
+            final String path = cursor.getString(cursor.getColumnIndex(pathCols[0]));
+            cursor.close();
+            String imgStr= getStringImage(BitmapFactory.decodeFile(path));
+            Bitmap bmp=null;
+
+            // cross-test for decode and encode
+            byte[] barr= Base64.decode(imgStr,Base64.DEFAULT);
+            bmp= BitmapFactory.decodeByteArray(barr, 0,barr.length);
+            // end
+
+
+            proImage.setImageBitmap(bmp);
+            // proImage.setImageBitmap(BitmapFactory.decodeFile(path));
+
+            if(InternetManager.getInstance(this).isConnectedToNet()){
+                Log.e("EP", "trying upload");
+                Handler handler= new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("EP", "thread dispatched");
+                        ImageUploader.getInstance(new Contexter().getContext()).upload(BitmapFactory.decodeFile(path));
+                    }
+                });
+
+            }
+
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
