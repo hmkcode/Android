@@ -20,6 +20,10 @@
             android:name=".Poll"
             android:label="@string/title_activity_poll" >
         </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>
