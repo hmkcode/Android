@@ -36,6 +36,10 @@
             android:name=".AuthenticationActivity"
             android:label="@string/title_activity_authentication" >
         </activity>
+        <activity
+            android:name=".CenterActivity"
+            android:label="@string/title_activity_center" >
+        </activity>
     </application>
 
 </manifest>
