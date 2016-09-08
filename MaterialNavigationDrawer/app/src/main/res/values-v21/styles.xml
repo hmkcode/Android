@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="colorPrimary">@color/PrimaryColor</item>
-        <item name="colorPrimaryDark">@color/PrimaryColorDark</item>
+        <item name="android:colorPrimaryDark">@color/PrimaryColorDark</item>
 
     </style>
-
 </resources>

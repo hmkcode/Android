@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="#ffffff"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp">
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="144dp">
 
+    </FrameLayout>
+    
+
+    <LinearLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_email"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+
+        <TextView
+            android:layout_marginLeft="56dp"
+            android:layout_gravity="center_vertical"
+            android:text="Inbox"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
