@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
     android:elevation="20dp"
+    android:background="#009988"
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
