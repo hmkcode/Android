@@ -48,6 +48,10 @@
             android:name=".TestActivityForPol"
             android:label="@string/title_activity_test_activity_for_pol" >
         </activity>
+        <activity
+            android:name=".PostBirth"
+            android:label="@string/title_activity_post_birth" >
+        </activity>
     </application>
 
 </manifest>
