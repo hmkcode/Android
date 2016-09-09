@@ -1,6 +1,8 @@
 package com.material.practice.materialnavigationdrawer;
 
 
+import java.util.ArrayList;
+
 public class NavItems {
     String icon;
     String title;
@@ -9,6 +11,7 @@ public class NavItems {
         this.icon = icon;
         this.title = title;
     }
+
 
     public String getIcon() {
         return icon;
