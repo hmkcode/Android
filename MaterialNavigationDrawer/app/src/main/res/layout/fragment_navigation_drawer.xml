@@ -3,41 +3,36 @@
     android:orientation="vertical"
     android:background="#ffffff"
     android:layout_width="280dp"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp">
+    android:layout_height="match_parent">
     
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="144dp">
 
     </FrameLayout>
-    
 
-    <LinearLayout
+
+    <RelativeLayout
+        android:gravity="center_vertical"
         android:layout_marginLeft="16dp"
+        android:background="#dedede"
         android:layout_marginRight="16dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <ImageView
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_action_email"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_marginLeft="56dp"
+
+            android:id="@+id/sendIconText"
+            android:textStyle="bold"
+            android:textSize="36dp"
             android:layout_gravity="center_vertical"
-            android:text="Inbox"
-            android:textSize="14sp"
-            android:layout_width="match_parent"
+            android:text=""
+            android:textColor="@color/PrimaryColorDark"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

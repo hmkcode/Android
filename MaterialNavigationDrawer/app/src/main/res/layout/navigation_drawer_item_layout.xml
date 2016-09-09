@@ -5,18 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="48dp">
 
-    <ImageView
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_action_email"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
-
-
     <TextView
+        android:textColor="@color/PrimaryColor"
         android:layout_marginLeft="56dp"
         android:layout_gravity="center_vertical"
         android:text="Inbox"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

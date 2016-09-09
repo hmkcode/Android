@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        TextView fontIcon = (TextView) findViewById(R.id.sendIconText);
+        fontIcon.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_FLATICON));
 
     }
 
