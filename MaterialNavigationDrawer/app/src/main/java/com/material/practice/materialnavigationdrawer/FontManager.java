@@ -8,6 +8,7 @@ import android.graphics.Typeface;
  */
 public class FontManager {
     public static final String FONT_FLATICON = "Flaticon.ttf";
+    public static final String FONT_ROBOTO = "roboto.ttf";
 
     private static Context context;
     private static FontManager mInstance;

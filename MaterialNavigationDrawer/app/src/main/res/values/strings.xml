@@ -8,17 +8,36 @@
         <item>Starred</item>
         <item>Important</item>
         <item>Sent</item>
-        <item>Outbox</item>
         <item>Draft</item>
         <item>All Mails</item>
         <item>Spam</item>
         <item>Bin</item>
     </string-array>
 
+    <string-array name="NavHeadersIcons">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="subItemsIcons">
+        <item></item>
+        <item></item>
+    </string-array>
+
     <string-array name="subItems">
         <item>Setting</item>
         <item>Help &amp; feedback</item>
     </string-array>
+
+
+
+
 
 
 </resources>
