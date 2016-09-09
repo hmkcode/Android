@@ -11,6 +11,7 @@
         android:layout_height="144dp">
 
 
+
     </FrameLayout>
 
 
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content">
 
         <ListView
+            android:divider="#ffffff"
             android:dividerHeight="0dp"
             android:id="@+id/navList"
             android:layout_width="match_parent"

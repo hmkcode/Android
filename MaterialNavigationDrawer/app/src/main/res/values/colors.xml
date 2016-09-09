@@ -3,6 +3,7 @@
     <color name="PrimaryColor">#f44336</color>
     <color name="PrimaryColorDark">#d32f2f</color>
     <color name="ListItems">#d9000000</color>
-    <color name="selectedIcons"></color>
+    <color name="selectedItem">#eeeeee</color>
+    <color name="white">#ffffff</color>
 
 </resources>

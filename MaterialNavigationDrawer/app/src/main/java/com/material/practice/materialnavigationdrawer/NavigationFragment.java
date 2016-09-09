@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,16 +36,24 @@ public class NavigationFragment extends Fragment {
 
         ListView listView = (ListView) view.findViewById(R.id.navList);
         ArrayList<NavItems> listItems = new ArrayList<>();
-        String[] icons = getActivity().getResources().getStringArray(R.array.subItemsIcons);
-        String[] title = getActivity().getResources().getStringArray(R.array.subItems);
+        String[] icons = getActivity().getResources().getStringArray(R.array.NavHeadersIcons);
+        String[] title = getActivity().getResources().getStringArray(R.array.NavHeaders);
 
         for (int i = 0; i < icons.length; i++) {
             listItems.add(new NavItems(icons[i], title[i]));
         }
 
-        NavListAdapter adapter = NavListAdapter.getInstance(getActivity());
+        final NavListAdapter adapter = NavListAdapter.getInstance(getActivity());
         listView.setAdapter(adapter);
         adapter.setItems(listItems);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setSelected(true);
+            }
+        });
+
     }
 
     @Override

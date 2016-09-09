@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        TextView fontIcon = (TextView) findViewById(R.id.sendIconText);
-        fontIcon.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_FLATICON));
-
     }
 
     public void setUpNavigationDrawer() {

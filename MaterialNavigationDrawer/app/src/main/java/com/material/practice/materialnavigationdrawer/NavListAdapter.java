@@ -16,10 +16,11 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
     private static Context context;
     private static NavListAdapter mInstance;
     private ArrayList<NavItems> items;
-
+    int checkedIndex;
     public NavListAdapter(Context context) {
         super(context, 0);
         this.context = context;
+        this.items = new ArrayList<>();
     }
 
     public static NavListAdapter getInstance(Context context) {
@@ -31,6 +32,11 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
 
     public void setItems(ArrayList<NavItems> list) {
         this.items = list;
+        notifyDataSetChanged();
+    }
+
+    public void setCheckedIndex(int check) {
+        checkedIndex = check;
         notifyDataSetChanged();
     }
 
