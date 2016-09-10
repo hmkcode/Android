@@ -48,17 +48,17 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
         View view = convertView;
 
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.navigation_drawer_item_layout, null, false);
+            view = LayoutInflater.from(context).inflate(R.layout.navigation_item_layout, null, false);
         }
 
-        TextView icon = (TextView) view.findViewById(R.id.itemIcon);
+        //TextView icon = (TextView) view.findViewById(R.id.itemIcon);
         TextView title = (TextView) view.findViewById(R.id.listItem);
 
-        Typeface robotoMedium = FontManager.getInstance(context).getTypeFace(FontManager.FONT_ROBOTO);
+        Typeface robotoMedium = FontManager.getInstance(context).getTypeFace(FontManager.FONT_ROBOTO_REGULAR);
         Typeface materialIcon = FontManager.getInstance(context).getTypeFace(FontManager.FONT_MATERIAL);
-        icon.setText(items.get(position).getIcon());
+        //icon.setText(items.get(position).getIcon());
         title.setText(items.get(position).getTitle());
-        icon.setTypeface(materialIcon);
+        //icon.setTypeface(materialIcon);
         title.setTypeface(robotoMedium);
 
         return view;

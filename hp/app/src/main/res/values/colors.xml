@@ -4,6 +4,7 @@
     <color name="PrimaryColor">#e91e63</color>
     <color name="PrimaryColorDark">#de0a43</color>
     <color name="SecondaryColor">#1d2c41</color>
+    <color name="ListItems">#d9000000</color>
     <!--<color name="PrimaryColorDark"></color>-->
     <!--<color name="AccentColor"></color>-->
     <!--<color name="TitleColor"></color>-->

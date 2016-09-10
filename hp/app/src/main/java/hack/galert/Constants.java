@@ -9,5 +9,8 @@ public class Constants {
 
     public static final String SERVER_ROOT = "";
     public static final String SERVER_URL_LOGIN = SERVER_ROOT + "/login";
+    public static final String SERVER_URL_NAVIGATION_ITEMS = SERVER_ROOT + "/login";
+    public static final String SERVER_URL_FEEDS = SERVER_ROOT + "/login";
+    public static final String LOGIN_PREF = "prefLogin";
 
 }

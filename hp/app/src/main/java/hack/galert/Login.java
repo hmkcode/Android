@@ -143,6 +143,8 @@ public class Login extends AppCompatActivity {
                         makeSnackbar("Authentication Failed !");
                     }
                 });
+
+        VolleyUtils.getInstance().addToRequestQueue(loginRequest, TAG, this);
     }
 
     private void navigate() {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardView="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/poll_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:paddingBottom="10dp"
+        cardView:cardBackgroundColor="#ffffff"
+        cardView:cardCornerRadius="1dp">
+
+        <include
+            android:id="@+id/article_item_layout"
+            layout="@layout/article_item_layout" />
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
