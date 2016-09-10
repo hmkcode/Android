@@ -1,11 +1,15 @@
 package hack.galert;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 
@@ -17,7 +21,10 @@ public class DetailsActivity extends AppCompatActivity {
     TextView articleAbstract;
     TextView likesIcon;
     TextView likes;
+    TextView backBtn;
     ImageView articleImage;
+    private ArticlesModel data;
+    private Serializable receivedBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +33,65 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void loadData() {
-        Serializable receivedBundle = getIntent().getSerializableExtra(Constants.EXTRAA_DETAILS);
-        ArticlesModel data = (ArticlesModel) receivedBundle;
+        receivedBundle = getIntent().getSerializableExtra(Constants.EXTRAA_DETAILS);
+        data = (ArticlesModel) receivedBundle;
+
+        Typeface materialTypeFace = FontManager.getInstance(this).getTypeFace(FontManager.FONT_MATERIAL);
+        Typeface robotoMedium = FontManager.getInstance(this).getTypeFace(FontManager.FONT_ROBOTO_MEDIUM);
+        Typeface robotoRegular = FontManager.getInstance(this).getTypeFace(FontManager.FONT_ROBOTO_REGULAR);
+
+
+        refrence = (TextView) findViewById(R.id.articleRefrenceDetailsActivity);
+        readTime = (TextView) findViewById(R.id.readLengthDetailsActivity);
+        articleHeader = (TextView) findViewById(R.id.articlesHeaderDetailsPage);
+        articleAbstract = (TextView) findViewById(R.id.articleText);
+        likesIcon = (TextView) findViewById(R.id.likesIconHeader);
+        likes = (TextView) findViewById(R.id.likesCountHeader);
+        articleImage = (ImageView) findViewById(R.id.articleImageDetailsPage);
+        backBtn = (TextView) findViewById(R.id.backBtnText);
+
+        refrence.setText(data.refrence);
+        readTime.setText(data.readTime);
+        articleHeader.setText(data.articleHeader);
+        articleAbstract.setText(data.articleAbstract);
+        likes.setText(data.likes);
+
+        if (data.isLiked) {
+            likesIcon.setTextColor(getResources().getColor(R.color.PrimaryColor));
+        }
+
+        if (SharedPreferenceManager.getInstance(this).getChoiceOnImageLoad()) {
+            Picasso.with(this)
+                    .load(data.imageUrl)
+                    .into(articleImage);
+        }
 
 
     }
+
+    public void attachListeners() {
+
+        likesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!data.isLiked) {
+                    //like();
+                }
+            }
+        });
+
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(getParentActivityIntent());
+                finish();
+            }
+        });
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
