@@ -1,12 +1,23 @@
 package hack.galert;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
@@ -60,5 +71,63 @@ public class Login extends AppCompatActivity {
 
     }
 
+    public void attemptLogin() {
+        // send server request for validation
+    }
+
+    public boolean validate() {
+
+        boolean validation = false;
+        View viewToFocus = null;
+        if (!mEmail.getText().toString().isEmpty()) {
+            if (!mPassword.getText().toString().isEmpty()) {
+                validation = true;
+            } else {
+                viewToFocus = mPassword;
+            }
+        } else {
+            viewToFocus = mEmail;
+        }
+
+        if (viewToFocus != null) {
+            viewToFocus.requestFocus();
+        }
+
+        return validation;
+    }
+
+    public void makeSnackbar(String msg) {
+        Snackbar.make(passwordIconText, msg, Snackbar.LENGTH_LONG).show();
+    }
+
+    public void login(final String email, final String password) {
+        final String TAG = "login";
+        final String url = Constants.SERVER_URL_LOGIN;
+
+        StringRequest loginRequest = new StringRequest(
+                StringRequest.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //TODO: parse json and navigate to home
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        makeSnackbar("Authentication Failed !");
+                    }
+                });
+    }
+
+    private void navigate() {
+
+        Intent homeIntent = new Intent(this, Home.class);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+        finish();
+
+    }
 
 }
