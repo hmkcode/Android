@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initializeComponents();
+        attachListeners();
     }
 
     public void initializeComponents() {
@@ -71,8 +72,26 @@ public class Login extends AppCompatActivity {
 
     }
 
+    public void attachListeners() {
+        loginBtnText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ConnectionUtils.getInstance(Login.this).isConnected()) {
+                    attemptLogin();
+                } else {
+                    makeSnackbar("No Connectivity !");
+                }
+
+            }
+        });
+    }
+
     public void attemptLogin() {
         // send server request for validation
+        if (validate()) {
+            login();
+        }
+
     }
 
     public boolean validate() {
@@ -100,8 +119,12 @@ public class Login extends AppCompatActivity {
         Snackbar.make(passwordIconText, msg, Snackbar.LENGTH_LONG).show();
     }
 
-    public void login(final String email, final String password) {
+    public void login() {
+
+        final String email = mEmail.getText().toString();
+        final String password = mPassword.getText().toString();
         final String TAG = "login";
+        // TODO: append email and password to url
         final String url = Constants.SERVER_URL_LOGIN;
 
         StringRequest loginRequest = new StringRequest(
@@ -111,6 +134,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(String s) {
                         //TODO: parse json and navigate to home
+                        //navigate();
                     }
                 },
                 new Response.ErrorListener() {
