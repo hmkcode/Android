@@ -1,12 +1,16 @@
 package hack.galert;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
  * Created by Ankit on 9/10/2016.
  */
-public class ArticlesModel implements Serializable {
+public class ArticlesModel implements Parcelable{
 
+    int id;
     String refrence;
     String readTime;
     String articleHeader;
@@ -14,6 +18,15 @@ public class ArticlesModel implements Serializable {
     //    int likes;
 //    boolean isLiked;
     String imageUrl;
+
+    public ArticlesModel(int id, String refrence, String readTime, String articleHeader, String articleAbstract, String imageUrl) {
+        this.id = id;
+        this.refrence = refrence;
+        this.readTime = readTime;
+        this.articleHeader = articleHeader;
+        this.articleAbstract = articleAbstract;
+        this.imageUrl = imageUrl;
+    }
 
     public ArticlesModel(String refrence, String readTime, String articleHeader, String articleAbstract, String imageUrl) {
         this.refrence = refrence;
@@ -40,6 +53,16 @@ public class ArticlesModel implements Serializable {
 //        this.likes = likes;
 //        this.isLiked = isLiked;
         this.imageUrl = imageUrl;
+    }
+
+    public ArticlesModel(Parcel in) {
+
+        refrence = in.readString();
+        readTime = in.readString();
+        articleHeader = in.readString();
+        articleAbstract = in.readString();
+        imageUrl = in.readString();
+
     }
 
     public String getImageUrl() {
@@ -82,6 +105,31 @@ public class ArticlesModel implements Serializable {
         this.articleAbstract = articleAbstract;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+        parcel.writeString(refrence);
+        parcel.writeString(readTime);
+        parcel.writeString(articleHeader);
+        parcel.writeString(articleAbstract);
+        parcel.writeString(imageUrl);
+
+    }
+
+    public static final Parcelable.Creator<ArticlesModel> CREATOR = new Parcelable.Creator<ArticlesModel>() {
+        public ArticlesModel createFromParcel(Parcel in) {
+            return new ArticlesModel(in);
+        }
+
+        public ArticlesModel[] newArray(int size) {
+            return new ArticlesModel[size];
+        }
+    };
 //    public int getLikes() {
 //        return likes;
 //    }

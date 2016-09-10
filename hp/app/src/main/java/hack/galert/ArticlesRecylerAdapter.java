@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,12 +113,21 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.d("Adapter", "tapped");
                     int position = getAdapterPosition();
                     ArticlesRecylerAdapter adapter = ArticlesRecylerAdapter.getInstance(context);
                     Intent detailsIntent = new Intent(context, DetailsActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(Constants.EXTRAA_DETAILS, adapter.articles);
+                    ArticlesModel item = adapter.articles.get(position);
+
+                    bundle.putString("ref", item.refrence);
+                    bundle.putString("read", item.readTime);
+                    bundle.putString("head", item.articleHeader);
+                    bundle.putString("abs", item.articleAbstract);
+                    bundle.putString("url", item.imageUrl);
+                    //bundle.putParcelable(Constants.EXTRAA_DETAILS, adapter.articles.get(position));
                     detailsIntent.putExtras(bundle);
+                    context.startActivity(detailsIntent);
 
                 }
             });

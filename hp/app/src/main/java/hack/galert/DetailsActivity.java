@@ -23,18 +23,18 @@ public class DetailsActivity extends AppCompatActivity {
     TextView likes;
     TextView backBtn;
     ImageView articleImage;
-    private ArticlesModel data;
-    private Serializable receivedBundle;
-
+    private Bundle data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        loadData();
     }
 
     public void loadData() {
-        receivedBundle = getIntent().getSerializableExtra(Constants.EXTRAA_DETAILS);
-        data = (ArticlesModel) receivedBundle;
+
+        data = getIntent().getExtras();
+
 
         Typeface materialTypeFace = FontManager.getInstance(this).getTypeFace(FontManager.FONT_MATERIAL);
         Typeface robotoMedium = FontManager.getInstance(this).getTypeFace(FontManager.FONT_ROBOTO_MEDIUM);
@@ -50,19 +50,19 @@ public class DetailsActivity extends AppCompatActivity {
         articleImage = (ImageView) findViewById(R.id.articleImageDetailsPage);
         backBtn = (TextView) findViewById(R.id.backBtnText);
 
-        refrence.setText(data.refrence);
-        readTime.setText(data.readTime);
-        articleHeader.setText(data.articleHeader);
-        articleAbstract.setText(data.articleAbstract);
-        likes.setText(data.likes);
+        refrence.setText(data.getString("ref"));
+        readTime.setText(data.getString("read"));
+        articleHeader.setText(data.getString("head"));
+        articleAbstract.setText(data.getString("abs"));
 
-        if (data.isLiked) {
-            likesIcon.setTextColor(getResources().getColor(R.color.PrimaryColor));
-        }
+        //set type faces
+        backBtn.setTypeface(materialTypeFace);
+
+        attachListeners();
 
         if (SharedPreferenceManager.getInstance(this).getChoiceOnImageLoad()) {
             Picasso.with(this)
-                    .load(data.imageUrl)
+                    .load(data.getString("url"))
                     .into(articleImage);
         }
 
@@ -70,16 +70,6 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void attachListeners() {
-
-        likesIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!data.isLiked) {
-                    //like();
-                }
-            }
-        });
-
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

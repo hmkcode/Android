@@ -1,23 +1,32 @@
 package hack.galert;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
@@ -29,6 +38,7 @@ public class Login extends AppCompatActivity {
 
     EditText mEmail;
     EditText mPassword;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +124,7 @@ public class Login extends AppCompatActivity {
 
         if (viewToFocus != null) {
             viewToFocus.requestFocus();
+            makeSnackbar("Empty Fields !! ");
         }
 
         return validation;
@@ -124,32 +135,61 @@ public class Login extends AppCompatActivity {
     }
 
     public void login() {
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Authenticating You In ....");
         final String email = mEmail.getText().toString();
         final String password = mPassword.getText().toString();
         final String TAG = "login";
-        // TODO: append email and password to url
-        final String url = Constants.SERVER_URL_LOGIN;
 
-        StringRequest loginRequest = new StringRequest(
-                StringRequest.Method.GET,
-                url,
-                new Response.Listener<String>() {
+
+        final String url = Constants.SERVER_URL_LOGIN;
+        JSONObject jsonBody = null;
+        try {
+            jsonBody = new JSONObject("{\"email\":" + email + ",\"password\":\"" + password + "\"}");
+            Log.d("Login", jsonBody.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest loginJsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String s) {
-                        //TODO: parse json and navigate to home
-                        //SharedPreferenceManager.getInstance(Login.this).setLoginStatus(true);
-                        //navigate();
+                    public void onResponse(JSONObject jsonObject) {
+                        String accessToken = "";
+                        try {
+
+                            accessToken = jsonObject.getString("access_token");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if (accessToken != null) {
+                            SharedPreferenceManager utils = SharedPreferenceManager.getInstance(Login.this);
+                            utils.setUserToken(accessToken);
+                            utils.setLoginStatus(true);
+                            progressDialog.dismiss();
+                            navigate();
+                        } else {
+                            progressDialog.hide();
+                            progressDialog.dismiss();
+                            makeSnackbar("Authentication Failed ! ");
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        progressDialog.dismiss();
+                        Log.d("Login", volleyError.toString());
                         makeSnackbar("Authentication Failed !");
                     }
                 });
 
-        VolleyUtils.getInstance().addToRequestQueue(loginRequest, TAG, this);
+        progressDialog.show();
+
+        loginJsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        VolleyUtils.getInstance().addToRequestQueue(loginJsonRequest, TAG, this);
     }
 
     private void navigate() {

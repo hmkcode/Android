@@ -3,14 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="4dp"
-    android:elevation="4dp"
+    android:elevation="8dp"
     android:layout_height="56dp"
     android:layout_marginBottom="8dp">
 
     <TextView
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:gravity="center"
-        android:text="B"
+        android:text=""
+        android:textColor="@color/ListItems"
         android:id="@+id/backBtnText"
         android:layout_width="56dp"
         android:layout_height="56dp" />

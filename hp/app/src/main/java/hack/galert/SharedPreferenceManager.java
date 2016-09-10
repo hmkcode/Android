@@ -56,4 +56,23 @@ public class SharedPreferenceManager {
     public String getUserToken() {
         return preferences.getString(Constants.TOKEN, "");
     }
+
+    public int getLastLoadedSubs() {
+        return preferences.getInt("subs", 1);
+    }
+
+    public void setUserEmail(String email) {
+        editor.putString("email", email);
+        editor.commit();
+    }
+
+    public String getUserEmail() {
+        return preferences.getString("email", "");
+    }
+
+    public void setLastLoadedSubs(int subsId) {
+        editor.putInt("subs", subsId);
+        editor.commit();
+    }
+
 }
