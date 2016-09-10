@@ -15,4 +15,5 @@ public class Constants {
 
     public static final String IMAGE_LOAD_CHOICE = "shouldLoadImage";
     public static final String EXTRAA_DETAILS = "detailsExtraa";
+    public static final String TOKEN = "token";
 }

@@ -48,5 +48,12 @@ public class SharedPreferenceManager {
         editor.commit();
     }
 
+    public void setUserToken(String token) {
+        editor.putString(Constants.TOKEN, token);
+        editor.commit();
+    }
 
+    public String getUserToken() {
+        return preferences.getString(Constants.TOKEN, "");
+    }
 }

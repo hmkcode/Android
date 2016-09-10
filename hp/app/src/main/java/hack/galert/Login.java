@@ -138,6 +138,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(String s) {
                         //TODO: parse json and navigate to home
+                        //SharedPreferenceManager.getInstance(Login.this).setLoginStatus(true);
                         //navigate();
                     }
                 },

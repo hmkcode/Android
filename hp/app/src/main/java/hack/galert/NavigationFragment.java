@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -21,11 +23,15 @@ import java.util.ArrayList;
  */
 public class NavigationFragment extends Fragment {
 
+    private DrawerLayout mDrawerLayout;
     private ListView listView;
     private NavListAdapter adapter;
+    private TextView addInterestBtn;
 
-    public NavigationFragment() {
+    public NavigationFragment(DrawerLayout drawerLayout) {
+        this.mDrawerLayout = drawerLayout;
     }
+
 
     @Nullable
     @Override
@@ -38,15 +44,27 @@ public class NavigationFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         listView = (ListView) view.findViewById(R.id.navList);
-
         adapter = NavListAdapter.getInstance(getActivity());
         listView.setAdapter(adapter);
+
+        addInterestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mActionListener != null) {
+                    mActionListener.onNewInterest();
+                }
+            }
+        });
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 view.setSelected(true);
                 view.setActivated(true);
+                if (mActionListener != null) {
+                    mActionListener.onItemTapped(i);
+                }
             }
         });
 
@@ -60,6 +78,7 @@ public class NavigationFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
     }
 
 
@@ -104,6 +123,18 @@ public class NavigationFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private ActionEventLister mActionListener;
+
+    public void setmActionListener(ActionEventLister mActionListener) {
+        this.mActionListener = mActionListener;
+    }
+
+    public interface ActionEventLister {
+        void onNewInterest();
+
+        void onItemTapped(int topicInd);
     }
 
 }

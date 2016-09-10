@@ -63,12 +63,12 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         viewHolder.readTime.setText(articles.get(position).readTime);
         viewHolder.articleHeader.setText(articles.get(position).articleHeader);
         viewHolder.articleAbstract.setText(articles.get(position).articleAbstract);
-        viewHolder.likes.setText(articles.get(position).likes);
+        //viewHolder.likes.setText(articles.get(position).likes);
 
-        // disable like button
-        if (articles.get(position).isLiked) {
-            viewHolder.likesIcon.setTextColor(context.getResources().getColor(R.color.PrimaryColor));
-        }
+//        // disable like button
+//        if (articles.get(position).isLiked) {
+//            viewHolder.likesIcon.setTextColor(context.getResources().getColor(R.color.PrimaryColor));
+//        }
 
         if (SharedPreferenceManager.getInstance(context).getChoiceOnImageLoad()) {
             if (ConnectionUtils.getInstance(context).isConnected()) {
@@ -94,8 +94,8 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         TextView readTime;
         TextView articleHeader;
         TextView articleAbstract;
-        TextView likesIcon;
-        TextView likes;
+        //        TextView likesIcon;
+//        TextView likes;
         ImageView articleImage;
 
         public ArticleHolder(View itemView) {
@@ -105,8 +105,8 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
             readTime = (TextView) itemView.findViewById(R.id.readLength);
             articleHeader = (TextView) itemView.findViewById(R.id.articlesHeader);
             articleAbstract = (TextView) itemView.findViewById(R.id.articlesAbstract);
-            likesIcon = (TextView) itemView.findViewById(R.id.likesIcon);
-            likes = (TextView) itemView.findViewById(R.id.likesCount);
+//            likesIcon = (TextView) itemView.findViewById(R.id.likesIcon);
+//            likes = (TextView) itemView.findViewById(R.id.likesCount);
             articleImage = (ImageView) itemView.findViewById(R.id.articleImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
