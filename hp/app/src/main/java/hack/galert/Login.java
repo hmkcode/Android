@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
     EditText mEmail;
     EditText mPassword;
     private ProgressDialog progressDialog;
+    private TextView registerText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class Login extends AppCompatActivity {
         appTitlleText = (TextView) findViewById(R.id.appTitle);
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
+        registerText = (TextView) findViewById(R.id.registerText);
 
         setTypeFace();
 
@@ -98,6 +100,15 @@ public class Login extends AppCompatActivity {
 
             }
         });
+
+        registerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, Register.class));
+                finish();
+            }
+        });
+
     }
 
     public void attemptLogin() {
@@ -163,6 +174,7 @@ public class Login extends AppCompatActivity {
                         }
                         if (accessToken != null) {
                             SharedPreferenceManager utils = SharedPreferenceManager.getInstance(Login.this);
+                            utils.setUserEmail(email);
                             utils.setUserToken(accessToken);
                             utils.setLoginStatus(true);
                             progressDialog.dismiss();

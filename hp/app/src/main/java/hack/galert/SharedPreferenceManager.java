@@ -75,4 +75,12 @@ public class SharedPreferenceManager {
         editor.commit();
     }
 
+    public void setUserFullName(String fName) {
+        editor.putString("userName", fName);
+        editor.commit();
+    }
+
+    public String getUserName() {
+        return preferences.getString("userName", "");
+    }
 }

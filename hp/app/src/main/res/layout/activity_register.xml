@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="72dp"
             android:orientation="horizontal">
 
             <TextView
@@ -74,6 +74,38 @@
 
 
             </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:paddingRight="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/login_fields_state">
+
+                <TextView
+                    android:id="@+id/userIcon"
+                    android:textColor="@color/LightGrey"
+                    android:layout_margin="4dp"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text=""
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" />
+
+                <EditText
+                    android:id="@+id/fullName"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/LightGrey"
+                    android:hint="Full Name"
+                    android:background="@drawable/login_edittext_bg"
+                    android:layout_marginLeft="56dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </FrameLayout>
+
 
             <FrameLayout
                 android:paddingRight="2dp"
@@ -160,6 +192,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/loginText"
                 android:text="Already Registered ? Login"
                 android:textColor="@color/White"
                 android:layout_marginLeft="10dp"

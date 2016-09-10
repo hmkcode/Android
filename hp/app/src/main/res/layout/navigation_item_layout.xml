@@ -24,8 +24,8 @@
         android:layout_gravity="center_vertical"
         android:text="Inbox"
         android:textColor="@color/ListItems"
-        android:textSize="14sp"
-        android:layout_width="match_parent"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 

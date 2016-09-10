@@ -29,12 +29,20 @@
 
     </LinearLayout>
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/LightGrey">
+
+    </FrameLayout>
+
     <FrameLayout
         android:id="@+id/articleImageFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/ic_menu_agenda"
-        android:visibility="gone">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/articleImage"
@@ -47,8 +55,8 @@
         android:padding="2dp"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -72,14 +80,6 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/LightGrey">
-
-    </FrameLayout>
 
     <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->

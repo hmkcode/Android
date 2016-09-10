@@ -11,8 +11,8 @@ public class FontManager {
     public static final String FONT_MATERIAL = "MaterialFont.ttf";
     public static final String FONT_RALEWAY_REGULAR = "Raleway-Regular.ttf";
     public static final String FONT_RALEWAY_BOLD = "Raleway-Bold.ttf";
-    public static final String FONT_ROBOTO_MEDIUM = "roboto.medium.ttf";
-    public static final String FONT_ROBOTO_REGULAR = "roboto.regular.ttf";
+    public static final String FONT_ROBOTO_MEDIUM = "rm.ttf";
+    public static final String FONT_ROBOTO_REGULAR = "rr.ttf";
 
     private static Context context;
     private static FontManager mInstance;

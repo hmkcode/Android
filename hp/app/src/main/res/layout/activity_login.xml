@@ -129,7 +129,8 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="Sign in using Google"
+                android:id="@+id/registerText"
+                android:text="New User ? Register "
                 android:textColor="@color/White"
                 android:layout_marginLeft="10dp"
                 android:textSize="14sp"
