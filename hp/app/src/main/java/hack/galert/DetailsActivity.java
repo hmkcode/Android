@@ -4,13 +4,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.Serializable;
 
 public class DetailsActivity extends AppCompatActivity {
+
+    TextView refrence;
+    TextView readTime;
+    TextView articleHeader;
+    TextView articleAbstract;
+    TextView likesIcon;
+    TextView likes;
+    ImageView articleImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+    }
+
+    public void loadData() {
+        Serializable receivedBundle = getIntent().getSerializableExtra(Constants.EXTRAA_DETAILS);
+        ArticlesModel data = (ArticlesModel) receivedBundle;
+
+
     }
 
     @Override

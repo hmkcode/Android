@@ -35,6 +35,10 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (SharedPreferenceManager.getInstance(this).isLoggedIn()) {
+            navigate();
+        }
+
         initializeComponents();
         attachListeners();
     }

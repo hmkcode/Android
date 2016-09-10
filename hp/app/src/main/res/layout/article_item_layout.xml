@@ -46,7 +46,7 @@
     <LinearLayout
         android:padding="2dp"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="120dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:orientation="vertical">
@@ -55,7 +55,7 @@
             android:id="@+id/articlesHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:maxLines="2"
             android:padding="4dp"
             android:text="The Biggest dsfdddMistake People Make in \n their Carreer"
             android:textColor="@color/ListItems"
@@ -66,7 +66,7 @@
             android:id="@+id/articlesAbstract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:maxLines="2"
             android:padding="4dp"
             android:text="An Apple fsaaaaaaaaaaaaaaaaaafsaaaaaaaaaaaaaaaaais a fruit\n and it is healthy." />
 

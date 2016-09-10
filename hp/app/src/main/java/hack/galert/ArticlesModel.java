@@ -1,9 +1,11 @@
 package hack.galert;
 
+import java.io.Serializable;
+
 /**
  * Created by Ankit on 9/10/2016.
  */
-public class ArticlesModel {
+public class ArticlesModel implements Serializable {
 
     String refrence;
     String readTime;

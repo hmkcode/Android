@@ -2,15 +2,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="hack.galert.DetailsActivity">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include
+        layout="@layout/details_article_page_header"
+        android:id="@+id/pageHeader" />
+
+    <LinearLayout
+        android:layout_below="@+id/pageHeader"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:visibility="gone"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/articleImageDetailsPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:maxLines="3"
+            android:textColor="@color/ListItems"
+            android:textStyle="bold"
+            android:paddingLeft="8dp"
+            android:paddingBottom="4dp"
+            android:paddingRight="8dp"
+            android:textSize="20sp"
+            android:paddingTop="4dp"
+            android:text="5 Tips to get Topper\ndf\nsdf\ndsf"
+            android:id="@+id/articlesHeaderDetailsPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/articleText"
+                android:text="hello ankit"
+                android:textSize="16sp"
+                android:textColor="@color/ListItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

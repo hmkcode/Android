@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="4dp"
+    android:elevation="4dp"
+    android:layout_height="56dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="B"
+        android:id="@+id/backBtnText"
+        android:layout_width="56dp"
+        android:layout_height="56dp" />
+
+    <TextView
+        android:layout_toRightOf="@+id/backBtnText"
+        android:textColor="@color/PrimaryColor"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:paddingRight="4dp"
+        android:maxLength="35"
+        android:text="Times Of India"
+        android:id="@+id/articleRefrenceDetailsActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_toRightOf="@+id/backBtnText"
+        android:layout_below="@+id/articleRefrenceDetailsActivity"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="5 minutes"
+        android:id="@+id/readLengthDetailsActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="56dp"
+        android:layout_height="56dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:textColor="@color/PrimaryColor"
+            android:textSize="36sp"
+            android:id="@+id/likesIconHeader"
+            android:text="O"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:textColor="@color/PrimaryColor"
+            android:textSize="16sp"
+            android:id="@+id/likesCountHeader"
+            android:text="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </FrameLayout>
+
+
+</RelativeLayout>

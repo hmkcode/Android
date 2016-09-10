@@ -1,7 +1,10 @@
 package hack.galert;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,7 +113,11 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-
+                    ArticlesRecylerAdapter adapter = ArticlesRecylerAdapter.getInstance(context);
+                    Intent detailsIntent = new Intent(context, DetailsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Constants.EXTRAA_DETAILS, adapter.articles);
+                    detailsIntent.putExtras(bundle);
 
                 }
             });

@@ -35,7 +35,7 @@ public class SharedPreferenceManager {
         editor.commit();
     }
 
-    public boolean getLoginStatus() {
+    public boolean isLoggedIn() {
         return preferences.getBoolean(Constants.LOGIN_PREF, false);
     }
 

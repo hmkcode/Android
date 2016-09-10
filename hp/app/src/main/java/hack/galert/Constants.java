@@ -14,4 +14,5 @@ public class Constants {
     public static final String LOGIN_PREF = "prefLogin";
 
     public static final String IMAGE_LOAD_CHOICE = "shouldLoadImage";
+    public static final String EXTRAA_DETAILS = "detailsExtraa";
 }
