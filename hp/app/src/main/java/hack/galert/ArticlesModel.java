@@ -11,6 +11,7 @@ public class ArticlesModel {
     String articleAbstract;
     int likes;
     boolean isLiked;
+    String imageUrl;
 
     public ArticlesModel(String refrence, String readTime, String articleHeader, String articleAbstract, int likes, boolean isLiked) {
         this.refrence = refrence;
@@ -19,6 +20,24 @@ public class ArticlesModel {
         this.articleAbstract = articleAbstract;
         this.likes = likes;
         this.isLiked = isLiked;
+    }
+
+    public ArticlesModel(String refrence, String readTime, String articleHeader, String articleAbstract, int likes, boolean isLiked, String imageUrl) {
+        this.refrence = refrence;
+        this.readTime = readTime;
+        this.articleHeader = articleHeader;
+        this.articleAbstract = articleAbstract;
+        this.likes = likes;
+        this.isLiked = isLiked;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getRefrence() {

@@ -13,4 +13,5 @@ public class Constants {
     public static final String SERVER_URL_FEEDS = SERVER_ROOT + "/login";
     public static final String LOGIN_PREF = "prefLogin";
 
+    public static final String IMAGE_LOAD_CHOICE = "shouldLoadImage";
 }

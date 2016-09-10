@@ -39,5 +39,14 @@ public class SharedPreferenceManager {
         return preferences.getBoolean(Constants.LOGIN_PREF, false);
     }
 
+    public boolean getChoiceOnImageLoad() {
+        return preferences.getBoolean(Constants.IMAGE_LOAD_CHOICE, false);
+    }
+
+    public void setChoiceOnImageLoad(boolean shouldLoad) {
+        editor.putBoolean(Constants.IMAGE_LOAD_CHOICE, shouldLoad);
+        editor.commit();
+    }
+
 
 }
