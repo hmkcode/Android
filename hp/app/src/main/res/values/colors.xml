@@ -8,6 +8,8 @@
     <!--<color name="TitleColor"></color>-->
     <!--<color name="AbstractColor"></color>-->
     <color name="White">#ffffff</color>
+    <color name="PrimaryColorLight">#aae91e63</color>
+    <color name="LightGrey">#aaaaaa</color>
 
 
 </resources>

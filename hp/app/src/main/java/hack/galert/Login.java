@@ -1,37 +1,64 @@
 package hack.galert;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class Login extends AppCompatActivity {
+
+    TextView appIconText;
+    TextView personEmailIconText;
+    TextView passwordIconText;
+    TextView loginBtnText;
+    TextView appTitlleText;
+
+    EditText mEmail;
+    EditText mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        initializeComponents();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
+    public void initializeComponents() {
+
+        appIconText = (TextView) findViewById(R.id.appIconText);
+        personEmailIconText = (TextView) findViewById(R.id.profileIcon);
+        passwordIconText = (TextView) findViewById(R.id.lockIcon);
+        loginBtnText = (TextView) findViewById(R.id.loginBtn);
+        appTitlleText = (TextView) findViewById(R.id.appTitle);
+        mEmail = (EditText) findViewById(R.id.email);
+        mPassword = (EditText) findViewById(R.id.password);
+
+        setTypeFace();
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void setTypeFace() {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Typeface materialTypeFace = FontManager.getInstance(this).getTypeFace(FontManager.FONT_MATERIAL);
+        Typeface robotoMedium = FontManager.getInstance(this).getTypeFace(FontManager.FONT_ROBOTO_MEDIUM);
+        Typeface robotoRegular = FontManager.getInstance(this).getTypeFace(FontManager.FONT_ROBOTO_REGULAR);
 
-        return super.onOptionsItemSelected(item);
+        //material Icon Font
+        appIconText.setTypeface(materialTypeFace);
+        personEmailIconText.setTypeface(materialTypeFace);
+        passwordIconText.setTypeface(materialTypeFace);
+
+        //roboto regular
+        mEmail.setTypeface(robotoRegular);
+        mPassword.setTypeface(robotoRegular);
+        loginBtnText.setTypeface(robotoMedium);
+        appTitlleText.setTypeface(robotoMedium);
+
     }
+
+
 }

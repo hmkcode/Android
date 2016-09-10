@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Icon"
+                android:text=""
                 android:textColor="@color/PrimaryColor"
                 android:textSize="36sp" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="NowKnowMore"
+                android:text="Now Know More"
                 android:textColor="@color/White"
                 android:textSize="30sp" />
 
@@ -45,17 +45,60 @@
             android:orientation="vertical">
 
             <FrameLayout
+                android:paddingRight="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:background="#ffffff">
+                android:layout_height="56dp"
+                android:background="@drawable/login_fields_state">
+
+                <TextView
+                    android:id="@+id/profileIcon"
+                    android:textColor="@color/LightGrey"
+                    android:layout_margin="4dp"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_width="56dp"
+                    android:layout_height="56dp" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/LightGrey"
+                    android:hint="Email"
+                    android:background="@drawable/login_edittext_bg"
+                    android:layout_marginLeft="64dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
 
             </FrameLayout>
 
             <FrameLayout
+                android:paddingRight="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="56dp"
                 android:layout_marginTop="20dp"
-                android:background="#ffffff">
+                android:background="@drawable/login_fields_state">
+
+                <TextView
+                    android:id="@+id/lockIcon"
+                    android:textColor="@color/LightGrey"
+                    android:layout_margin="4dp"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:text=""
+                    android:layout_width="56dp"
+                    android:layout_height="56dp" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/LightGrey"
+                    android:hint="Password"
+                    android:background="@drawable/login_edittext_bg"
+                    android:layout_marginLeft="64dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </FrameLayout>
 
@@ -64,10 +107,32 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/loginBtn"
+                android:background="@drawable/login_btn_state"
+                android:textColor="@color/White"
+                android:textSize="14sp"
+                android:text="LOG IN"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Sign in using Google"
+                android:textColor="@color/White"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
