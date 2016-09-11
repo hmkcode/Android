@@ -10,10 +10,14 @@
         android:background="@color/PrimaryColor"
         android:layout_height="144dp">
 
-        <ImageView
+        <TextView
+            android:id="@+id/userSamplePic"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/user_pic"
+            android:text=""
+            android:gravity="center"
+            android:textSize="96sp"
+            android:textColor="@color/White"
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
@@ -53,7 +57,7 @@
         <TextView
             android:id="@+id/addInterestBtnText"
             android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/login_btn_state"
             android:textColor="@color/White"
             android:textSize="16sp"

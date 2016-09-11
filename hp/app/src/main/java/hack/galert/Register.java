@@ -40,6 +40,7 @@ public class Register extends AppCompatActivity {
     EditText mPasswordCnf;
     EditText fullName;
     private ProgressDialog progressDialog;
+    private View decorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,11 @@ public class Register extends AppCompatActivity {
         loginText = (TextView) findViewById(R.id.loginText);
         userNameIcon = (TextView) findViewById(R.id.userIcon);
         confPassIcon = (TextView) findViewById(R.id.cnfPassIcon);
+
+        // full screen mode
+        decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         setTypeFace();
         attachListeners();

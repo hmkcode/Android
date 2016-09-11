@@ -1,6 +1,7 @@
 package hack.galert;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ public class NavigationFragment extends Fragment {
     private TextView userEmail;
     private TextView userFullName;
     private TextView removeInterestBtn;
+    private TextView userSamplePic;
 
     public NavigationFragment(DrawerLayout drawerLayout) {
         this.mDrawerLayout = drawerLayout;
@@ -61,13 +63,16 @@ public class NavigationFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        Typeface materialTypeFace = FontManager.getInstance(getActivity()).getTypeFace(FontManager.FONT_MATERIAL);
+
         listView = (ListView) view.findViewById(R.id.navList);
         adapter = NavListAdapter.getInstance(getActivity());
         listView.setAdapter(adapter);
         addInterestBtn = (TextView) view.findViewById(R.id.addInterestBtnText);
         userEmail = (TextView) view.findViewById(R.id.userEmil);
         userFullName = (TextView) view.findViewById(R.id.userName);
-
+        userSamplePic = (TextView) view.findViewById(R.id.userSamplePic);
+        userSamplePic.setTypeface(materialTypeFace);
 
         SharedPreferenceManager utils = SharedPreferenceManager.getInstance(getActivity());
         userEmail.setText(utils.getUserEmail());

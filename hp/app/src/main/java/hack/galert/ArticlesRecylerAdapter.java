@@ -64,7 +64,7 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         viewHolder.refrence.setText(articles.get(position).refrence);
         viewHolder.readTime.setText(articles.get(position).readTime+" minutes read");
         viewHolder.articleHeader.setText(Html.fromHtml(articles.get(position).articleHeader));
-        viewHolder.articleAbstract.setText(Html.fromHtml(articles.get(position).articleAbstract));
+        viewHolder.articleAbstract.setText(Html.fromHtml(articles.get(position).articleAbstract.trim()));
         //viewHolder.likes.setText(articles.get(position).likes);
 
 //        // disable like button

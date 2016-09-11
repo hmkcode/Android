@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
     EditText mPassword;
     private ProgressDialog progressDialog;
     private TextView registerText;
+    private View decorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,11 @@ public class Login extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         registerText = (TextView) findViewById(R.id.registerText);
+
+        // full screen mode
+        decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         setTypeFace();
 
