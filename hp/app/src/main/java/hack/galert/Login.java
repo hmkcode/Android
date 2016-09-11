@@ -148,8 +148,8 @@ public class Login extends AppCompatActivity {
     public void login() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Authenticating You In ....");
-        final String email = mEmail.getText().toString();
-        final String password = mPassword.getText().toString();
+        final String email = mEmail.getText().toString().trim();
+        final String password = mPassword.getText().toString().trim();
         final String TAG = "login";
 
 

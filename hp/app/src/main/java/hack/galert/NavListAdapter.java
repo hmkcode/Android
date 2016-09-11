@@ -78,8 +78,8 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
             @Override
             public void onClick(View view) {
                 if (ConnectionUtils.getInstance(context).isConnected()) {
-                    items.remove(position);
                     removeInterest(items.get(position).id);
+                    items.remove(position);
                     notifyDataSetChanged();
                 }
             }
