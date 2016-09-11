@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,6 +67,9 @@ public class Register extends AppCompatActivity {
         userNameIcon = (TextView) findViewById(R.id.userIcon);
         confPassIcon = (TextView) findViewById(R.id.cnfPassIcon);
 
+        String link = "<U>Already Registered. Login </U>";
+        loginText.setText(Html.fromHtml(link));
+
         // full screen mode
         decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -112,6 +116,7 @@ public class Register extends AppCompatActivity {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferenceManager.getInstance(Register.this).setLastLoadedSubs(0);
                 startActivity(new Intent(Register.this, Login.class));
                 finish();
             }

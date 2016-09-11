@@ -73,7 +73,7 @@ public class NavigationFragment extends Fragment {
         userFullName = (TextView) view.findViewById(R.id.userName);
         userSamplePic = (TextView) view.findViewById(R.id.userSamplePic);
         userSamplePic.setTypeface(materialTypeFace);
-
+        userSamplePic.setClickable(false);
         SharedPreferenceManager utils = SharedPreferenceManager.getInstance(getActivity());
         userEmail.setText(utils.getUserEmail());
         userFullName.setText(utils.getUserName());

@@ -6,11 +6,13 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:clickable="false"
         android:layout_width="match_parent"
         android:background="@color/PrimaryColor"
         android:layout_height="144dp">
 
         <TextView
+            android:clickable="false"
             android:id="@+id/userSamplePic"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -60,7 +62,7 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/login_btn_state"
             android:textColor="@color/White"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"

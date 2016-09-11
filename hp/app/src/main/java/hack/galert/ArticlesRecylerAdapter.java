@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -62,15 +63,19 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         Typeface robotoRegular = FontManager.getInstance(context).getTypeFace(FontManager.FONT_ROBOTO_REGULAR);
 
         viewHolder.refrence.setText(articles.get(position).refrence);
-        viewHolder.readTime.setText(articles.get(position).readTime+" minutes read");
+        viewHolder.readTime.setText(articles.get(position).readTime+" Minute read");
         viewHolder.articleHeader.setText(Html.fromHtml(articles.get(position).articleHeader));
-        viewHolder.articleAbstract.setText(Html.fromHtml(articles.get(position).articleAbstract.trim()));
+        String newAbs = articles.get(position).articleAbstract.replaceAll("(\\n|\\t)", "").replaceAll("<.*?>","");
+        Log.d("ArticlesAdapter",newAbs);
+        viewHolder.articleAbstract.setText(Html.fromHtml(newAbs));
         //viewHolder.likes.setText(articles.get(position).likes);
 
 //        // disable like button
 //        if (articles.get(position).isLiked) {
 //            viewHolder.likesIcon.setTextColor(context.getResources().getColor(R.color.PrimaryColor));
 //        }
+
+
 
         if (SharedPreferenceManager.getInstance(context).getChoiceOnImageLoad()) {
             if (ConnectionUtils.getInstance(context).isConnected()) {
@@ -96,13 +101,13 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         TextView readTime;
         TextView articleHeader;
         TextView articleAbstract;
-        //        TextView likesIcon;
-//        TextView likes;
+        LinearLayout articleLayout;
         ImageView articleImage;
 
         public ArticleHolder(View itemView) {
             super(itemView);
 
+            articleLayout = (LinearLayout) itemView.findViewById(R.id.article_item_layout);
             refrence = (TextView) itemView.findViewById(R.id.articleRefrence);
             readTime = (TextView) itemView.findViewById(R.id.readLength);
             articleHeader = (TextView) itemView.findViewById(R.id.articlesHeader);
@@ -111,7 +116,7 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
 //            likes = (TextView) itemView.findViewById(R.id.likesCount);
             articleImage = (ImageView) itemView.findViewById(R.id.articleImage);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            articleLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d("Adapter", "tapped");

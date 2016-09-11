@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,7 +66,8 @@ public class Login extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         registerText = (TextView) findViewById(R.id.registerText);
-
+        String link = "<U>New User ? Register</U>";
+        registerText.setText(Html.fromHtml(link));
         // full screen mode
         decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
