@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="72dp">
 
@@ -16,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+
     <TextView
         android:id="@+id/listItem"
         android:layout_marginLeft="36dp"
@@ -29,4 +29,20 @@
         android:layout_height="wrap_content" />
 
 
-</LinearLayout>
+    <TextView
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/White"
+        android:background="@drawable/login_btn_state"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="14dp"
+        android:textSize="12sp"
+        android:id="@+id/removeInterestBtnText"
+        android:text="Remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

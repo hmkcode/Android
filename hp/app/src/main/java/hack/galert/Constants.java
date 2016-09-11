@@ -20,4 +20,7 @@ public class Constants {
     public static final String EXTRAA_RESULTS = "articles_list";
     public static final String LOGIN_KEY = "email";
     public static final String LOGIN_PASS_KEY = "password";
+    public static final String SERVER_URL_REGISTER = SERVER_ROOT + "users";
+    public static final String SERVER_URL_DELETE_INTEREST = SERVER_ROOT + "subscriptions/";
+    public static final String EXTRAA_DATA_LOADED_FLAG = "dataLoaded";
 }

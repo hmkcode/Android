@@ -39,6 +39,7 @@ public class NavigationFragment extends Fragment {
     private ArrayList<NavItems> navItemsArrayList;
     private TextView userEmail;
     private TextView userFullName;
+    private TextView removeInterestBtn;
 
     public NavigationFragment(DrawerLayout drawerLayout) {
         this.mDrawerLayout = drawerLayout;
@@ -66,6 +67,7 @@ public class NavigationFragment extends Fragment {
         addInterestBtn = (TextView) view.findViewById(R.id.addInterestBtnText);
         userEmail = (TextView) view.findViewById(R.id.userEmil);
         userFullName = (TextView) view.findViewById(R.id.userName);
+
 
         SharedPreferenceManager utils = SharedPreferenceManager.getInstance(getActivity());
         userEmail.setText(utils.getUserEmail());

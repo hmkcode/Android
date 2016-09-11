@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text=""
+                android:text=""
                 android:textColor="@color/PrimaryColor"
                 android:textSize="36sp" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="now know more"
+                android:text="login"
                 android:textColor="@color/White"
                 android:textSize="30sp" />
 
@@ -46,14 +46,14 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:paddingRight="2dp"
+                android:paddingRight="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/login_fields_state">
 
                 <TextView
                     android:id="@+id/profileIcon"
-                    android:textColor="@color/LightGrey"
+                    android:textColor="@color/IconColor"
                     android:layout_margin="4dp"
                     android:textSize="30sp"
                     android:layout_gravity="center_vertical"
@@ -63,6 +63,7 @@
                     android:layout_height="48dp" />
 
                 <EditText
+                    android:padding="2dp"
                     android:id="@+id/email"
                     android:textSize="16sp"
                     android:textColorHint="@color/LightGrey"
@@ -84,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/lockIcon"
-                    android:textColor="@color/LightGrey"
+                    android:textColor="@color/IconColor"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_margin="4dp"

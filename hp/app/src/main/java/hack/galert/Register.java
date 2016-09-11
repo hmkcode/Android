@@ -25,6 +25,10 @@ import org.json.JSONObject;
 public class Register extends AppCompatActivity {
 
     private static final String TAG = "Register";
+
+    TextView userNameIcon;
+    TextView confPassIcon;
+
     TextView appIconText;
     TextView personEmailIconText;
     TextView passwordIconText;
@@ -42,6 +46,8 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        initializeComponents();
+
     }
 
     public void initializeComponents() {
@@ -56,6 +62,8 @@ public class Register extends AppCompatActivity {
         mPasswordCnf = (EditText) findViewById(R.id.passwordCnf);
         fullName = (EditText) findViewById(R.id.fullName);
         loginText = (TextView) findViewById(R.id.loginText);
+        userNameIcon = (TextView) findViewById(R.id.userIcon);
+        confPassIcon = (TextView) findViewById(R.id.cnfPassIcon);
 
         setTypeFace();
         attachListeners();
@@ -71,6 +79,8 @@ public class Register extends AppCompatActivity {
         appIconText.setTypeface(materialTypeFace);
         personEmailIconText.setTypeface(materialTypeFace);
         passwordIconText.setTypeface(materialTypeFace);
+        confPassIcon.setTypeface(materialTypeFace);
+        userNameIcon.setTypeface(materialTypeFace);
 
         //roboto regular
         mEmail.setTypeface(robotoRegular);
@@ -116,10 +126,17 @@ public class Register extends AppCompatActivity {
         View viewToFocus = null;
         String error = "";
         if (!mEmail.getText().toString().isEmpty()) {
+
+            if (fullName.getText().toString().isEmpty()) {
+                viewToFocus = fullName;
+                error = "Have a Full Name !";
+            }
+
             if (!mPassword.getText().toString().isEmpty()) {
                 if (mPassword.getText().toString().equals(mPasswordCnf.getText().toString())) {
                     validation = true;
                 } else {
+
                     error = "Password Does Not Matches !";
                 }
             } else {
@@ -131,10 +148,6 @@ public class Register extends AppCompatActivity {
             viewToFocus = mEmail;
         }
 
-        if (fullName.getText().toString().isEmpty()) {
-            viewToFocus = fullName;
-            error = "Have a Full Name !";
-        }
 
 
         if (viewToFocus != null) {
@@ -152,22 +165,25 @@ public class Register extends AppCompatActivity {
     public void register() {
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Authenticating You In ....");
+        progressDialog.setMessage("Applying Registration Process....");
         final String email = mEmail.getText().toString();
         final String password = mPassword.getText().toString();
         final String fullname = fullName.getText().toString();
-        final String TAG = "login";
+        final String TAG = "register";
 
 
-        final String url = Constants.SERVER_URL_LOGIN;
+        final String url = Constants.SERVER_URL_REGISTER;
         JSONObject jsonBody = null;
         try {
-            jsonBody = new JSONObject("{" +
-                    "\"email\":" + email + "," +
-                    "\"full_name\":" + fullname + "," +
+            String header = "{" +
+                    "\"email\":\"" + email + "\"," +
+                    "\"full_name\":\"" + fullname + "\"," +
                     "\"password\":\"" + password + "\"" +
-                    "}");
-            Log.d("Register", jsonBody.toString());
+                    "}";
+
+            Log.d("Register", header);
+            jsonBody = new JSONObject(header);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -194,7 +210,7 @@ public class Register extends AppCompatActivity {
                         } else {
                             progressDialog.hide();
                             progressDialog.dismiss();
-                            makeSnackbar("Authentication Failed ! ");
+                            makeSnackbar("Registration Failed ! ");
                         }
                     }
                 },
@@ -203,7 +219,7 @@ public class Register extends AppCompatActivity {
                     public void onErrorResponse(VolleyError volleyError) {
                         progressDialog.dismiss();
                         Log.d("Login", volleyError.toString());
-                        makeSnackbar("Authentication Failed !");
+                        makeSnackbar("Registration Failed !");
                     }
                 });
 

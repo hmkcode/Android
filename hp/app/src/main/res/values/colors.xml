@@ -12,7 +12,10 @@
     <color name="White">#ffffff</color>
     <color name="PrimaryColorLight">#55e91e63</color>
     <color name="LightGrey">#bbbbbb</color>
+    <color name="DividerColor">#dddddd</color>
+    <color name="IconColor">#dddddd</color>
     <color name="pressed_color">#eeeeee</color>
+    <color name="HomeBackround">#efefef</color>
 
 
 </resources>

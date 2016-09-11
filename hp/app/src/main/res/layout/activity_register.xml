@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="now know more"
+                android:text="register"
                 android:textColor="@color/White"
                 android:textSize="30sp" />
 
@@ -53,12 +53,12 @@
 
                 <TextView
                     android:id="@+id/profileIcon"
-                    android:textColor="@color/LightGrey"
+                    android:textColor="@color/IconColor"
                     android:layout_margin="4dp"
                     android:textSize="30sp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text=""
+                    android:text=""
                     android:layout_width="48dp"
                     android:layout_height="48dp" />
 
@@ -84,7 +84,7 @@
 
                 <TextView
                     android:id="@+id/userIcon"
-                    android:textColor="@color/LightGrey"
+                    android:textColor="@color/IconColor"
                     android:layout_margin="4dp"
                     android:textSize="30sp"
                     android:layout_gravity="center_vertical"
@@ -116,7 +116,7 @@
 
                 <TextView
                     android:id="@+id/lockIcon"
-                    android:textColor="@color/LightGrey"
+                    android:textColor="@color/IconColor"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_margin="4dp"
@@ -146,13 +146,13 @@
                 android:background="@drawable/login_fields_state">
 
                 <TextView
-                    android:id="@+id/lockIcon"
-                    android:textColor="@color/LightGrey"
+                    android:id="@+id/cnfPassIcon"
+                    android:textColor="@color/IconColor"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_margin="4dp"
                     android:textSize="30sp"
-                    android:text=""
+                    android:text=""
                     android:layout_width="48dp"
                     android:layout_height="48dp" />
 
@@ -160,7 +160,7 @@
                     android:id="@+id/passwordCnf"
                     android:textSize="16sp"
                     android:textColorHint="@color/LightGrey"
-                    android:hint="Comfirm Password"
+                    android:hint="Re-Enter Password"
                     android:background="@drawable/login_edittext_bg"
                     android:layout_marginLeft="56dp"
                     android:layout_width="match_parent"

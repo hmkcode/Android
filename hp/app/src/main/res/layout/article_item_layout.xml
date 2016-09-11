@@ -6,13 +6,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="vertical">
+        android:layout_height="40dp"
+        android:orientation="horizontal">
 
         <TextView
             android:padding="1dp"
             android:id="@+id/articleRefrence"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="4dp"
@@ -20,11 +20,21 @@
             android:textColor="@color/PrimaryColor" />
 
         <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:padding="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=" . " />
+
+        <TextView
             android:padding="1dp"
             android:id="@+id/readLength"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
             android:text="7 min read" />
 
     </LinearLayout>
@@ -32,10 +42,10 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/LightGrey">
+        android:background="@color/DividerColor">
 
     </FrameLayout>
 
@@ -65,12 +75,16 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:padding="4dp"
+            android:lineSpacingExtra="2dp"
             android:text="The Biggest dsfdddMistake People Make in \n their Carreer"
             android:textColor="@color/ListItems"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/ListItems"
             android:id="@+id/articlesAbstract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

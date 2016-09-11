@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,9 +62,9 @@ public class ArticlesRecylerAdapter extends RecyclerView.Adapter<ArticlesRecyler
         Typeface robotoRegular = FontManager.getInstance(context).getTypeFace(FontManager.FONT_ROBOTO_REGULAR);
 
         viewHolder.refrence.setText(articles.get(position).refrence);
-        viewHolder.readTime.setText(articles.get(position).readTime);
-        viewHolder.articleHeader.setText(articles.get(position).articleHeader);
-        viewHolder.articleAbstract.setText(articles.get(position).articleAbstract);
+        viewHolder.readTime.setText(articles.get(position).readTime+" minutes read");
+        viewHolder.articleHeader.setText(Html.fromHtml(articles.get(position).articleHeader));
+        viewHolder.articleAbstract.setText(Html.fromHtml(articles.get(position).articleAbstract));
         //viewHolder.likes.setText(articles.get(position).likes);
 
 //        // disable like button

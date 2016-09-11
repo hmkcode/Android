@@ -9,10 +9,8 @@
         android:id="@+id/poll_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:elevation="4dp"
+        android:elevation="6dp"
         android:paddingBottom="10dp"
         cardView:cardBackgroundColor="#ffffff"
         cardView:cardCornerRadius="1dp">

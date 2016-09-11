@@ -8,9 +8,13 @@
         layout="@layout/details_article_page_header"
         android:id="@+id/pageHeader" />
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
+    <ScrollView
         android:layout_below="@+id/pageHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -23,12 +27,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+
         <TextView
             android:maxLines="3"
             android:textColor="@color/ListItems"
             android:textStyle="bold"
             android:paddingLeft="8dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="8dp"
             android:paddingRight="8dp"
             android:textSize="20sp"
             android:paddingTop="4dp"
@@ -55,5 +60,6 @@
 
     </LinearLayout>
 
+    </ScrollView>
 
 </RelativeLayout>

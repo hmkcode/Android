@@ -3,6 +3,7 @@ package hack.galert;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,9 +52,9 @@ public class DetailsActivity extends AppCompatActivity {
         backBtn = (TextView) findViewById(R.id.backBtnText);
 
         refrence.setText(data.getString("ref"));
-        readTime.setText(data.getString("read"));
+        readTime.setText(data.getString("read") + " minutes read");
         articleHeader.setText(data.getString("head"));
-        articleAbstract.setText(data.getString("abs"));
+        articleAbstract.setText(Html.fromHtml(data.getString("abs")));
 
         //set type faces
         backBtn.setTypeface(materialTypeFace);
