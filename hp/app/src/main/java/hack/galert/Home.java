@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,8 @@ import org.json.JSONObject;
 
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Home extends AppCompatActivity {
 
@@ -72,7 +75,7 @@ public class Home extends AppCompatActivity {
         super.onSaveInstanceState(outState, outPersistentState);
         outState.putParcelableArrayList(Constants.EXTRAA_RESULTS, articleResultsList);
 
-        outState.putBoolean(Constants.EXTRAA_DATA_LOADED_FLAG,true);
+        outState.putBoolean(Constants.EXTRAA_DATA_LOADED_FLAG, true);
     }
 
 
@@ -163,7 +166,7 @@ public class Home extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
                 recyclerView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                Log.d("Home","reqs for "+ topicIndex);
+                Log.d("Home", "reqs for " + topicIndex);
                 requestData();
             }
         });
@@ -241,8 +244,9 @@ public class Home extends AppCompatActivity {
         // TODO: append interest
         final String url = Constants.SERVER_URL_ADD_INTEREST;
         JSONObject jsonBody = null;
+        final String token = SharedPreferenceManager.getInstance(this).getUserToken();
         try {
-            jsonBody = new JSONObject("{\"term\":" +interest+"}");
+            jsonBody = new JSONObject("{\"term\":\"" + interest + "\"}");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -280,7 +284,15 @@ public class Home extends AppCompatActivity {
                         Log.d("Home",volleyError.toString());
                         makeSnackbar("Adding Failed!");
                     }
-                });
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT " + token);
+                return params;
+            }
+        };
 
         progressDialog.show();
 
@@ -316,6 +328,12 @@ public class Home extends AppCompatActivity {
 
         // TODO: append email and password to url
         int subId = SharedPreferenceManager.getInstance(this).getLastLoadedSubs();
+        if (subId == -1) {
+            // dismiss progress and show error
+            progressBar.setVisibility(View.GONE);
+            makeSnackbar("You Lacks Interests. Plz Add One or More ");
+            mDrawerLayout.openDrawer(Gravity.LEFT);
+        }
 
         final String url = Constants.SERVER_URL_FEEDS+""+subId;
 
@@ -381,4 +399,5 @@ public class Home extends AppCompatActivity {
     public void makeSnackbar(String msg) {
         ///Snackbar.make(passwordIconText, msg, Snackbar.LENGTH_LONG).show();
     }
+
 }

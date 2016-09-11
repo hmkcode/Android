@@ -58,7 +58,7 @@ public class SharedPreferenceManager {
     }
 
     public int getLastLoadedSubs() {
-        return preferences.getInt("subs", 1);
+        return preferences.getInt("subs", -1);
     }
 
     public void setUserEmail(String email) {

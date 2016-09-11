@@ -178,7 +178,8 @@ public class NavigationFragment extends Fragment {
     }
 
     public void updateListAdapter(ArrayList<NavItems> navItems) {
-
+        //set LocalInterest
+        SharedPreferenceManager.getInstance(getActivity()).setLastLoadedSubs(navItems.get(0).id);
         adapter.setItems(navItems);
         listView.setAdapter(adapter);
 
