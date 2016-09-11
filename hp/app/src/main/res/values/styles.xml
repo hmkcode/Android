@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/PrimaryColor</item>
+        <item name="colorPrimaryDark">@color/PrimaryColorDark</item>
+        <item name="homeAsUpIndicator">@color/White</item>
+        <item name="colorAccent">@color/SecondaryColor</item>
+        <item name="android:textColorSecondary">@color/White</item>
+    </style>
+
+
+</resources>
