@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="searchview_wrapper_height">72dp</dimen>
+
+</resources>
