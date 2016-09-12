@@ -2,6 +2,9 @@
 <resources>
 
     <dimen name="searchview_wrapper_height">72dp</dimen>
-
+    <dimen name="search_result_content_padding_left">68dp</dimen>
+    <dimen name="search_result_content_padding_right">68dp</dimen>
+    <dimen name="search_result_content_padding_top">64dp</dimen>
+    <dimen name="search_result_content_padding_bottom">64dp</dimen>
 
 </resources>

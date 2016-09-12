@@ -14,7 +14,12 @@
         android:layout_below="@+id/wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/trendingRecylerView" />
+        android:id="@+id/trendingRecylerView"
+        android:paddingLeft="@dimen/search_result_content_padding_left"
+        android:paddingRight="@dimen/search_result_content_padding_right"
+        android:paddingTop="@dimen/search_result_content_padding_top"
+        android:paddingBottom="@dimen/search_result_content_padding_bottom"
+        />
 
 
 </RelativeLayout>

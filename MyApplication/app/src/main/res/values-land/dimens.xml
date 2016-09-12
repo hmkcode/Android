@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="searchview_wrapper_height">72dp</dimen>
-    <dimen name="search_result_content_padding_left">4dp</dimen>
-    <dimen name="search_result_content_padding_right">4dp</dimen>
-    <dimen name="search_result_content_padding_top">0dp</dimen>
-    <dimen name="search_result_content_padding_bottom">0dp</dimen>
-    
+    <dimen name="search_result_content_padding_left">8dp</dimen>
+    <dimen name="search_result_content_padding_right">8dp</dimen>
+    <dimen name="search_result_content_padding_top">4dp</dimen>
+    <dimen name="search_result_content_padding_bottom">4dp</dimen>
+
 </resources>
