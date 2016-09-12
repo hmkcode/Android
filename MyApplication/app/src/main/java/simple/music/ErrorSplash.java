@@ -1,37 +1,71 @@
 package simple.music;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class ErrorSplash extends AppCompatActivity {
+
+    private TextView tv;
+    private TextView conError;
+    private TextView contBtn;
+    private TextView poweredBy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error_splash);
+
+        // check connectivity and redirect
+        redirectIfConnected();
+        // set up Warning Page
+        setUpWarningPage();
+
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_error_splash, menu);
-        return true;
+    private void setUpWarningPage() {
+
+        // xml -> java objects
+        tv = (TextView) findViewById(R.id.no_con_text);
+        conError = (TextView) findViewById(R.id.no_connection_wifi_icon);
+        contBtn = (TextView) findViewById(R.id.continueBtn);
+        poweredBy = (TextView) findViewById(R.id.poweredBy);
+
+        // set Type faces
+        tv.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_RALEWAY_REGULAR));
+        conError.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_MATERIAL));
+        contBtn.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_RALEWAY_REGULAR));
+        poweredBy.setTypeface(FontManager.getInstance(this).getTypeFace(FontManager.FONT_RALEWAY_REGULAR));
+
+        // set Text Colors
+        conError.setTextColor(getResources().getColor(R.color.NoWifiColor));
+
+        // attach Click Listener
+        contBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToHome();
+            }
+        });
+
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void redirectIfConnected() {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        if (ConnectivityUtils.getInstance(this).isConnectedToNet())
+            navigateToHome();
     }
+
+    private void navigateToHome(){
+        startActivity(new Intent(this, Home.class));
+        finish();
+    }
+
+
 }
