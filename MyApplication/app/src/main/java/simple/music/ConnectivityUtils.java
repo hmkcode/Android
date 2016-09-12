@@ -3,6 +3,8 @@ package simple.music;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import com.android.volley.toolbox.StringRequest;
+
 /**
  * Created by Ankit on 8/5/2016.
  */
@@ -34,4 +36,5 @@ public class ConnectivityUtils {
         }
         return false;
     }
+
 }
