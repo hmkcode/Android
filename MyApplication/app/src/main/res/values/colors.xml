@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="PrimaryColor">#f44336</color>
+    <color name="PrimaryColorDark">#d32f2f</color>
+    <color name="White">#ffffff</color>
+    <color name="ContinueBtnPressedColor">#aaf44336</color>
+
+    <color name="AccentColor">#f44336</color>
+    <color name="TrackTitleColor">#167ac6</color>
+    <color name="ExtraInfoTextColor">#767676</color>
+    <color name="DividerColor">#66909090</color>
+    <color name="TabUnselectionColor">#99ffffff</color>
+    <color name="DownloadingPageBackground">#f1f1f1</color>
+    <color name="NoWifiColor">#33000000</color>
+    <color name="DownloadButtonColor">#daf44336</color>
+    <color name="StreamButtonColor">#AA000000</color>
+
+</resources>
