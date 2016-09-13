@@ -16,6 +16,8 @@
     <dimen name="stream_button_text_height">40dp</dimen>
     <dimen name="stream_button_text_width">40dp</dimen>
     <dimen name="stream_button_text_size">12sp</dimen>
+    <dimen name="stream_button_text_margin_right">0dp</dimen>
+
 
     <dimen name="donwload_button_margin_left">26dp</dimen>
     <dimen name="download_button_dimen">40dp</dimen>
@@ -27,6 +29,7 @@
     <dimen name="time_stamp_padding_bottom">2dp</dimen>
     <dimen name="time_stamp_margin_right">0dp</dimen>
     <dimen name="time_stamp_margin_left">0dp</dimen>
+    <dimen name="time_stamp_margin_bottom">0dp</dimen>
 
     <dimen name="song_card_meta_data_holder_padding">10dp</dimen>
 
