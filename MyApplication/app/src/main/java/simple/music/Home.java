@@ -1,5 +1,7 @@
 package simple.music;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,8 @@ public class Home extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private StaggeredGridLayoutManager layoutManager;
+    private TrendingRecyclerViewAdapter mRecyclerAdapter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,45 +28,6 @@ public class Home extends AppCompatActivity {
         // instantiate views
         instantiateViews();
 
-    }
-
-    private void instantiateViews() {
-
-        int maxCols = (isPortrait(getOrientation()))?((screenMode() == Constants.SCREEN_MODE_MOBILE)?2:3):4;
-        mRecyclerView = (RecyclerView) findViewById(R.id.trendingRecylerView);
-        layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
-
-    }
-
-    private void setUpRecycler(int mxCols) {
-
-        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
-
-        mRecyclerView.setLayoutManager(layoutManager);
-        plugAdapter();
-    }
-
-    private int getOrientation() {
-        return getWindowManager().getDefaultDisplay().getOrientation();
-    }
-
-    private int screenMode() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        float yInches = metrics.heightPixels / metrics.ydpi;
-        float xInches = metrics.widthPixels / metrics.xdpi;
-
-        double diagonal = Math.sqrt(yInches * yInches + xInches * xInches);
-        if (diagonal > 6.5) {
-            return Constants.SCREEN_MODE_TABLET;
-        } else {
-            return Constants.SCREEN_MODE_MOBILE;
-        }
-    }
-
-    private boolean isPortrait(int orientation) {
-        return orientation % 2 == 0;
     }
 
     @Override
@@ -102,12 +67,74 @@ public class Home extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private int screenMode() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        float yInches = metrics.heightPixels / metrics.ydpi;
+        float xInches = metrics.widthPixels / metrics.xdpi;
+
+        double diagonal = Math.sqrt(yInches * yInches + xInches * xInches);
+        if (diagonal > 6.5) {
+            return Constants.SCREEN_MODE_TABLET;
+        } else {
+            return Constants.SCREEN_MODE_MOBILE;
+        }
+    }
+
+    private void plugAdapter() {
+        mRecyclerAdapter.setOrientation(getOrientation());
+        mRecyclerAdapter.setScreenMode(screenMode());
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        subscribeForStreamOption(mRecyclerAdapter);
+    }
+
+    private void instantiateViews() {
+
+        int maxCols = (isPortrait(getOrientation())) ? ((screenMode() == Constants.SCREEN_MODE_MOBILE) ? 2 : 3) : 4;
+        mRecyclerView = (RecyclerView) findViewById(R.id.trendingRecylerView);
+        layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
+        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        plugAdapter();
+
+    }
+
+    private boolean isPortrait(int orientation) {
+        return orientation % 2 == 0;
+    }
+
     private void configureStorageDirectory(Bundle savedInstance) {
 
         if (savedInstance == null) {
-            L.m("Home configureStorageDirectory()","making dirs");
+            L.m("Home configureStorageDirectory()", "making dirs");
             AppConfig.getInstance(this).configureDevice();
         }
+    }
+
+    private void subscribeForStreamOption(TrendingRecyclerViewAdapter mRecyclerAdapter) {
+        mRecyclerAdapter.setOnStreamingSourceAvailable(new TrendingRecyclerViewAdapter.OnStreamingSourceAvailableListener() {
+            @Override
+            public void onPrepared(String uri) {
+
+                progressDialog.dismiss();
+
+            }
+
+            @Override
+            public void optioned() {
+
+                progressDialog = new ProgressDialog(Home.this);
+                progressDialog.setMessage("Requesting Audio For You....");
+                progressDialog.show();
+
+            }
+        });
+
+    }
+
+    private int getOrientation() {
+        return getWindowManager().getDefaultDisplay().getOrientation();
     }
 
 }

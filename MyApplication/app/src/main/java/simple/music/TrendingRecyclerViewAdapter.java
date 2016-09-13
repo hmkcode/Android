@@ -176,7 +176,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
         if (isPortrait(orientation)) {
             // check mode
-            if (this.screenMode == AppConfig.SCREEN_MODE_TABLET) {
+            if (this.screenMode == Constants.SCREEN_MODE_TABLET) {
                 // means it is tablet with portrait
                 //    log("[H] inflating portrait tablet");
                 _temp_header_viewID = R.layout.section_header_layout_sw600;
