@@ -56,7 +56,7 @@ public class TaskHandler {
     /*
     * WID: loops over pending tasks and dipatches in one by one fashion
     * */
-    public void initiate(){
+    public void initiate() {
 
         mHandler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -66,22 +66,22 @@ public class TaskHandler {
             }
         };
 
-        if(!isHandlerRunning){
+        if (!isHandlerRunning) {
 
             if (getDispatchTaskCount() > 0 && isConnected()) {
-                log("tasks to dispatch = "+getDispatchTaskCount());
+                log("tasks to dispatch = " + getDispatchTaskCount());
                 isHandlerRunning = true;
                 final ArrayList<String> taskIDs = getDispatchTaskSequence();
 
                 for (final String taskID : taskIDs) {
-                    log("try dispatch "+taskID);
+                    log("try dispatch " + taskID);
                     // problem : getCurrentDownloadCount() is called too late
                     // main-threads cursor runs the loop before getCurrentdownloadCount()
                     // solution: call setCurrentDownloadCount(1) before any more loop get played
                     // call should mean it
                     // it should be called to achieve purpose not for value purpose
                     //
-                    if(SharedPrefrenceUtils.getInstance(context).getCurrentDownloadsCount()<1) {
+                    if (SharedPrefrenceUtils.getInstance(context).getCurrentDownloadsCount() < 1) {
 
                         new Thread(new Runnable() {
                             @Override
@@ -100,12 +100,12 @@ public class TaskHandler {
                     }
                 }
             }
-        }else{
+        } else {
             log("Handler Already running , Task is enqued ");
         }
     }
 
-    public void pauseHandler(){
+    public void pauseHandler() {
         //TODO: check how to cancel activities on thread
     }
     /*
@@ -124,13 +124,14 @@ public class TaskHandler {
                 // retrieve the file and delete it
                 deleteFile(taskID);
                 String flnm = SharedPrefrenceUtils.getInstance(context).getTaskTitle(taskID);
-                LocalNotificationManager.getInstance(context).launchNotification("Failed To Download - "+flnm);
+                LocalNotificationManager.getInstance(context).launchNotification("Failed To Download - " + flnm);
             }
+
             @Override
             public void onError(String taskID) {
                 deleteFile(taskID);
                 String flnm = SharedPrefrenceUtils.getInstance(context).getTaskTitle(taskID);
-                LocalNotificationManager.getInstance(context).launchNotification("Failed To Download - "+flnm);
+                LocalNotificationManager.getInstance(context).launchNotification("Failed To Download - " + flnm);
             }
 
             @Override
@@ -146,11 +147,11 @@ public class TaskHandler {
             }
         };
 
-        DownloadThread thread = new DownloadThread(taskID,v_id,file_name,listener);
+        DownloadThread thread = new DownloadThread(taskID, v_id, file_name, listener);
         thread.start();
 
         try {
-            log(Thread.currentThread().getId()+" waiting thread to join");
+            log(Thread.currentThread().getId() + " waiting thread to join");
             isHandlerRunning = true;
             thread.join();
             isHandlerRunning = false;
@@ -169,12 +170,12 @@ public class TaskHandler {
         log("callback: download error");
 
         String fn = SharedPrefrenceUtils.getInstance(context).getTaskTitle(taskID);
-        File dest_file = new File(AppConfig.FILES_DIR+"/"+fn+".mp3");
-        if(dest_file.exists()){
-            if(dest_file.delete()){
-                log("Successfully Deleted File" +dest_file.getName());
-            }else{
-                log("Failed To Delete File "+dest_file.getName());
+        File dest_file = new File(Constants.FILES_DIR + "/" + fn + ".mp3");
+        if (dest_file.exists()) {
+            if (dest_file.delete()) {
+                log("Successfully Deleted File" + dest_file.getName());
+            } else {
+                log("Failed To Delete File " + dest_file.getName());
             }
         }
     }
@@ -200,29 +201,29 @@ public class TaskHandler {
 
     }
 
-    public int getTaskCount(){
+    public int getTaskCount() {
         return getTaskSequence().size();
     }
 
-    public int getDispatchTaskCount(){
+    public int getDispatchTaskCount() {
         return getDispatchTaskSequence().size();
     }
 
     // adds task to shared preferences task queue
-    public void addTask(String file_name, String v_id){
+    public void addTask(String file_name, String v_id) {
 
         SharedPrefrenceUtils utils = SharedPrefrenceUtils.getInstance(context);
         // create taskID
         Date d = new Date();
         String timeStamp = DateFormat.format("yyyyMMddhhmmss", d.getTime()).toString();
         // log("adding task :[audTsk" + timeStamp + "]");
-        String taskID = "audTsk"+timeStamp;
+        String taskID = "audTsk" + timeStamp;
         String tasks = utils.getTaskSequence();
         utils.setTasksSequence(tasks + taskID + "#");
-        log("add: Task["+taskID+"]");
+        log("add: Task[" + taskID + "]");
         tasks = utils.getDispatchTaskSequence();
         utils.setDispatchTasksSequence(tasks + taskID + "#");
-        log("add: DispatchTask["+taskID+"]");
+        log("add: DispatchTask[" + taskID + "]");
         //log("after adding " + utils.getTaskSequence());
         // save taskTitle:file_name
         utils.setTaskTitle(taskID, file_name);
@@ -233,13 +234,13 @@ public class TaskHandler {
     }
 
     // removes taskID from sharedPreferences string queue
-    public void removeTask(String taskID){
+    public void removeTask(String taskID) {
 
-        ArrayList<String> tids =new Segmentor().getParts(SharedPrefrenceUtils.getInstance(context).getTaskSequence(), '#');
-        for (int i =0;i<tids.size();i++) {
+        ArrayList<String> tids = new Segmentor().getParts(SharedPrefrenceUtils.getInstance(context).getTaskSequence(), '#');
+        for (int i = 0; i < tids.size(); i++) {
             String tid = tids.get(i);
-            if(tid.equals(taskID)){
-                log("removing download task "+ taskID );
+            if (tid.equals(taskID)) {
+                log("removing download task " + taskID);
                 tids.remove(i);
             }
         }
@@ -249,19 +250,19 @@ public class TaskHandler {
     }
 
     // remove all tasks
-    public void removeAllTasks(){
+    public void removeAllTasks() {
         log("removing all tasks");
         SharedPrefrenceUtils.getInstance(context).setTasksSequence("");
     }
 
     //remove dispatch task
-    public void removeDispatchTask(String taskID){
+    public void removeDispatchTask(String taskID) {
 
-        ArrayList<String> tids =new Segmentor().getParts(SharedPrefrenceUtils.getInstance(context).getDispatchTaskSequence(), '#');
-        for (int i =0;i<tids.size();i++) {
+        ArrayList<String> tids = new Segmentor().getParts(SharedPrefrenceUtils.getInstance(context).getDispatchTaskSequence(), '#');
+        for (int i = 0; i < tids.size(); i++) {
             String tid = tids.get(i);
-            if(tid.equals(taskID)){
-                log("removing dispatch task "+ taskID );
+            if (tid.equals(taskID)) {
+                log("removing dispatch task " + taskID);
                 tids.remove(i);
             }
         }
@@ -272,12 +273,12 @@ public class TaskHandler {
 
     // write string task sequence to SF
 
-    public void writeToSharedPreferences(ArrayList<String> taskIDs,int type){
-        String currStack="";
+    public void writeToSharedPreferences(ArrayList<String> taskIDs, int type) {
+        String currStack = "";
         for (String id : taskIDs) {
-            currStack +=id+"#";
+            currStack += id + "#";
         }
-        currStack = currStack.substring(0,currStack.length());
+        currStack = currStack.substring(0, currStack.length());
 
 
         if (type == TYPE_TASK_DOWNLOAD) {
@@ -289,8 +290,9 @@ public class TaskHandler {
         }
 
     }
+
     // getConnectivity of Device
-    private boolean isConnected(){
+    private boolean isConnected() {
         return ConnectivityUtils.getInstance(context).isConnectedToNet();
     }
 
@@ -305,7 +307,7 @@ public class TaskHandler {
 
     //WID: takes taskID , file_name , url and  download it , removes task after 100% , publishes progress
 
-    private class DownloadThread extends Thread{
+    private class DownloadThread extends Thread {
 
         private String taskID;
         private String v_id;
@@ -316,7 +318,7 @@ public class TaskHandler {
         private int fileLength;
         //private Context context;
 
-        public DownloadThread(String taskID , String v_id , String file_name,DownloadListener listener) {
+        public DownloadThread(String taskID, String v_id, String file_name, DownloadListener listener) {
             this.taskID = taskID;
             this.v_id = v_id;
             this.file_name = file_name;
@@ -330,17 +332,17 @@ public class TaskHandler {
             int count;
             final String t_v_id = this.v_id;
             final String t_file_name = this.file_name;
-            String t_url = AppConfig.SERVER_URL;
+            String t_url = Constants.SERVER_URL;
             File dest_file = null;
             File dest_dir = null;
             subscribeDownloadCancelListener();
-            if(!isCanceled){
+            if (!isCanceled) {
                 try {
 
                     downloadListener.onDownloadTaskProcessStart();
 
-                    String _url = AppConfig.SERVER_URL + "/api/v1/g?url=" + t_v_id;
-                    log("for dwnd url requesting on "+_url);
+                    String _url = Constants.SERVER_URL + "/api/v1/g?url=" + t_v_id;
+                    log("for dwnd url requesting on " + _url);
                     URL u = new URL(_url);
                     URLConnection dconnection = u.openConnection();
                     dconnection.setReadTimeout(20000);
@@ -358,12 +360,12 @@ public class TaskHandler {
                     }
                     try {
                         JSONObject obj = new JSONObject(result.toString());
-                        if(obj.getInt("status")==200){
+                        if (obj.getInt("status") == 200) {
 
                             t_url += obj.getString("url");
                             log("download url:" + t_url);
 
-                        }else{
+                        } else {
                             downloadListener.onError(taskID);
                             return;
                         }
@@ -377,19 +379,19 @@ public class TaskHandler {
                     connection.setConnectTimeout(20000);
                     connection.connect();
                     fileLength = connection.getContentLength();
-                    log("content len "+fileLength);
+                    log("content len " + fileLength);
 
-                    if(fileLength==-1 || fileLength==24){
+                    if (fileLength == -1 || fileLength == 24) {
                         downloadListener.onError(taskID);
                         return;
                     }
 
                     // file creation
-                    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         PermissionManager.getInstance(context).seek();
                     }
 
-                    dest_dir = new File(AppConfig.FILES_DIR);
+                    dest_dir = new File(Constants.FILES_DIR);
                     dest_file = new File(dest_dir, t_file_name.trim() + ".m4a");
                     log("writing to " + dest_file.toString());
 
@@ -399,15 +401,15 @@ public class TaskHandler {
                     long total = 0;
                     while (!isCanceled && (count = inputStream.read(data)) != -1) {
                         total += count;
-                        Log.d("Sending filelength",fileLength+"");
-                        publishProgress((int) total * 100 / fileLength,fileLength+"");
+                        Log.d("Sending filelength", fileLength + "");
+                        publishProgress((int) total * 100 / fileLength, fileLength + "");
                         outputStream.write(data, 0, count);
                     }
                     //check inturruption
-                    if(total<fileLength){
-                        if(downloadListener!=null){
+                    if (total < fileLength) {
+                        if (downloadListener != null) {
                             downloadListener.onInterruptted(taskID);
-                            log("Download Interrupted :" +taskID);
+                            log("Download Interrupted :" + taskID);
                         }
                     }
 
@@ -426,7 +428,7 @@ public class TaskHandler {
             }
         }
 
-        private void publishProgress(int progress,String cl) {
+        private void publishProgress(int progress, String cl) {
 
             if (progress == 100) {
                 removeTask(taskID);
@@ -434,35 +436,37 @@ public class TaskHandler {
                 downloadListener.onDownloadFinish();
                 log("downloaded task " + taskID);
             }
-            broadcastUpdate(String.valueOf(progress),cl);
-            if(currentProgress<progress) {
+            broadcastUpdate(String.valueOf(progress), cl);
+            if (currentProgress < progress) {
                 LocalNotificationManager.getInstance(context).publishProgressOnNotification(progress, file_name);
             }
             this.currentProgress = progress;
         }
 
-        public void broadcastUpdate(String progressPercentage ,String contentLen){
-            Intent intent = new Intent(AppConfig.ACTION_PROGRESS_UPDATE_BROADCAST);
-            intent.putExtra(AppConfig.EXTRA_TASK_ID,taskID);
-            intent.putExtra(AppConfig.EXTRA_PROGRESS, progressPercentage);
-            intent.putExtra(AppConfig.EXTRA_CONTENT_SIZE, contentLen);
+        public void broadcastUpdate(String progressPercentage, String contentLen) {
+            Intent intent = new Intent(Constants.ACTION_PROGRESS_UPDATE_BROADCAST);
+            intent.putExtra(Constants.EXTRA_TASK_ID, taskID);
+            intent.putExtra(Constants.EXTRA_PROGRESS, progressPercentage);
+            intent.putExtra(Constants.EXTRA_CONTENT_SIZE, contentLen);
             context.sendBroadcast(intent);
         }
 
-        private void subscribeDownloadCancelListener(){
-            LiveDownloadListAdapter.getInstance(context).setOnDownloadCancelListener(new DownloadCancelListener() {
-                @Override
-                public void onDownloadCancel(String tID) {
-                    if (taskID.equals(tID)) { // means current downloading task is canceled
-                        log("cancelling live download task");
-                        isCanceled = true;
-                    }
-                    removeTask(taskID);     // work in both circumstances (cancel live-download or pending download)
-                    log("task " + taskID + " got canceled !!");
-                }
-            });
+        private void subscribeDownloadCancelListener() {
+//
+//            LiveDownloadListAdapter.getInstance(context).setOnDownloadCancelListener(new DownloadCancelListener() {
+//                @Override
+//                public void onDownloadCancel(String tID) {
+//                    if (taskID.equals(tID)) { // means current downloading task is canceled
+//                        log("cancelling live download task");
+//                        isCanceled = true;
+//                    }
+//                    removeTask(taskID);     // work in both circumstances (cancel live-download or pending download)
+//                    log("task " + taskID + " got canceled !!");
+//                }
+//            });
+//        }
+
         }
 
     }
-
 }

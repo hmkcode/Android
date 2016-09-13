@@ -16,15 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import musicgenie.com.musicgenie.interfaces.TaskAddListener;
-import musicgenie.com.musicgenie.models.Song;
-import musicgenie.com.musicgenie.models.TrendingSongModel;
-import musicgenie.com.musicgenie.models.ViewTypeModel;
-import musicgenie.com.musicgenie.utilities.MusicStreamer;
-
-/**
- * Created by Ankit on 8/21/2016.
- */
 public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_SONG = 0;
@@ -144,30 +135,8 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private int getViewToInflate() {
 
-        if (isPortrait(orientation)) {
-            // check mode
-            if (this.screenMode == AppConfig.SCREEN_MODE_TABLET) {
-                // means it is tablet with portrait
-                //            log("inflating portrait tablet");
-                viewToInflate = R.layout.song_card_sw600;
-            } else {
-                // mobile with portrait
-                //          log("inflating portrait mobile");
-                viewToInflate = R.layout.song_card_normal;
-            }
-        } else {
-            if (this.screenMode == AppConfig.SCREEN_MODE_TABLET) {
-                // means it is tablet with landscape
-                //        log("inflating landscape tablet");
-                viewToInflate = R.layout.song_card_land_sw600;
-            } else {
-                // mobile with landscape
-                //      log("inflating landscape mobile");
-                viewToInflate = R.layout.song_card_normal_land;
-            }
+        return R.layout.song_card;
 
-        }
-        return viewToInflate;
     }
 
     private int getHeaderViewToInflate() {
@@ -290,6 +259,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         TextView title;
         TextView views;
         ImageView thumbnail;
+
         MusicStreamer.OnStreamUriFetchedListener streamUriFetchedListener = new MusicStreamer.OnStreamUriFetchedListener() {
             @Override
             public void onUriAvailable(String uri) {

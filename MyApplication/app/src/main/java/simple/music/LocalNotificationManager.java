@@ -30,15 +30,14 @@ public class LocalNotificationManager {
     public void launchNotification(String msg){
 
         //TODO: change icon and add pendingIntent , which navigates user to downloads activity
-
-        Intent intent = new Intent(context, DowloadsActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        Intent intent = new Intent(context, DowloadsActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
-        mBuilder.setSmallIcon(R.drawable.app_icon);
         mBuilder.setContentTitle("MusicGenie");
         mBuilder.setContentText(msg);
-        mBuilder.setContentIntent(pendingIntent);
+//        mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         this.mNotificationId +=1;
 

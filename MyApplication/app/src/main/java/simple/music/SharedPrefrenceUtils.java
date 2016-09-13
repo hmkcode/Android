@@ -34,7 +34,7 @@ public class SharedPrefrenceUtils {
     }
 
     public String getFileSavingLocation(){
-        return preferences.getString("saveLocation", AppConfig.PHONE);
+        return preferences.getString("saveLocation", Constants.PHONE);
     }
 
     public void setTasksSequence(String sequence){
@@ -133,11 +133,11 @@ public class SharedPrefrenceUtils {
     }
 
     public void setFlagForContinuedStreaming(boolean b) {
-        editor.putBoolean(AppConfig.FLAG_STREAMING_CONTINUED,b);
+        editor.putBoolean(Constants.FLAG_STREAMING_CONTINUED,b);
         editor.commit();
     }
 
     public boolean getFlagForContinuedStreaming(){
-        return preferences.getBoolean(AppConfig.FLAG_STREAMING_CONTINUED,false);
+        return preferences.getBoolean(Constants.FLAG_STREAMING_CONTINUED,false);
     }
 }
