@@ -25,7 +25,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private static ResulstsRecyclerAdapter mInstance;
     private ArrayList<ViewTypeModel> typeViewList;
     private ArrayList<ItemModel> trendingSongList;
-    private ArrayList<Song> songs;
+    private ArrayList<BaseSong> songs;
     private int orientation;
     private int screenMode;
     private int viewToInflate;
@@ -50,10 +50,10 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
      *               new items are appended and notifies
      * @param type  : section to which list belongs to
      */
-    public void appendSongs( String type , ArrayList<Song> list) {
+    public void appendSongs( String type , ArrayList<BaseSong> list) {
 
         addItem(null, type);
-        for (Song s : list) {
+        for (BaseSong s : list) {
             addItem(s, "");
         }
         notifyDataSetChanged();
@@ -65,13 +65,13 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
      *  this method wipes out old data and sets new one
      * @param type : this is section to which list belongs to
      */
-    public void setSongs(ArrayList<Song> list, String type) {
+    public void setSongs(ArrayList<BaseSong> list, String type) {
         this.songs.clear();
         this.typeViewList.clear();
 
         if (list != null) {
             addItem(null, type);
-            for (Song s : list) {
+            for (BaseSong s : list) {
                 addItem(s, "");
             }
             notifyDataSetChanged();
@@ -79,7 +79,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     }
 
-    private void addItem(Song song, String section) {   //     create view list
+    private void addItem(BaseSong song, String section) {   //     create view list
 
         if (section.equals("")) {
             int index = songs.size();
@@ -145,7 +145,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             // bind section data
             //  log("binding song " + position);
-            Song song = songs.get(typeViewList.get(position).index);
+            BaseSong song = songs.get(typeViewList.get(position).index);
             ((SongViewHolder) holder).title.setText(song.Title);
             ((SongViewHolder) holder).uploader.setText(song.UploadedBy);
             ((SongViewHolder) holder).views.setText(song.UserViews);
