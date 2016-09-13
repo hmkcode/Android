@@ -13,6 +13,7 @@ import java.io.File;
  */
 public class AppConfig extends Application {
 
+    private static final String TAG = "AppConfig";
     private static Context context;
     private static AppConfig mInstance;
 
