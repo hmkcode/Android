@@ -62,4 +62,16 @@
 
     <dimen name="song_card_views_text_size">14sp</dimen>
 
+    <!-- section header layout-->
+    <dimen name="section_header_wrapper_padding_left">8dp</dimen>
+    <dimen name="section_header_wrapper_padding_top">24dp</dimen>
+    <dimen name="section_header_wrapper_padding_right">0dp</dimen>
+    <dimen name="section_header_wrapper_padding_bottom">24dp</dimen>
+
+    <dimen name="section_title_text_size">36sp</dimen>
+    <dimen name="section_title_underline_margin_left">3dp</dimen>
+    <dimen name="section_title_underline_margin_top">6dp</dimen>
+    <dimen name="section_title_underline_width">30dp</dimen>
+    <dimen name="section_title_underline_height">1.5dp</dimen>
+
 </resources>

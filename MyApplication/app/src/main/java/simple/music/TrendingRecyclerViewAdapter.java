@@ -172,32 +172,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private int getHeaderViewToInflate() {
 
-        int _temp_header_viewID = -1;
-
-        if (isPortrait(orientation)) {
-            // check mode
-            if (this.screenMode == Constants.SCREEN_MODE_TABLET) {
-                // means it is tablet with portrait
-                //    log("[H] inflating portrait tablet");
-                _temp_header_viewID = R.layout.section_header_layout_sw600;
-            } else {
-                // mobile with portrait
-                //  log("[H] inflating portrait mobile");
-                _temp_header_viewID = R.layout.section_header_layout;
-            }
-        } else {
-            if (this.screenMode == AppConfig.SCREEN_MODE_TABLET) {
-                // means it is tablet with landscape
-                //log("[H] inflating landscape tablet");
-                _temp_header_viewID = R.layout.section_header_layout_land_sw600;
-            } else {
-                // mobile with landscape
-                //log("[H] inflating landscape mobile");
-                _temp_header_viewID = R.layout.section_header_layout_land;
-            }
-
-        }
-
+        int _temp_header_viewID = R.layout.section_header_layout;
         return _temp_header_viewID;
 
     }
