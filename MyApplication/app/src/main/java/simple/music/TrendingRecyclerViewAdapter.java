@@ -45,60 +45,49 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         return mInstance;
     }
 
-    public void appendSongs(ArrayList<Song> list, String type) {
-        // add section header and loops through list and call addItem on each item
-        // adding section
+    /**
+     * @param list : list of items to be appended to existing list
+     *               new items are appended and notifies
+     * @param type  : section to which list belongs to
+     */
+    public void appendSongs( String type , ArrayList<Song> list) {
+
         addItem(null, type);
         for (Song s : list) {
-            //  adding each item of type
             addItem(s, "");
         }
-
         notifyDataSetChanged();
+
     }
 
+    /**
+     * @param list : new list of data
+     *  this method wipes out old data and sets new one
+     * @param type : this is section to which list belongs to
+     */
     public void setSongs(ArrayList<Song> list, String type) {
-        if (list == null) {
-            this.songs.clear();
-            this.typeViewList.clear();
-            notifyDataSetChanged();
-            return;
-        }
-
         this.songs.clear();
         this.typeViewList.clear();
-        addItem(null, type);
-        for (Song s : list) {
-            //  adding each item of type
-           // log("setSong() adding " + s.Title);
-            addItem(s, "");
-        }
 
-        notifyDataSetChanged();
+        if (list != null) {
+            addItem(null, type);
+            for (Song s : list) {
+                addItem(s, "");
+            }
+            notifyDataSetChanged();
+        }
 
     }
 
-    public void addItem(Song song, String section) {   //     create view list
-        // if section is "" then it is song
-        // else it is sectionType
-        if (section.equals("")) { // means it is song
-            //      log("add song:");
+    private void addItem(Song song, String section) {   //     create view list
+
+        if (section.equals("")) {
             int index = songs.size();
             songs.add(song);
             typeViewList.add(new ViewTypeModel(TYPE_SONG, "", index));
-        } else { //means it is Section Title
-            //        log("section:");
+        } else {
             typeViewList.add(new ViewTypeModel(TYPE_SECTION_TITLE, section, -1));
         }
-
-        //log("now typeViewList: \n\n");
-//        for(ViewTypeModel t: typeViewList){
-//            log(t.viewType + " \t " + t.sectionTitle + " \t " + t.index);
-//        }
-//        //log("===================");
-//        for(Song s: songs){
-//            //log("song "+s.Title+ " ");
-//        }
 
     }
 
@@ -119,7 +108,6 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view;
-        //log("VH "+" rec = "+viewType);
         if (viewType == TYPE_SECTION_TITLE) {
             int hvti = getHeaderViewToInflate();
             view = LayoutInflater.from(context).inflate(hvti, parent, false);
@@ -184,7 +172,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             //log("binding header " + position);
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
-            String section_format = typeViewList.get(position).sectionTitle.substring(0,1).toUpperCase()+typeViewList.get(position).sectionTitle.substring(1);
+            String section_format = typeViewList.get(position).sectionTitle.substring(0, 1).toUpperCase() + typeViewList.get(position).sectionTitle.substring(1);
             ((SectionTitleViewHolder) holder).sectionTitle.setText(section_format);
             ((SectionTitleViewHolder) holder).sectionTitle.setTypeface(ralewayTfRegular);
         }
@@ -233,6 +221,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     public interface OnStreamingSourceAvailableListener {
         void onPrepared(String uri);
+
         void optioned();
     }
 
@@ -264,7 +253,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             @Override
             public void onUriAvailable(String uri) {
                 if (TrendingRecyclerViewAdapter.getInstance(context).streamingSourceAvailableListener != null) {
-                   // Log.d(TAG, "onUriAvailable : uri made available");
+                    // Log.d(TAG, "onUriAvailable : uri made available");
                     TrendingRecyclerViewAdapter.getInstance(context).streamingSourceAvailableListener.onPrepared(uri);
                 }
 
@@ -280,7 +269,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             downloadBtn = (TextView) itemView.findViewById(R.id.download_btn_card);
             uploader_icon = (TextView) itemView.findViewById(R.id.uploader_icon);
             views_icon = (TextView) itemView.findViewById(R.id.views_icon);
-           // popMenuBtn = (TextView) itemView.findViewById(R.id.popUpMenuIcon);
+            // popMenuBtn = (TextView) itemView.findViewById(R.id.popUpMenuIcon);
             thumbnail = (ImageView) itemView.findViewById(R.id.Videothumbnail);
             streamBtn = (TextView) itemView.findViewById(R.id.stream_btn_card);
 
@@ -309,7 +298,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                     //Log.d("Ada", " pos" + pos);
                     String v_id = adapter.songs.get(pos).Video_id;
                     String file_name = adapter.songs.get(pos).Title;
-                   // adapter.log("adding download task");
+                    // adapter.log("adding download task");
                     TrendingRecyclerViewAdapter.getInstance(context).addDownloadTask(v_id, file_name);
                 }
             });
@@ -321,22 +310,21 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                     TrendingRecyclerViewAdapter adapter = TrendingRecyclerViewAdapter.getInstance(context);
                     adapter.streamingSourceAvailableListener.optioned();
                     int pos = getAdapterPosition() - 1;
-                   // Log.d("Ada", " pos" + pos);
+                    // Log.d("Ada", " pos" + pos);
                     String v_id = adapter.songs.get(pos).Video_id;
                     String file_name = adapter.songs.get(pos).Title;
-                   // adapter.log("fetch for streaming");
+                    // adapter.log("fetch for streaming");
                     // set Uri Fetched Listener to MusicStreamer
 
 
                     MusicStreamer
                             .getInstance(context)
-                            .setData(v_id,file_name)
+                            .setData(v_id, file_name)
                             .setOnStreamUriFetchedListener(streamUriFetchedListener)
                             .initProcess();
 
                 }
             });
-
 
 
         }

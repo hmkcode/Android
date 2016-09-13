@@ -54,16 +54,17 @@ public class Home extends AppCompatActivity {
 
         if (savedInstanceState.getSerializable("mapSong") != null) {
 
-            mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
-            mRecyclerAdapter.setSongs(null, "");
+            // clear old data and append append new one
+            pushDataToRecyclerView(null , "");
+
             subscribeToTaskAddListener();
             HashMap<String, ArrayList<Song>> map = (HashMap<String, ArrayList<Song>>) savedInstanceState.getSerializable("mapSong");
             Iterator iterator = map.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry pair = (Map.Entry) iterator.next();
-                L.m("Home onRestoreInstance() ","reading hashmap for key " + pair.getKey().toString());
+                L.m("Home onRestoreInstance() ", "reading hashmap for key " + pair.getKey().toString());
                 songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
-                mRecyclerAdapter.appendSongs(map.get(pair.getKey()), pair.getKey().toString());
+                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
             }
         }
 
@@ -73,7 +74,7 @@ public class Home extends AppCompatActivity {
         TrendingRecyclerViewAdapter.getInstance(this).setOnTaskAddListener(new TaskAddListener() {
             @Override
             public void onTaskTapped() {
-                L.m("Home subscribeToTaskAddListener() ","callback: task tapped");
+                L.m("Home subscribeToTaskAddListener() ", "callback: task tapped");
                 progressDialog = new ProgressDialog(Home.this);
                 progressDialog.setMessage("Requesting Your Stuff..");
                 progressDialog.setCancelable(false);
@@ -82,9 +83,9 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onTaskAddedToQueue(String task_info) {
-               L.m("Home subscribeToTaskAddListener() ","callback: task added to download queue");
+                L.m("Home subscribeToTaskAddListener() ", "callback: task added to download queue");
                 progressDialog.dismiss();
-                Toast.makeText(Home.this,task_info + " Added To Download",Toast.LENGTH_LONG).show();
+                Toast.makeText(Home.this, task_info + " Added To Download", Toast.LENGTH_LONG).show();
                 //TODO: navigate to DownloadsActivity
             }
         });
@@ -125,6 +126,17 @@ public class Home extends AppCompatActivity {
         } else {
             return Constants.SCREEN_MODE_MOBILE;
         }
+    }
+
+    private void appendDataToReclerView(String type , ArrayList<Song> list) {
+        mRecyclerAdapter.appendSongs( type,list );
+    }
+
+    private void pushDataToRecyclerView(ArrayList<Song> newList,String type){
+
+        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
+        mRecyclerAdapter.setSongs(newList , type);
+
     }
 
     private void plugAdapter() {
