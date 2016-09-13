@@ -6,4 +6,53 @@
     <dimen name="search_result_content_padding_top">0dp</dimen>
     <dimen name="search_result_content_padding_bottom">0dp</dimen>
 
+    <dimen name="song_card_width">180dp</dimen>
+    <dimen name="song_card_margin_bottom">12dp</dimen>
+    <dimen name="song_card_margin_right">8dp</dimen>
+    <dimen name="song_card_margin_left">8dp</dimen>
+
+    <dimen name="song_thumb_height">147dp</dimen>
+
+    <dimen name="stream_button_text_height">40dp</dimen>
+    <dimen name="stream_button_text_width">40dp</dimen>
+    <dimen name="stream_button_text_size">12sp</dimen>
+
+    <dimen name="donwload_button_margin_left">26dp</dimen>
+    <dimen name="download_button_dimen">40dp</dimen>
+    <dimen name="download_button_text_size">14sp</dimen>
+
+    <dimen name="time_stamp_text_size">12sp</dimen>
+    <dimen name="time_stamp_padding_left">2dp</dimen>
+    <dimen name="time_stamp_padding_right">3dp</dimen>
+    <dimen name="time_stamp_padding_bottom">2dp</dimen>
+    <dimen name="time_stamp_margin_right">0dp</dimen>
+    <dimen name="time_stamp_margin_left">0dp</dimen>
+
+    <dimen name="song_card_meta_data_holder_padding">10dp</dimen>
+
+    <dimen name="song_card_title_frame_padding_left">2dp</dimen>
+    <dimen name="song_card_title_frame_padding_right">2dp</dimen>
+    <dimen name="song_card_title_frame_margin_top">4dp</dimen>
+
+    <dimen name="song_card_tittle_text_size">16sp</dimen>
+
+
+    <dimen name="song_card_uploader_icon_width">16sp</dimen>
+    <dimen name="song_card_uploader_icon_margin_right">4dp</dimen>
+    <dimen name="song_card_uploader_icon_text_size">12sp</dimen>
+
+    <dimen name="song_card_uploader_text_size">14sp</dimen>
+
+    <dimen name="song_card_views_wrapper_margin_top">-4dp</dimen>
+    <dimen name="song_card_views_wrapper_margin_bottom">4dp</dimen>
+
+
+    <dimen name="song_card_views_icon_dimen">16sp</dimen>
+    <dimen name="song_card_views_icon_margin_right">4dp</dimen>
+    <dimen name="song_card_views_icon_text_size">12sp</dimen>
+
+
+    <dimen name="song_card_views_text_size">12sp</dimen>
+
+
 </resources>
