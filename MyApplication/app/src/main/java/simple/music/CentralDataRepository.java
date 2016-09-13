@@ -5,6 +5,7 @@ import android.content.Context;
 
 public class CentralDataRepository {
 
+    private CentralDataChangeListener mListener;
     private static Context context;
     private static CentralDataRepository mInstance;
 
@@ -19,8 +20,24 @@ public class CentralDataRepository {
         return mInstance;
     }
 
+    public boolean getConnectivityState(){
+        boolean connected  = false;
 
-    interface RepositoryDataChangeListener{
-        void onDataChange(String type);
+        connected = ConnectivityUtils.getInstance(context).isConnectedToNet();
+
+        return connected;
     }
+
+    public void submitData(){
+        // write to data base and notify adapter
+    }
+
+    public void setListener(CentralDataChangeListener mListener) {
+        this.mListener = mListener;
+    }
+
+    interface CentralDataChangeListener{
+        void onDataChange();
+    }
+
 }

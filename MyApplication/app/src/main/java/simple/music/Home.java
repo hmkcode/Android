@@ -1,6 +1,5 @@
 package simple.music;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,7 +19,7 @@ public class Home extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private StaggeredGridLayoutManager layoutManager;
-    private TrendingRecyclerViewAdapter mRecyclerAdapter;
+    private ResulstsRecyclerAdapter mRecyclerAdapter;
     private ProgressDialog progressDialog;
     private HashMap<String, ArrayList<Song>> songMap;
 
@@ -55,7 +53,7 @@ public class Home extends AppCompatActivity {
         if (savedInstanceState.getSerializable("mapSong") != null) {
 
             // clear old data and append append new one
-            pushDataToRecyclerView(null , "");
+//            pushDataToRecyclerView(null , "");
 
             subscribeToTaskAddListener();
             HashMap<String, ArrayList<Song>> map = (HashMap<String, ArrayList<Song>>) savedInstanceState.getSerializable("mapSong");
@@ -64,14 +62,15 @@ public class Home extends AppCompatActivity {
                 Map.Entry pair = (Map.Entry) iterator.next();
                 L.m("Home onRestoreInstance() ", "reading hashmap for key " + pair.getKey().toString());
                 songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
-                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
+                // todo: add lists to central data repo
+//                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
             }
         }
 
     }
 
     private void subscribeToTaskAddListener() {
-        TrendingRecyclerViewAdapter.getInstance(this).setOnTaskAddListener(new TaskAddListener() {
+        ResulstsRecyclerAdapter.getInstance(this).setOnTaskAddListener(new TaskAddListener() {
             @Override
             public void onTaskTapped() {
                 L.m("Home subscribeToTaskAddListener() ", "callback: task tapped");
@@ -127,17 +126,17 @@ public class Home extends AppCompatActivity {
             return Constants.SCREEN_MODE_MOBILE;
         }
     }
-
-    private void appendDataToReclerView(String type , ArrayList<Song> list) {
-        mRecyclerAdapter.appendSongs( type,list );
-    }
-
-    private void pushDataToRecyclerView(ArrayList<Song> newList,String type){
-
-        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
-        mRecyclerAdapter.setSongs(newList , type);
-
-    }
+//
+//    private void appendDataToReclerView(String type , ArrayList<Song> list) {
+//        mRecyclerAdapter.appendSongs( type,list );
+//    }
+//
+//    private void pushDataToRecyclerView(ArrayList<Song> newList,String type){
+//
+//        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
+//        mRecyclerAdapter.setSongs(newList , type);
+//
+//    }
 
     private void plugAdapter() {
         mRecyclerAdapter.setOrientation(getOrientation());
@@ -151,7 +150,7 @@ public class Home extends AppCompatActivity {
         int maxCols = (isPortrait(getOrientation())) ? ((screenMode() == Constants.SCREEN_MODE_MOBILE) ? 2 : 3) : 4;
         mRecyclerView = (RecyclerView) findViewById(R.id.trendingRecylerView);
         layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
-        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
+        mRecyclerAdapter = ResulstsRecyclerAdapter.getInstance(this);
         mRecyclerView.setLayoutManager(layoutManager);
         plugAdapter();
 
@@ -169,8 +168,8 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    private void subscribeForStreamOption(TrendingRecyclerViewAdapter mRecyclerAdapter) {
-        mRecyclerAdapter.setOnStreamingSourceAvailable(new TrendingRecyclerViewAdapter.OnStreamingSourceAvailableListener() {
+    private void subscribeForStreamOption(ResulstsRecyclerAdapter mRecyclerAdapter) {
+        mRecyclerAdapter.setOnStreamingSourceAvailable(new ResulstsRecyclerAdapter.OnStreamingSourceAvailableListener() {
             @Override
             public void onPrepared(String uri) {
 

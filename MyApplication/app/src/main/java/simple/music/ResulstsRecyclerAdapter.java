@@ -16,15 +16,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_SONG = 0;
     private static final int TYPE_SECTION_TITLE = 1;
     private static final String TAG = "TrendingRecylerAdapter";
     private static Context context;
-    private static TrendingRecyclerViewAdapter mInstance;
+    private static ResulstsRecyclerAdapter mInstance;
     private ArrayList<ViewTypeModel> typeViewList;
-    private ArrayList<TrendingSongModel> trendingSongList;
+    private ArrayList<ItemModel> trendingSongList;
     private ArrayList<Song> songs;
     private int orientation;
     private int screenMode;
@@ -32,15 +32,15 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     private TaskAddListener taskAddListener;
     private OnStreamingSourceAvailableListener streamingSourceAvailableListener;
 
-    public TrendingRecyclerViewAdapter(Context context) {
+    public ResulstsRecyclerAdapter(Context context) {
         this.context = context;
         typeViewList = new ArrayList<>();
         songs = new ArrayList<>();
     }
 
-    public static TrendingRecyclerViewAdapter getInstance(Context context) {
+    public static ResulstsRecyclerAdapter getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new TrendingRecyclerViewAdapter(context);
+            mInstance = new ResulstsRecyclerAdapter(context);
         }
         return mInstance;
     }
@@ -252,9 +252,9 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         MusicStreamer.OnStreamUriFetchedListener streamUriFetchedListener = new MusicStreamer.OnStreamUriFetchedListener() {
             @Override
             public void onUriAvailable(String uri) {
-                if (TrendingRecyclerViewAdapter.getInstance(context).streamingSourceAvailableListener != null) {
+                if (ResulstsRecyclerAdapter.getInstance(context).streamingSourceAvailableListener != null) {
                     // Log.d(TAG, "onUriAvailable : uri made available");
-                    TrendingRecyclerViewAdapter.getInstance(context).streamingSourceAvailableListener.onPrepared(uri);
+                    ResulstsRecyclerAdapter.getInstance(context).streamingSourceAvailableListener.onPrepared(uri);
                 }
 
             }
@@ -293,13 +293,13 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             downloadBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TrendingRecyclerViewAdapter adapter = TrendingRecyclerViewAdapter.getInstance(context);
+                    ResulstsRecyclerAdapter adapter = ResulstsRecyclerAdapter.getInstance(context);
                     int pos = getAdapterPosition() - 1;
                     //Log.d("Ada", " pos" + pos);
                     String v_id = adapter.songs.get(pos).Video_id;
                     String file_name = adapter.songs.get(pos).Title;
                     // adapter.log("adding download task");
-                    TrendingRecyclerViewAdapter.getInstance(context).addDownloadTask(v_id, file_name);
+                    ResulstsRecyclerAdapter.getInstance(context).addDownloadTask(v_id, file_name);
                 }
             });
 
@@ -307,7 +307,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 @Override
                 public void onClick(View view) {
 
-                    TrendingRecyclerViewAdapter adapter = TrendingRecyclerViewAdapter.getInstance(context);
+                    ResulstsRecyclerAdapter adapter = ResulstsRecyclerAdapter.getInstance(context);
                     adapter.streamingSourceAvailableListener.optioned();
                     int pos = getAdapterPosition() - 1;
                     // Log.d("Ada", " pos" + pos);

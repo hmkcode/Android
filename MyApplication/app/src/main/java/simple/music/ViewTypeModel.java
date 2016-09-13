@@ -1,8 +1,6 @@
 package simple.music;
 
-/**
- * Created by Ankit on 8/14/2016.
- */
+
 public class ViewTypeModel {
 
     public int viewType;

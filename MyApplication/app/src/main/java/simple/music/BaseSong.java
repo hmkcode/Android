@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 //todo: make it pacelable
-public class Song implements Serializable{
+public class BaseSong implements Serializable{
     public String Title;
     public String TrackDuration;
     public String UploadedBy;
@@ -16,7 +16,7 @@ public class Song implements Serializable{
     public String TimeSinceUploaded;
     public String UserViews;
 
-    public Song(String title, String trackDuration, String uploadedBy, String thumbnail_url, String video_id, String timeSinceUploaded, String userViews) {
+    public BaseSong(String title, String trackDuration, String uploadedBy, String thumbnail_url, String video_id, String timeSinceUploaded, String userViews) {
         this.Title = title;
         this.TrackDuration = trackDuration;
         this.UploadedBy = uploadedBy;
