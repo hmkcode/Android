@@ -28,17 +28,7 @@ public class Home extends AppCompatActivity {
 
     private void instantiateViews() {
 
-        int maxCols = 0;
-        if (isPortrait(getOrientation())) {
-            if (screenMode() == Constants.SCREEN_MODE_MOBILE) {
-                setUpRecycler(2);
-            } else {
-                setUpRecycler(3);
-            }
-        } else {
-            setUpRecycler(4);
-        }
-
+        int maxCols = (isPortrait(getOrientation()))?((screenMode() == Constants.SCREEN_MODE_MOBILE)?2:3):4;
         mRecyclerView = (RecyclerView) findViewById(R.id.trendingRecylerView);
         layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
 
@@ -65,9 +55,9 @@ public class Home extends AppCompatActivity {
 
         double diagonal = Math.sqrt(yInches * yInches + xInches * xInches);
         if (diagonal > 6.5) {
-            return AppConfig.SCREEN_MODE_TABLET;
+            return Constants.SCREEN_MODE_TABLET;
         } else {
-            return AppConfig.SCREEN_MODE_MOBILE;
+            return Constants.SCREEN_MODE_MOBILE;
         }
     }
 
