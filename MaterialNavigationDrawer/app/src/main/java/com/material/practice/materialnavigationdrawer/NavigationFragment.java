@@ -51,6 +51,7 @@ public class NavigationFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 view.setSelected(true);
+                view.setActivated(true);
             }
         });
 

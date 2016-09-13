@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class NavListAdapter extends ArrayAdapter<NavItems> {
 
@@ -17,6 +15,7 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
     private static NavListAdapter mInstance;
     private ArrayList<NavItems> items;
     int checkedIndex;
+
     public NavListAdapter(Context context) {
         super(context, 0);
         this.context = context;
@@ -44,7 +43,7 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
-
+ 
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.navigation_drawer_item_layout, null, false);
         }
@@ -54,10 +53,8 @@ public class NavListAdapter extends ArrayAdapter<NavItems> {
 
         Typeface robotoMedium = FontManager.getInstance(context).getTypeFace(FontManager.FONT_ROBOTO);
         Typeface materialIcon = FontManager.getInstance(context).getTypeFace(FontManager.FONT_MATERIAL);
-
         icon.setText(items.get(position).getIcon());
         title.setText(items.get(position).getTitle());
-
         icon.setTypeface(materialIcon);
         title.setTypeface(robotoMedium);
 
