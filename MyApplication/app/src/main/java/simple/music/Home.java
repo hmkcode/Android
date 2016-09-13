@@ -9,6 +9,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.nio.DoubleBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Home extends AppCompatActivity {
 
@@ -16,6 +23,7 @@ public class Home extends AppCompatActivity {
     private StaggeredGridLayoutManager layoutManager;
     private TrendingRecyclerViewAdapter mRecyclerAdapter;
     private ProgressDialog progressDialog;
+    private HashMap<String, ArrayList<Song>> songMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,43 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState.getSerializable("mapSong") != null) {
+
+            mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
+            mRecyclerAdapter.setSongs(null, "");
+            subscribeToTaskAddListener();
+            HashMap<String, ArrayList<Song>> map = (HashMap<String, ArrayList<Song>>) savedInstanceState.getSerializable("mapSong");
+            Iterator iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry pair = (Map.Entry) iterator.next();
+                L.m("Home onRestoreInstance() ","reading hashmap for key " + pair.getKey().toString());
+                songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
+                mRecyclerAdapter.appendSongs(map.get(pair.getKey()), pair.getKey().toString());
+            }
+        }
+
+    }
+
+    private void subscribeToTaskAddListener() {
+        TrendingRecyclerViewAdapter.getInstance(this).setOnTaskAddListener(new TaskAddListener() {
+            @Override
+            public void onTaskTapped() {
+                L.m("Home subscribeToTaskAddListener() ","callback: task tapped");
+                progressDialog = new ProgressDialog(Home.this);
+                progressDialog.setMessage("Requesting Your Stuff..");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+
+            @Override
+            public void onTaskAddedToQueue(String task_info) {
+               L.m("Home subscribeToTaskAddListener() ","callback: task added to download queue");
+                progressDialog.dismiss();
+                Toast.makeText(Home.this,task_info + " Added To Download",Toast.LENGTH_LONG).show();
+                //TODO: navigate to DownloadsActivity
+            }
+        });
     }
 
     @Override
