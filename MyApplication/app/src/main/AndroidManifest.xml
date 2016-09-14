@@ -27,10 +27,6 @@
             android:name=".Home"
             android:label="@string/title_activity_home" >
         </activity>
-        <activity
-            android:name=".delete"
-            android:label="@string/title_activity_delete" >
-        </activity>
     </application>
 
 </manifest>
