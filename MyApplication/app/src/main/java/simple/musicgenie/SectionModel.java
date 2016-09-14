@@ -9,7 +9,9 @@ public class SectionModel {
     ArrayList<ItemModel> list;
 
     public SectionModel(String sectionTitle) {
+
         this.sectionTitle = sectionTitle;
+
     }
 
     public String getSectionTitle() {
