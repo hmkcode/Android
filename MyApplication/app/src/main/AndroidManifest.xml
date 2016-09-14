@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="simple.music" >
+    package="simple.musicgenie" >
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,6 +26,10 @@
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".delete"
+            android:label="@string/title_activity_delete" >
         </activity>
     </application>
 
