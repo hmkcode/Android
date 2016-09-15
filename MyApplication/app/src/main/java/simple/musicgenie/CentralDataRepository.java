@@ -110,6 +110,48 @@ public class CentralDataRepository {
      */
     private void refressAndSubmit() {
 
+        if(mLastLoadedType == TYPE_TRENDING){
+
+            mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
+                @Override
+                public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+                    // now result are written to database
+                    // so submit them to thirsty adapters
+                    dataReadyToSubmitListener.onDataSubmit(trendingList);
+                    // callback confirmation to operation initiater
+                    mActionCompletdListener.onActionCompleted();
+
+                    mLastLoadedType = TYPE_TRENDING;
+                }
+            });
+
+            mCloudManager.lazyRequestTrending();
+
+        }else{
+
+            mDBHelper.setResultLoadListener(new DbHelper.ResultLoadListener() {
+                @Override
+                public void onResultLoadListener(SectionModel result) {
+
+                    ArrayList<SectionModel> temp = new ArrayList<>();
+                    temp.add(new SectionModel(result.sectionTitle, result.getList()));
+
+                    //callback to thirsty adapters
+                    dataReadyToSubmitListener.onDataSubmit(temp);
+
+                    // callback confirmation to operation initiater
+                    mActionCompletdListener.onActionCompleted();
+
+                }
+            });
+
+            SharedPrefrenceUtils utils = SharedPrefrenceUtils.getInstance(context);
+            String searchTerm = utils.getLastSearchTerm();
+            mCloudManager.requestSearch(searchTerm);
+
+            mLastLoadedType = TYPE_RESULT;
+        }
+
     }
 
     /**
@@ -125,6 +167,8 @@ public class CentralDataRepository {
 
                 ArrayList<SectionModel> temp = new ArrayList<>();
                 temp.add(new SectionModel(result.sectionTitle, result.getList()));
+
+                //callback to thirsty adapters
                 dataReadyToSubmitListener.onDataSubmit(temp);
 
                 // callback confirmation to operation initiater
@@ -136,6 +180,7 @@ public class CentralDataRepository {
         SharedPrefrenceUtils utils = SharedPrefrenceUtils.getInstance(context);
         String searchTerm = utils.getLastSearchTerm();
         mCloudManager.requestSearch(searchTerm);
+
         mLastLoadedType = TYPE_RESULT;
 
     }
@@ -202,13 +247,6 @@ public class CentralDataRepository {
         //  check for available cache
         boolean isAnyCache = mDBHelper.isTrendingsCached();
 
-        if (!isAnyCache) {    // request for trending and then update
-            // request
-            mCloudManager.lazyRequestTrending();
-        } else {
-            // poke for available data
-            mDBHelper.pokeForTrending();
-        }
         // subscribe for callback from database
         mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
             @Override
@@ -220,6 +258,15 @@ public class CentralDataRepository {
                 mActionCompletdListener.onActionCompleted();
             }
         });
+
+
+        if (!isAnyCache) {    // request for trending and then update
+            // request
+            mCloudManager.lazyRequestTrending();
+        } else {
+            // poke for available data
+            mDBHelper.pokeForTrending();
+        }
 
         mLastLoadedType = TYPE_TRENDING;
 
