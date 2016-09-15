@@ -12,4 +12,5 @@
     <string name="title_activity_message">MessageActivity</string>
     <string name="title_activity_test_activity_for_pol">TestActivityForPol</string>
     <string name="title_activity_post_birth">PostBirth</string>
+    <string name="title_activity_mest">Hello World Immersion</string>
 </resources>
