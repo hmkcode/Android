@@ -119,9 +119,29 @@ public class CentralDataRepository {
      */
     private void searchAndSubmit() {
 
+        mDBHelper.setResultLoadListener(new DbHelper.ResultLoadListener() {
+            @Override
+            public void onResultLoadListener(SectionModel result) {
+
+                ArrayList<SectionModel> temp = new ArrayList<>();
+                temp.add(new SectionModel(result.sectionTitle, result.getList()));
+                dataReadyToSubmitListener.onDataSubmit(temp);
+
+                // callback confirmation to operation initiater
+                mActionCompletdListener.onActionCompleted();
+
+            }
+        });
+
+        SharedPrefrenceUtils utils = SharedPrefrenceUtils.getInstance(context);
+        String searchTerm = utils.getLastSearchTerm();
+        mCloudManager.requestSearch(searchTerm);
+        mLastLoadedType = TYPE_RESULT;
+
     }
 
     /**
+     * (Restore State)
      * Checks Last Loaded
      * gets from DB and submits to registered adapters
      * After submittion must setLastLoaded

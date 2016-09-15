@@ -140,4 +140,13 @@ public class SharedPrefrenceUtils {
     public boolean getFlagForContinuedStreaming(){
         return preferences.getBoolean(Constants.FLAG_STREAMING_CONTINUED,false);
     }
+
+    public String getLastSearchTerm() {
+        return preferences.getString(Constants.KEY_SEARCH_TERM, "");
+    }
+
+    public void setLastSearchTerm(String term){
+        editor.putString(Constants.KEY_SEARCH_TERM,term);
+        editor.commit();
+    }
 }

@@ -24,4 +24,5 @@ public class Constants {
     public static final String EXTRAA_ACTIVITY_PRE_LOAD_FLAG = "actvity_preloaded";
     public static final String FLAG_STREAMING_CONTINUED = "streamingWillContinue";
 
+    public static final String KEY_SEARCH_TERM = "searchTerm";
 }
