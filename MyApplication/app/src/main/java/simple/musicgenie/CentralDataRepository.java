@@ -128,6 +128,45 @@ public class CentralDataRepository {
      */
     private void submitLastLoaded() {
 
+        if (mLastLoadedType == TYPE_TRENDING) {
+
+            mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
+                @Override
+                public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+                    // now result are written to database
+                    // so submit them to thirsty adapters
+                    dataReadyToSubmitListener.onDataSubmit(trendingList);
+                    // callback confirmation to operation initiater
+                    mActionCompletdListener.onActionCompleted();
+                }
+            });
+
+            mDBHelper.pokeForTrending();
+
+            mLastLoadedType = TYPE_TRENDING;
+
+        } else {
+
+            mDBHelper.setResultLoadListener(new DbHelper.ResultLoadListener() {
+                @Override
+                public void onResultLoadListener(SectionModel result) {
+
+                    ArrayList<SectionModel> temp = new ArrayList<>();
+                    temp.add(new SectionModel(result.sectionTitle, result.getList()));
+                    dataReadyToSubmitListener.onDataSubmit(temp);
+
+                    // callback confirmation to operation initiater
+                    mActionCompletdListener.onActionCompleted();
+
+                }
+            });
+
+            mDBHelper.pokeForResults();
+
+            mLastLoadedType = TYPE_RESULT;
+        }
+
+
     }
 
     /**
@@ -161,6 +200,8 @@ public class CentralDataRepository {
                 mActionCompletdListener.onActionCompleted();
             }
         });
+
+        mLastLoadedType = TYPE_TRENDING;
 
     }
 
