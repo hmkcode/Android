@@ -122,6 +122,21 @@ public class DbHelper extends SQLiteOpenHelper {
         return temp;
     }
 
+    public boolean isTrendingsCached() {
+
+        boolean hasStoredTrending = false;
+
+        String[] cols = {COL_THUMB_URL};
+
+        String[] selectionArgs = {};
+
+        Cursor cr = getReadableDatabase().query(TABLE_TRENDING, cols, "", selectionArgs, null, null, null);
+        cr.moveToFirst();
+
+        hasStoredTrending = cr.getCount() > 0;
+        return hasStoredTrending;
+    }
+
     public void addTrendingList(ArrayList<SectionModel> list) {
 
         SQLiteDatabase database = getWritableDatabase();
@@ -229,18 +244,12 @@ public class DbHelper extends SQLiteOpenHelper {
     ///////////////////////////////////////////////////////////////////////////
 
     public boolean isAnyResult() {
+
         boolean hasStoredResult = false;
 
-        String[] cols = {COL_THUMB_URL,
-                COL_USER_VIEWS,
-                COL_TITLE,
-                COL_UPLOADED_BY,
-                COL_TIME_SINCE_UPLOADED,
-                COL_VIDEO_ID,
-                COL_TRACK_DURATION};
+        String[] cols = {COL_THUMB_URL};
 
         String[] selectionArgs = {};
-
         Cursor cr = getReadableDatabase().query(TABLE_RESULTS, cols, "", selectionArgs, null, null, null);
 
         cr.moveToFirst();
@@ -248,7 +257,18 @@ public class DbHelper extends SQLiteOpenHelper {
         return hasStoredResult;
     }
 
-    public void addResultsList(SectionModel modelItem) {
+    private void clearResultsIfAny() {
+        SQLiteDatabase db = getReadableDatabase();
+        String deleteClause = "";
+        String[] selectionArgs = {};
+        db.delete(TABLE_RESULTS, deleteClause, selectionArgs);
+        L.m("DBH", "Wiped Out Result Data");
+    }
+
+    public void addResultsList(SectionModel modelItem) {        // actually Overwrite the old data
+
+        // clear back storage
+        clearResultsIfAny();
 
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values;
@@ -258,6 +278,7 @@ public class DbHelper extends SQLiteOpenHelper {
         for (int j = 0; j < itemModels.size(); j++) {
 
             values = getCVObject(itemModels.get(j));
+
             long id = database.insert(TABLE_RESULTS, null, values);
 
             if (id < 0) {
@@ -272,7 +293,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         SectionModel returnSectionModel = null;
 
-        String[] cols = {COL_THUMB_URL,
+        String[] cols = {
+                COL_THUMB_URL,
                 COL_USER_VIEWS,
                 COL_TITLE,
                 COL_UPLOADED_BY,
@@ -308,4 +330,29 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return returnSectionModel;
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //              Callback Interface
+    ///////////////////////////////////////////////////////////////////////////
+
+    TrendingLoadListener mTrendingLoadListener;
+
+    public void setmTrendingLoadListener(TrendingLoadListener mTrendingLoadListener) {
+        this.mTrendingLoadListener = mTrendingLoadListener;
+    }
+
+    interface TrendingLoadListener {
+        void onTrendingLoad(ArrayList<SectionModel> trendingList);
+    }
+
+    ResultLoadListener mResultLoadListener;
+
+    public void setmResultLoadListener(ResultLoadListener mResultLoadListener) {
+        this.mResultLoadListener = mResultLoadListener;
+    }
+
+    interface ResultLoadListener {
+        void onResultLoadListener(SectionModel result);
+    }
+
 }

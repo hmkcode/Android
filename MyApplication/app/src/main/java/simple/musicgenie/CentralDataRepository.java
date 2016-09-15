@@ -36,7 +36,7 @@ public class CentralDataRepository {
 
     private ActionCompletedListener mListener;
     private DataReadyToSubmitListener dataReadyToSubmitListener;
-
+    private DbHelper dbHelper;
     private static Context context;
 
     private static CentralDataRepository mInstance;
@@ -54,6 +54,7 @@ public class CentralDataRepository {
      */
     private CentralDataRepository(Context context) {
         this.context = context;
+        this.dbHelper = DbHelper.getInstance(context);
     }
 
     /**
@@ -135,6 +136,12 @@ public class CentralDataRepository {
      */
     private void loadTrendingOrRequestTrending() {
 
+        //  check for available cache
+        boolean isAnyCache = dbHelper.isTrendingsCached();
+
+        if(!isAnyCache){    // request for trending and then update
+
+        }
 
 
     }
