@@ -34,7 +34,9 @@ public class CloudManager {
         return mInstance;
     }
 
-
+    /**
+     * @param type section for trending e.g. pop , rock etc.
+     */
     public void requestTrendingData(String type) {
         int count = 8; // max 25
         final String url = URLS.URL_TRENDING_API + "?type=" + type + "&number=" + count + "&offset=0";
@@ -64,6 +66,9 @@ public class CloudManager {
 
     }
 
+    /**
+     * @param response json response for trending items
+     */
     private void handleTrending(String response) {
 
         ArrayList<SectionModel> trendingResults = new ArrayList<>();
@@ -76,22 +81,29 @@ public class CloudManager {
 
             JSONObject resultsSubObject = resObj.getJSONObject("results");
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count; i++) {       // i represent current section Model item
 
                 JSONArray typeArray = resultsSubObject.getJSONArray(sections.get(i));
-//String title, String trackDuration, String uploadedBy,
-// String thumbnail_url, String video_id, String timeSinceUploaded, String userViews, String type
-                for (int j = 0; j < typeArray.length(); j++) {
+
+                ArrayList<ItemModel> itemModelArrayList = new ArrayList<>();
+
+                for (int j = 0; j < typeArray.length(); j++) {      // j represent current item model inside i`th section model
+
                     JSONObject songObj = (JSONObject) typeArray.get(j);
-                        item = new ItemModel(songObj.getString("title"),
-                                songObj.getString("length"),
-                                songObj.getString("uploader"),
-                                songObj.getString("thumb"),
-                                songObj.getString("get_url"),
-                                TIME_SINCE_UPLOADED_LEFT_VACCANT,
-                                songObj.getString("views"),
-                                sections.get(i));
+                    item = new ItemModel(songObj.getString("title"),
+                            songObj.getString("length"),
+                            songObj.getString("uploader"),
+                            songObj.getString("thumb"),
+                            songObj.getString("get_url"),
+                            TIME_SINCE_UPLOADED_LEFT_VACCANT,
+                            songObj.getString("views"),
+                            sections.get(i));
+
+                    itemModelArrayList.add(item);
+
                 }
+
+                trendingResults.add(new SectionModel(sections.get(i), itemModelArrayList));
 
             }
 
@@ -99,6 +111,61 @@ public class CloudManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        L.m("CM(test)", " Trending List Size " + trendingResults.size());
+
+    }
+
+    private void requestSupportedPlaylist(){
+
+        final String url = URLS.URL_SUPPORTED_PLAYLIST;
+
+        StringRequest playlistReq = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        handleSupportedPlaylists(s);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+                });
+
+        playlistReq.setRetryPolicy(new DefaultRetryPolicy(
+                SERVER_TIMEOUT_LIMIT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        VolleyUtils.getInstance().addToRequestQueue(playlistReq, "playReq", context);
+    }
+
+    private void handleSupportedPlaylists(String response) {
+
+        ArrayList<String> playlists = new ArrayList<>();
+        try {
+            JSONObject object = new JSONObject(response);
+
+            int playlistCount = Integer.parseInt(object.getJSONObject("metadata").getString("count"));
+
+            JSONArray playlistJsonArray = object.getJSONArray("results");
+
+            for(int i = 0;i<playlistCount;i++){
+
+                playlists.add(playlistJsonArray.getJSONObject(i).getString("playlist"));
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        L.m("CM(test) ","Supported Playlist");
 
     }
 
