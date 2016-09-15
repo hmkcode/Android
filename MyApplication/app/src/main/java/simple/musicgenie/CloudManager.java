@@ -116,7 +116,7 @@ public class CloudManager {
 
     }
 
-    private void requestSupportedPlaylist(){
+    public void requestSupportedPlaylist(){
 
         final String url = URLS.URL_SUPPORTED_PLAYLIST;
 
@@ -145,6 +145,8 @@ public class CloudManager {
     }
 
     private void handleSupportedPlaylists(String response) {
+
+        L.m("CM","handing "+response);
 
         ArrayList<String> playlists = new ArrayList<>();
         try {

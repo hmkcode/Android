@@ -21,7 +21,7 @@ public class Home extends AppCompatActivity {
     private StaggeredGridLayoutManager layoutManager;
     private ResulstsRecyclerAdapter mRecyclerAdapter;
     private ProgressDialog progressDialog;
-    private HashMap<String, ArrayList<Song>> songMap;
+    private HashMap<String, ArrayList<BaseSong>> songMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class Home extends AppCompatActivity {
 //            pushDataToRecyclerView(null , "");
 
             subscribeToTaskAddListener();
-            HashMap<String, ArrayList<Song>> map = (HashMap<String, ArrayList<Song>>) savedInstanceState.getSerializable("mapSong");
+            HashMap<String, ArrayList<BaseSong>> map = (HashMap<String, ArrayList<BaseSong>>) savedInstanceState.getSerializable("mapSong");
             Iterator iterator = map.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry pair = (Map.Entry) iterator.next();
