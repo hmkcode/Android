@@ -34,10 +34,16 @@ public class CloudManager {
         return mInstance;
     }
 
+    public void lazyRequestTrending(){
+
+        requestSupportedPlaylist();
+
+    }
+
     /**
      * @param type section for trending e.g. pop , rock etc.
      */
-    public void requestTrendingData(String type) {
+    private void requestTrendingType(String type) {
         int count = 8; // max 25
         final String url = URLS.URL_TRENDING_API + "?type=" + type + "&number=" + count + "&offset=0";
 
@@ -71,19 +77,24 @@ public class CloudManager {
      */
     private void handleTrending(String response) {
 
-        ArrayList<SectionModel> trendingResults = new ArrayList<>();
+        SectionModel trendingResult = null;
         ItemModel item;
+
         try {
+
+            L.m("CM(test trending )",""+response);
+
             JSONObject resObj = new JSONObject(response);
 
             int count = Integer.parseInt(resObj.getJSONObject("metadata").getString("count"));
-            ArrayList<String> sections = new Segmentor().getParts(resObj.getJSONObject("metadata").getString("type"), ',');
+
+            String sections = resObj.getJSONObject("metadata").getString("type");
 
             JSONObject resultsSubObject = resObj.getJSONObject("results");
 
             for (int i = 0; i < count; i++) {       // i represent current section Model item
 
-                JSONArray typeArray = resultsSubObject.getJSONArray(sections.get(i));
+                JSONArray typeArray = resultsSubObject.getJSONArray(sections);
 
                 ArrayList<ItemModel> itemModelArrayList = new ArrayList<>();
 
@@ -97,14 +108,19 @@ public class CloudManager {
                             songObj.getString("get_url"),
                             TIME_SINCE_UPLOADED_LEFT_VACCANT,
                             songObj.getString("views"),
-                            sections.get(i));
+                            sections);
 
                     itemModelArrayList.add(item);
 
                 }
 
-                trendingResults.add(new SectionModel(sections.get(i), itemModelArrayList));
+                trendingResult = new SectionModel(sections, itemModelArrayList);
 
+                //DB write test
+                L.m("CM(Cloud->DB)", "sending for write");
+                ArrayList<SectionModel> temp = new ArrayList<>();
+                temp.add(trendingResult);
+                DbHelper.getInstance(context).addTrendingList(temp);
             }
 
 
@@ -112,11 +128,11 @@ public class CloudManager {
             e.printStackTrace();
         }
 
-        L.m("CM(test)", " Trending List Size " + trendingResults.size());
+        L.m("CM(test)", " Trending Type "+trendingResult.sectionTitle);
 
     }
 
-    public void requestSupportedPlaylist(){
+    private void requestSupportedPlaylist(){
 
         final String url = URLS.URL_SUPPORTED_PLAYLIST;
 
@@ -146,7 +162,7 @@ public class CloudManager {
 
     private void handleSupportedPlaylists(String response) {
 
-        L.m("CM","handing "+response);
+        //L.m("CM","handing "+response);
 
         ArrayList<String> playlists = new ArrayList<>();
         try {
@@ -158,7 +174,7 @@ public class CloudManager {
 
             for(int i = 0;i<playlistCount;i++){
 
-                playlists.add(playlistJsonArray.getJSONObject(i).getString("playlist"));
+                requestTrendingType(playlistJsonArray.getJSONObject(i).getString("playlist"));
 
             }
 
@@ -167,8 +183,9 @@ public class CloudManager {
             e.printStackTrace();
         }
 
-        L.m("CM(test) ","Supported Playlist");
+        //L.m("CM(test) ","Supported Playlist");
 
     }
+
 
 }

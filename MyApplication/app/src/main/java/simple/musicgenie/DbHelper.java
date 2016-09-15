@@ -2,11 +2,13 @@ package simple.musicgenie;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -33,27 +35,26 @@ public class DbHelper extends SQLiteOpenHelper {
     // String thumbnail_url, String video_id, String timeSinceUploaded, String userViews, String type
     // create table trending ()
 
-    private static final String CREATE_TRENDING_TABLE = "CREATE TABLE " + TABLE_TRENDING + "( " +
-            "TEXT " + COL_TITLE + "," +
-            "TEXT " + COL_TRACK_DURATION + "," +
-            "TEXT " + COL_UPLOADED_BY + "," +
-            "TEXT " + COL_THUMB_URL + "," +
-            "TEXT " + COL_VIDEO_ID + "," +
-            "TEXT " + COL_TIME_SINCE_UPLOADED + "," +
-            "TEXT " + COL_USER_VIEWS + "," +
-            "TEXT " + COL_TRACK_DURATION + "," +
-            "TEXT " + COL_TYPE + "" +
+    private static final String CREATE_TRENDING_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_TRENDING + "( " +
+            COL_TITLE + " TEXT , " +
+            COL_UPLOADED_BY + " TEXT , " +
+            COL_THUMB_URL + " TEXT , " +
+            COL_VIDEO_ID + " TEXT , " +
+            COL_TIME_SINCE_UPLOADED + " TEXT , " +
+            COL_USER_VIEWS + " TEXT , " +
+            COL_TRACK_DURATION + " TEXT , " +
+            COL_TYPE + " TEXT" +
             ")";
 
-    private static final String CREATE_RESULTS_TABLE = "CREATE TABLE " + TABLE_RESULTS + " ( " +
-            "TEXT " + COL_TITLE + "," +
-            "TEXT " + COL_TRACK_DURATION + "," +
-            "TEXT " + COL_UPLOADED_BY + "," +
-            "TEXT " + COL_THUMB_URL + "," +
-            "TEXT " + COL_VIDEO_ID + "," +
-            "TEXT " + COL_TIME_SINCE_UPLOADED + "," +
-            "TEXT " + COL_USER_VIEWS + "," +
-            "TEXT " + COL_TRACK_DURATION + ")";
+    private static final String CREATE_RESULTS_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_RESULTS + " ( " +
+            COL_TITLE + " TEXT , " +
+            COL_UPLOADED_BY + " TEXT , " +
+            COL_THUMB_URL + " TEXT , " +
+            COL_VIDEO_ID + " TEXT , " +
+            COL_TIME_SINCE_UPLOADED + " TEXT , " +
+            COL_USER_VIEWS + " TEXT , " +
+            COL_TRACK_DURATION + " TEXT" +
+            ")";
 
     private static final String DROP_TRENDING_TABLE = "DROP TABLE " + TABLE_TRENDING;
     private static final String DROP_RESULTS_TABLE = "DROP TABLE " + TABLE_RESULTS;
@@ -74,7 +75,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         sqLiteDatabase.execSQL(CREATE_TRENDING_TABLE);
+        L.m("DBHelper", "created trending table");
         sqLiteDatabase.execSQL(CREATE_RESULTS_TABLE);
+        L.m("DBHelper", "created results table");
 
     }
 
@@ -133,7 +136,79 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * @return Read Trending From database
+     */
+    public ArrayList<SectionModel> getTrendingList() {
 
+        ArrayList<SectionModel> trendingFromDbList = new ArrayList<>();
+
+        String[] cols = {COL_THUMB_URL,
+                COL_USER_VIEWS,
+                COL_TYPE,
+                COL_TITLE,
+                COL_UPLOADED_BY,
+                COL_TIME_SINCE_UPLOADED,
+                COL_VIDEO_ID,
+                COL_TRACK_DURATION};
+
+        String[] selectionArgs = {};
+
+
+        Cursor cr = getReadableDatabase().query(TABLE_TRENDING, cols, "", selectionArgs, null, null, null);
+
+        cr.moveToFirst();
+
+        //temp.put(COL_TITLE, data.Title);
+//        temp.put(COL_TIME_SINCE_UPLOADED, data.TimeSinceUploaded);
+//        temp.put(COL_THUMB_URL, data.Thumbnail_url);
+//        temp.put(COL_TYPE, data.type);
+//        temp.put(COL_TRACK_DURATION, data.TrackDuration);
+//        temp.put(COL_UPLOADED_BY, data.UploadedBy);
+//        temp.put(COL_VIDEO_ID, data.Video_id);
+//        temp.put(COL_USER_VIEWS, data.UserViews);
+
+        HashMap<String, ArrayList<ItemModel>> trendingMap = new HashMap<>();
+
+        while (cr.moveToNext() && cr.getCount() > 0) {
+            // get type of song from cursor
+
+            ItemModel itemModelObj;
+
+            String type = cr.getString(cr.getColumnIndex(COL_TYPE));
+            itemModelObj = new ItemModel(cr.getString(cr.getColumnIndex(COL_TITLE)),
+                    cr.getString(cr.getColumnIndex(COL_TRACK_DURATION)),
+                    cr.getString(cr.getColumnIndex(COL_UPLOADED_BY)),
+                    cr.getString(cr.getColumnIndex(COL_THUMB_URL)),
+                    cr.getString(cr.getColumnIndex(COL_VIDEO_ID)),
+                    "",
+                    cr.getString(cr.getColumnIndex(COL_USER_VIEWS)),
+                    cr.getString(cr.getColumnIndex(COL_TYPE)));
+
+            ArrayList<ItemModel> mapList = trendingMap.get(type);
+
+            if (mapList == null) {       // accessing list from map for first time
+                mapList = new ArrayList<>();
+                trendingMap.put(type, mapList);
+                mapList.add(itemModelObj);
+            } else {
+                mapList.add(itemModelObj);
+            }
+
+        }
+
+        // get each item from map and get list and add
+
+
+
+        return trendingFromDbList;
+    }
+
+    public void upgradeDB() {
+        int oldVer = 1;
+        int newVer = 2;
+        onUpgrade(getReadableDatabase(), oldVer, newVer);
+    }
 
     public void addResultsList(ArrayList<SectionModel> list) {
 
