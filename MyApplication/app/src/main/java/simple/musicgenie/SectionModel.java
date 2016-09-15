@@ -14,6 +14,11 @@ public class SectionModel {
 
     }
 
+    public SectionModel(String sectionTitle, ArrayList<ItemModel> list) {
+        this.sectionTitle = sectionTitle;
+        this.list = list;
+    }
+
     public String getSectionTitle() {
         return sectionTitle;
     }

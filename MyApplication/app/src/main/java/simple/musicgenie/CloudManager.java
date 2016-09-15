@@ -1,6 +1,7 @@
 package simple.musicgenie;
 
 
+import android.content.ClipData;
 import android.content.Context;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -13,9 +14,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class CloudManager {
 
     private static final int SERVER_TIMEOUT_LIMIT = 20000;
+    private static final String TIME_SINCE_UPLOADED_LEFT_VACCANT = "";
     private static Context context;
     private static CloudManager mInstance;
 
@@ -62,9 +66,35 @@ public class CloudManager {
 
     private void handleTrending(String response) {
 
-
+        ArrayList<SectionModel> trendingResults = new ArrayList<>();
+        ItemModel item;
         try {
             JSONObject resObj = new JSONObject(response);
+
+            int count = Integer.parseInt(resObj.getJSONObject("metadata").getString("count"));
+            ArrayList<String> sections = new Segmentor().getParts(resObj.getJSONObject("metadata").getString("type"), ',');
+
+            JSONObject resultsSubObject = resObj.getJSONObject("results");
+
+            for (int i = 0; i < count; i++) {
+
+                JSONArray typeArray = resultsSubObject.getJSONArray(sections.get(i));
+//String title, String trackDuration, String uploadedBy,
+// String thumbnail_url, String video_id, String timeSinceUploaded, String userViews, String type
+                for (int j = 0; j < typeArray.length(); j++) {
+                    JSONObject songObj = (JSONObject) typeArray.get(j);
+                        item = new ItemModel(songObj.getString("title"),
+                                songObj.getString("length"),
+                                songObj.getString("uploader"),
+                                songObj.getString("thumb"),
+                                songObj.getString("get_url"),
+                                TIME_SINCE_UPLOADED_LEFT_VACCANT,
+                                songObj.getString("views"),
+                                sections.get(i));
+                }
+
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
