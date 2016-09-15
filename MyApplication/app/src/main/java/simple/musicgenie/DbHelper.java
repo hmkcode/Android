@@ -170,12 +170,16 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
 
+        if (mTrendingLoadListener != null) {
+            mTrendingLoadListener.onTrendingLoad(list);
+        }
+
     }
 
     /**
      * @return Read Trending From database
      */
-    public ArrayList<SectionModel> getTrendingList() {
+    private ArrayList<SectionModel> getTrendingList() {
 
         ArrayList<SectionModel> trendingFromDbList = new ArrayList<>();
 
@@ -296,9 +300,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 Log.d("DBHelper (Results)", "Added Successfully ");
             }
         }
+
+
+        if (mResultLoadListener != null)
+            mResultLoadListener.onResultLoadListener(modelItem);
+
     }
 
-    public SectionModel getResultList() {
+    private SectionModel getResultList() {
 
         SectionModel returnSectionModel = null;
 
@@ -346,9 +355,24 @@ public class DbHelper extends SQLiteOpenHelper {
 
     TrendingLoadListener mTrendingLoadListener;
 
-    public void setmTrendingLoadListener(TrendingLoadListener mTrendingLoadListener) {
+    public void setTrendingLoadListener(TrendingLoadListener mTrendingLoadListener) {
         this.mTrendingLoadListener = mTrendingLoadListener;
     }
+
+    public void pokeForTrending() {
+
+        if (mTrendingLoadListener != null)
+            mTrendingLoadListener.onTrendingLoad(getTrendingList());
+
+    }
+
+    public void pokeForResults() {
+
+        if (mResultLoadListener != null)
+            mResultLoadListener.onResultLoadListener(getResultList());
+
+    }
+
 
     interface TrendingLoadListener {
         void onTrendingLoad(ArrayList<SectionModel> trendingList);
@@ -356,7 +380,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     ResultLoadListener mResultLoadListener;
 
-    public void setmResultLoadListener(ResultLoadListener mResultLoadListener) {
+    public void setResultLoadListener(ResultLoadListener mResultLoadListener) {
         this.mResultLoadListener = mResultLoadListener;
     }
 

@@ -1,9 +1,9 @@
 package simple.musicgenie;
 
-
 import android.content.Context;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class CentralDataRepository {
 
@@ -34,9 +34,10 @@ public class CentralDataRepository {
      */
     private static final int TYPE_RESULT = 406;
 
-    private ActionCompletedListener mListener;
+    private ActionCompletedListener mActionCompletdListener;
     private DataReadyToSubmitListener dataReadyToSubmitListener;
-    private DbHelper dbHelper;
+    private DbHelper mDBHelper;
+    private CloudManager mCloudManager;
     private static Context context;
 
     private static CentralDataRepository mInstance;
@@ -53,8 +54,11 @@ public class CentralDataRepository {
      * @param context Subscriber`s context
      */
     private CentralDataRepository(Context context) {
+
         this.context = context;
-        this.dbHelper = DbHelper.getInstance(context);
+        this.mDBHelper = DbHelper.getInstance(context);
+        this.mCloudManager = CloudManager.getInstance(context);
+
     }
 
     /**
@@ -69,7 +73,7 @@ public class CentralDataRepository {
     }
 
     /**
-     * @param type     Flag
+     * @param type     Flag for operation type
      * @param callback Callback for action completed
      */
 
@@ -137,12 +141,26 @@ public class CentralDataRepository {
     private void loadTrendingOrRequestTrending() {
 
         //  check for available cache
-        boolean isAnyCache = dbHelper.isTrendingsCached();
+        boolean isAnyCache = mDBHelper.isTrendingsCached();
 
         if (!isAnyCache) {    // request for trending and then update
-
+            // request
+            mCloudManager.lazyRequestTrending();
+        } else {
+            // poke for available data
+            mDBHelper.pokeForTrending();
         }
-
+        // subscribe for callback from database
+        mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
+            @Override
+            public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+                // now result are written to database
+                // so submit them to thirsty adapters
+                dataReadyToSubmitListener.onDataSubmit(trendingList);
+                // callback confirmation to operation initiater
+                mActionCompletdListener.onActionCompleted();
+            }
+        });
 
     }
 
@@ -151,7 +169,7 @@ public class CentralDataRepository {
     }
 
     public void setListener(ActionCompletedListener mListener) {
-        this.mListener = mListener;
+        this.mActionCompletdListener = mListener;
     }
 
     public int getLastLoadedType() {
@@ -162,13 +180,15 @@ public class CentralDataRepository {
         this.mLastLoadedType = mLastLoadedType;
     }
 
-    public interface ActionCompletedListener {
+    public interface ActionCompletedListener {      // these listeners will be summitted by Operation Initiater
         void onActionCompleted();
     }
 
-    public interface DataReadyToSubmitListener {
-        //TODO: add params to onDataSubmit(ArrayList<SongModel> dataList)
-        void onDataSubmit();
+    public interface DataReadyToSubmitListener {    // these listeners will be summitted by Adapter who are waiting for our data
+
+        // for Result  there will be single item
+        // for Trending there will be list of items
+        void onDataSubmit(ArrayList<SectionModel> items);
     }
 
 
