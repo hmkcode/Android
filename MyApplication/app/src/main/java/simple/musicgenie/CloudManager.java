@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class CloudManager {
@@ -34,7 +36,11 @@ public class CloudManager {
         return mInstance;
     }
 
-    public void lazyRequestTrending(){
+    ///////////////////////////////////////////////////////////////////////////
+    // Trending Section
+    ///////////////////////////////////////////////////////////////////////////
+
+    public void lazyRequestTrending() {
 
         requestSupportedPlaylist();
 
@@ -82,7 +88,7 @@ public class CloudManager {
 
         try {
 
-            L.m("CM(test trending )",""+response);
+            L.m("CM(test trending )", "" + response);
 
             JSONObject resObj = new JSONObject(response);
 
@@ -128,11 +134,11 @@ public class CloudManager {
             e.printStackTrace();
         }
 
-        L.m("CM(test)", " Trending Type "+trendingResult.sectionTitle);
+        L.m("CM(test)", " Trending Type " + trendingResult.sectionTitle);
 
     }
 
-    private void requestSupportedPlaylist(){
+    private void requestSupportedPlaylist() {
 
         final String url = URLS.URL_SUPPORTED_PLAYLIST;
 
@@ -172,7 +178,7 @@ public class CloudManager {
 
             JSONArray playlistJsonArray = object.getJSONArray("results");
 
-            for(int i = 0;i<playlistCount;i++){
+            for (int i = 0; i < playlistCount; i++) {
 
                 requestTrendingType(playlistJsonArray.getJSONObject(i).getString("playlist"));
 
@@ -187,5 +193,62 @@ public class CloudManager {
 
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Results Section
+    ///////////////////////////////////////////////////////////////////////////
+
+
+    public void requestSearch(String term) {
+
+        String url = URLS.URL_SEARCH_RESULT + "q=" + URLEncoder.encode(term);
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                handleResultResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+                L.m("CM", "error " + volleyError);
+
+            }
+        });
+
+        request.setRetryPolicy(new DefaultRetryPolicy(SERVER_TIMEOUT_LIMIT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        VolleyUtils.getInstance().addToRequestQueue(request, "resultReq", context);
+    }
+
+    private void handleResultResponse(String response) {
+
+        L.m("CM", "got result " + response);
+        ArrayList<ItemModel> songs = new ArrayList<>();
+
+        try {
+            JSONObject rootObj = new JSONObject(response);
+            int results_count = rootObj.getJSONObject("metadata").getInt("count");
+
+            JSONArray results = rootObj.getJSONArray("results");
+            for (int i = 0; i < results_count; i++) {
+                String enc_v_id = results.getJSONObject(i).getString("get_url").substring(14);
+                L.m("CM"," video id "+enc_v_id);
+                songs.add(new ItemModel(results.getJSONObject(i).getString("title"),
+                        results.getJSONObject(i).getString("length"),
+                        results.getJSONObject(i).getString("uploader"),
+                        results.getJSONObject(i).getString("thumb"),
+                        enc_v_id,
+                        results.getJSONObject(i).getString("time"),
+                        results.getJSONObject(i).getString("views")
+                ));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 }

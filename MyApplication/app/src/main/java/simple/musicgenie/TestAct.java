@@ -20,19 +20,20 @@ public class TestAct extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         CloudManager manager = CloudManager.getInstance(this);
-        manager.lazyRequestTrending();
+        //manager.lazyRequestTrending();
+        manager.requestSearch("pawan singh new songs");
 
         final TextView pad = (TextView) findViewById(R.id.pad);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ArrayList<SectionModel> res = DbHelper.getInstance(TestAct.this).getTrendingList();
-
-                for (SectionModel sec: res) {
-                    pad.setText(pad.getText()+sec.sectionTitle+"\n========="+sec.getList().get(0).Title+"\n");
-                }
+//
+//                ArrayList<SectionModel> res = DbHelper.getInstance(TestAct.this).getTrendingList();
+//
+//                for (SectionModel sec: res) {
+//                    pad.setText(pad.getText()+sec.sectionTitle+"\n========="+sec.getList().get(0).Title+"\n");
+//                }
             }
         });
 

@@ -208,41 +208,42 @@ public class DbHelper extends SQLiteOpenHelper {
         // get each item from map and get list and add
 
         Iterator iterator = trendingMap.entrySet().iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry) iterator.next();
-            L.m("DBHelper"," Iterator "+pair.getKey().toString());
-            trendingFromDbList.add(new SectionModel(pair.getKey().toString(),trendingMap.get(pair.getKey())));
+            L.m("DBHelper", " Iterator " + pair.getKey().toString());
+            trendingFromDbList.add(new SectionModel(pair.getKey().toString(), trendingMap.get(pair.getKey())));
         }
 
-        L.m("DBHelper"," collected total "+trendingFromDbList.size());
+        L.m("DBHelper", " collected total " + trendingFromDbList.size());
         return trendingFromDbList;
     }
 
-    public void addResultsList(ArrayList<SectionModel> list) {
+    ///////////////////////////////////////////////////////////////////////////
+    //                  Results Operation Section
+    ///////////////////////////////////////////////////////////////////////////
+
+    public void addResultsList(SectionModel modelItem) {
 
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values;
 
-        for (int i = 0; i < list.size(); i++) {
+        ArrayList<ItemModel> itemModels = modelItem.getList();
 
-            ArrayList<ItemModel> itemModels = list.get(i).getList();
+        for (int j = 0; j < itemModels.size(); j++) {
 
-            for (int j = 0; j < itemModels.size(); j++) {
+            values = getCVObject(itemModels.get(j));
+            long id = database.insert(TABLE_RESULTS, null, values);
 
-                values = getCVObject(itemModels.get(j));
-                long id = database.insert(TABLE_RESULTS, null, values);
-
-                if (id < 0) {
-                    Log.d("DBHelper (Results)", "Cannot Add Row");
-                } else {
-                    Log.d("DBHelper (Results)", "Added Successfully ");
-                }
+            if (id < 0) {
+                Log.d("DBHelper (Results)", "Cannot Add Row");
+            } else {
+                Log.d("DBHelper (Results)", "Added Successfully ");
             }
         }
-
-
     }
 
+
+}
 
 
 }
