@@ -1,5 +1,6 @@
 package simple.musicgenie;
 
+import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,6 +19,8 @@ import java.util.Map;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
+    private static final java.lang.String SECTION_TYPE_RESULTS = "Results";
+    private static final String TIME_SINCE_UPLOADED_LEFT_VACCANT = "";
     private static Context context;
     private static DbHelper mInstance;
     private static final int DB_VERSION = 1;
@@ -55,7 +58,8 @@ public class DbHelper extends SQLiteOpenHelper {
             COL_VIDEO_ID + " TEXT , " +
             COL_TIME_SINCE_UPLOADED + " TEXT , " +
             COL_USER_VIEWS + " TEXT , " +
-            COL_TRACK_DURATION + " TEXT" +
+            COL_TRACK_DURATION + " TEXT," +
+            COL_TYPE + " TEXT" +
             ")";
 
     private static final String DROP_TRENDING_TABLE = "DROP TABLE " + TABLE_TRENDING;
@@ -177,8 +181,8 @@ public class DbHelper extends SQLiteOpenHelper {
 //        temp.put(COL_USER_VIEWS, data.UserViews);
 
         HashMap<String, ArrayList<ItemModel>> trendingMap = new HashMap<>();
-
-        while (cr.moveToNext() && cr.getCount() > 0) {
+        boolean hasNext = cr.getCount() > 0;
+        while (hasNext) {
             // get type of song from cursor
 
             ItemModel itemModelObj;
@@ -203,6 +207,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 mapList.add(itemModelObj);
             }
 
+            hasNext = cr.moveToNext();
+
         }
 
         // get each item from map and get list and add
@@ -221,6 +227,26 @@ public class DbHelper extends SQLiteOpenHelper {
     ///////////////////////////////////////////////////////////////////////////
     //                  Results Operation Section
     ///////////////////////////////////////////////////////////////////////////
+
+    public boolean isAnyResult() {
+        boolean hasStoredResult = false;
+
+        String[] cols = {COL_THUMB_URL,
+                COL_USER_VIEWS,
+                COL_TITLE,
+                COL_UPLOADED_BY,
+                COL_TIME_SINCE_UPLOADED,
+                COL_VIDEO_ID,
+                COL_TRACK_DURATION};
+
+        String[] selectionArgs = {};
+
+        Cursor cr = getReadableDatabase().query(TABLE_RESULTS, cols, "", selectionArgs, null, null, null);
+
+        cr.moveToFirst();
+        hasStoredResult = cr.getCount() > 0;
+        return hasStoredResult;
+    }
 
     public void addResultsList(SectionModel modelItem) {
 
@@ -242,8 +268,44 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public SectionModel getResultList() {
 
-}
+        SectionModel returnSectionModel = null;
 
+        String[] cols = {COL_THUMB_URL,
+                COL_USER_VIEWS,
+                COL_TITLE,
+                COL_UPLOADED_BY,
+                COL_TIME_SINCE_UPLOADED,
+                COL_VIDEO_ID,
+                COL_TRACK_DURATION};
 
+        String[] selectionArgs = {};
+
+        ItemModel itemModelObj;
+        ArrayList<ItemModel> itemModelArrayList = new ArrayList<>();
+
+        Cursor cr = getReadableDatabase().query(TABLE_RESULTS, cols, "", selectionArgs, null, null, null);
+
+        cr.moveToFirst();
+        boolean hasNext = cr.getCount() > 0;
+
+        while (hasNext) {
+
+            itemModelObj = new ItemModel(cr.getString(cr.getColumnIndex(COL_TITLE)),
+                    cr.getString(cr.getColumnIndex(COL_TRACK_DURATION)),
+                    cr.getString(cr.getColumnIndex(COL_UPLOADED_BY)),
+                    cr.getString(cr.getColumnIndex(COL_THUMB_URL)),
+                    cr.getString(cr.getColumnIndex(COL_VIDEO_ID)),
+                    TIME_SINCE_UPLOADED_LEFT_VACCANT,
+                    cr.getString(cr.getColumnIndex(COL_USER_VIEWS)),
+                    SECTION_TYPE_RESULTS);
+
+            itemModelArrayList.add(itemModelObj);
+            hasNext = cr.moveToNext();
+        }
+        returnSectionModel = new SectionModel(SECTION_TYPE_RESULTS, itemModelArrayList);
+
+        return returnSectionModel;
+    }
 }

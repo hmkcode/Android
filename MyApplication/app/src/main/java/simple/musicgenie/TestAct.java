@@ -28,16 +28,14 @@ public class TestAct extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//
-//                ArrayList<SectionModel> res = DbHelper.getInstance(TestAct.this).getTrendingList();
-//
-//                for (SectionModel sec: res) {
-//                    pad.setText(pad.getText()+sec.sectionTitle+"\n========="+sec.getList().get(0).Title+"\n");
-//                }
+
+                SectionModel res = DbHelper.getInstance(TestAct.this).getResultList();
+
+                for (ItemModel item : res.getList()) {
+                    pad.setText(pad.getText() + item.type + "\n" + item.Title);
+                }
             }
         });
-
-
 
 
     }

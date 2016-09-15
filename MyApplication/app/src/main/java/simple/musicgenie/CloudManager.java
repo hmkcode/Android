@@ -248,6 +248,8 @@ public class CloudManager {
             e.printStackTrace();
         }
 
+        // database write test
+        DbHelper.getInstance(context).addResultsList(new SectionModel("Results",songs));
 
     }
 
