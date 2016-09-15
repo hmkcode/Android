@@ -24,9 +24,10 @@ public class CloudManager {
     private static final String TIME_SINCE_UPLOADED_LEFT_VACCANT = "";
     private static Context context;
     private static CloudManager mInstance;
-
+    private DbHelper dbHelper;
     public CloudManager(Context context) {
         this.context = context;
+        this.dbHelper = DbHelper.getInstance(context);
     }
 
     public static CloudManager getInstance(Context context) {
@@ -42,6 +43,8 @@ public class CloudManager {
 
     public void lazyRequestTrending() {
 
+        // clear out back stored data
+        dbHelper.resetTrendingList();
         requestSupportedPlaylist();
 
     }
@@ -126,7 +129,7 @@ public class CloudManager {
                 L.m("CM(Cloud->DB)", "sending for write");
                 ArrayList<SectionModel> temp = new ArrayList<>();
                 temp.add(trendingResult);
-                DbHelper.getInstance(context).addTrendingList(temp);
+                dbHelper.addTrendingList(temp);
             }
 
 
@@ -249,7 +252,7 @@ public class CloudManager {
         }
 
         // database write test
-        DbHelper.getInstance(context).addResultsList(new SectionModel("Results",songs));
+        dbHelper.addResultsList(new SectionModel("Results",songs));
 
     }
 

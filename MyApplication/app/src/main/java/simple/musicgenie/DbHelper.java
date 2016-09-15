@@ -137,6 +137,15 @@ public class DbHelper extends SQLiteOpenHelper {
         return hasStoredTrending;
     }
 
+
+    public void resetTrendingList() {
+        SQLiteDatabase db = getReadableDatabase();
+        String deleteClause = "";
+        String[] selectionArgs = {};
+        db.delete(TABLE_TRENDING, deleteClause, selectionArgs);
+        L.m("DBH", "Wiped Out Trending Data");
+    }
+
     public void addTrendingList(ArrayList<SectionModel> list) {
 
         SQLiteDatabase database = getWritableDatabase();

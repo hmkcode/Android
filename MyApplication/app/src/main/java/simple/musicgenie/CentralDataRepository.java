@@ -8,7 +8,7 @@ import android.util.Log;
 public class CentralDataRepository {
 
     /**
-     *  Flag is refrenced when activity first load
+     * Flag is refrenced when activity first load
      */
     private static final int FLAG_FIRST_LOAD = 0;
     /**
@@ -25,7 +25,7 @@ public class CentralDataRepository {
     private static final int FLAG_REFRESS = 3;
 
     /**
-     *  Result type
+     * Result type
      */
     private static final int TYPE_TRENDING = 405;
 
@@ -69,29 +69,29 @@ public class CentralDataRepository {
     }
 
     /**
-     * @param type Flag
-     * @param callback  Callback for action completed
+     * @param type     Flag
+     * @param callback Callback for action completed
      */
 
-    public void submitAction(int type , ActionCompletedListener callback) throws InvalidCallbackException{
+    public void submitAction(int type, ActionCompletedListener callback) throws InvalidCallbackException {
 
-        if(callback!=null)
+        if (callback != null)
             setListener(callback);
         else throw new InvalidCallbackException("Callback in Invalid");
 
-        switch (type){
+        switch (type) {
 
             case FLAG_FIRST_LOAD:
-                                    loadTrendingOrRequestTrending();
+                loadTrendingOrRequestTrending();
                 break;
             case FLAG_RESTORE:
-                                    submitLastLoaded();
+                submitLastLoaded();
                 break;
             case FLAG_SEARCH:
-                                    searchAndSubmit();
+                searchAndSubmit();
                 break;
             case FLAG_REFRESS:
-                                    refressAndSubmit();
+                refressAndSubmit();
                 break;
             default:
                 break;              // do nothing
@@ -101,17 +101,17 @@ public class CentralDataRepository {
 
     /**
      * gets Last Loaded and Request
-     *  save to db + callback + submit
-     *  not need to set Last loaded
+     * save to db + callback + submit
+     * not need to set Last loaded
      */
     private void refressAndSubmit() {
 
     }
 
     /**
-     *  Searches for result and submit + save to db
-     *      + callback
-     *      After submittion must setLastLoaded
+     * Searches for result and submit + save to db
+     * + callback
+     * After submittion must setLastLoaded
      */
     private void searchAndSubmit() {
 
@@ -119,35 +119,35 @@ public class CentralDataRepository {
 
     /**
      * Checks Last Loaded
-     *      gets from DB and submits to registered adapters
-     *      After submittion must setLastLoaded
+     * gets from DB and submits to registered adapters
+     * After submittion must setLastLoaded
      */
     private void submitLastLoaded() {
 
     }
 
     /**
-     *  Checks DB for saved data
-     *      if !Available
-     *          Request - > save to db + action callback +  adapter callback
-     *      else
-     *          action callback + adapter callback
-     *          After submittion must setLastLoaded
+     * Checks DB for saved data
+     * if !Available
+     * Request - > save to db + action callback +  adapter callback
+     * else
+     * action callback + adapter callback
+     * After submittion must setLastLoaded
      */
     private void loadTrendingOrRequestTrending() {
 
         //  check for available cache
         boolean isAnyCache = dbHelper.isTrendingsCached();
 
-        if(!isAnyCache){    // request for trending and then update
+        if (!isAnyCache) {    // request for trending and then update
 
         }
 
 
     }
 
-    public void registerForDataLoadListener(DataReadyToSubmitListener listener){
-        this.dataReadyToSubmitListener = listener ;
+    public void registerForDataLoadListener(DataReadyToSubmitListener listener) {
+        this.dataReadyToSubmitListener = listener;
     }
 
     public void setListener(ActionCompletedListener mListener) {
@@ -162,11 +162,11 @@ public class CentralDataRepository {
         this.mLastLoadedType = mLastLoadedType;
     }
 
-    public interface ActionCompletedListener{
+    public interface ActionCompletedListener {
         void onActionCompleted();
     }
 
-    public interface DataReadyToSubmitListener{
+    public interface DataReadyToSubmitListener {
         //TODO: add params to onDataSubmit(ArrayList<SongModel> dataList)
         void onDataSubmit();
     }
@@ -176,7 +176,7 @@ public class CentralDataRepository {
         public InvalidCallbackException(String detailMessage) {
             super(detailMessage);
             System.out.println(detailMessage);
-            Log.e("CentralDataRepository",detailMessage);
+            Log.e("CentralDataRepository", detailMessage);
         }
 
     }
