@@ -1,0 +1,17 @@
+CentralDataRepository Uses Docs:
+
+Actions Supportted:
+
+ Reload/Restore
+ Refress
+ Search    :
+ FirstLoad : initial load for trending
+
+    steps:
+            1. Instanciate CentralDataRepository and obtain its instance
+            2. provide appropriate Flag and actionCompleteCallback
+            3. Register Adapters for data Update Listeners
+
+Note: (For Search)
+                onSearch() save 'search term' to SharedPreferences and follow above steps,
+                every things will be settled down.

@@ -5,6 +5,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * call addAction()
+ * register adapters for data updates
+ */
 public class CentralDataRepository {
 
     /**
@@ -252,10 +256,16 @@ public class CentralDataRepository {
 
     }
 
+    /**
+     * @param listener callback from data seekers adapters
+     */
     public void registerForDataLoadListener(DataReadyToSubmitListener listener) {
         this.dataReadyToSubmitListener = listener;
     }
 
+    /**
+     * @param mListener callback for action complete to operation initiater
+     */
     public void setListener(ActionCompletedListener mListener) {
         this.mActionCompletdListener = mListener;
     }
@@ -278,7 +288,6 @@ public class CentralDataRepository {
         // for Trending there will be list of items
         void onDataSubmit(ArrayList<SectionModel> items);
     }
-
 
     private class InvalidCallbackException extends Exception {
         public InvalidCallbackException(String detailMessage) {
