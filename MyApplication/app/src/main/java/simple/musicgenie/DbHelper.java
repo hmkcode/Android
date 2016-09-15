@@ -9,6 +9,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 /**
@@ -46,7 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
             COL_TYPE + " TEXT" +
             ")";
 
-    private static final String CREATE_RESULTS_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_RESULTS + " ( " +
+    private static final String CREATE_RESULTS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_RESULTS + " ( " +
             COL_TITLE + " TEXT , " +
             COL_UPLOADED_BY + " TEXT , " +
             COL_THUMB_URL + " TEXT , " +
@@ -79,6 +81,12 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_RESULTS_TABLE);
         L.m("DBHelper", "created results table");
 
+    }
+
+    public void upgradeDB() {
+        int oldVer = 1;
+        int newVer = 2;
+        onUpgrade(getReadableDatabase(), oldVer, newVer);
     }
 
     /**
@@ -199,15 +207,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
         // get each item from map and get list and add
 
+        Iterator iterator = trendingMap.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry pair = (Map.Entry) iterator.next();
+            L.m("DBHelper"," Iterator "+pair.getKey().toString());
+            trendingFromDbList.add(new SectionModel(pair.getKey().toString(),trendingMap.get(pair.getKey())));
+        }
 
-
+        L.m("DBHelper"," collected total "+trendingFromDbList.size());
         return trendingFromDbList;
-    }
-
-    public void upgradeDB() {
-        int oldVer = 1;
-        int newVer = 2;
-        onUpgrade(getReadableDatabase(), oldVer, newVer);
     }
 
     public void addResultsList(ArrayList<SectionModel> list) {
@@ -234,5 +242,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     }
+
+
 
 }

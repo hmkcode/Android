@@ -84,7 +84,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (section.equals("")) {
             int index = songs.size();
             songs.add(song);
-            typeViewList.add(new ViewTypeModel(TYPE_SONG, "", index));
+            typeViewList.add(new ViewTypeModel(TYPE_SONG, " ", index));
         } else {
             typeViewList.add(new ViewTypeModel(TYPE_SECTION_TITLE, section, -1));
         }
