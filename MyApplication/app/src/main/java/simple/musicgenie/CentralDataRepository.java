@@ -14,19 +14,19 @@ public class CentralDataRepository {
     /**
      * Flag is refrenced when activity first load
      */
-    private static final int FLAG_FIRST_LOAD = 0;
+    public static final int FLAG_FIRST_LOAD = 0;
     /**
      * Flag is refrenced when back navigation
      */
-    private static final int FLAG_RESTORE = 1;
+    public static final int FLAG_RESTORE = 1;
     /**
      * Flag is refrenced during search
      */
-    private static final int FLAG_SEARCH = 2;
+    public static final int FLAG_SEARCH = 2;
     /**
      * Flag is refrenced refress is triggred
      */
-    private static final int FLAG_REFRESS = 3;
+    public static final int FLAG_REFRESS = 3;
 
     /**
      * Result type
@@ -289,7 +289,7 @@ public class CentralDataRepository {
         void onDataSubmit(ArrayList<SectionModel> items);
     }
 
-    private class InvalidCallbackException extends Exception {
+    public class InvalidCallbackException extends Exception {
         public InvalidCallbackException(String detailMessage) {
             super(detailMessage);
             System.out.println(detailMessage);
