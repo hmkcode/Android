@@ -52,4 +52,23 @@ CDR Tests Report
 
  4.1 Results
 
-        After Having a refress data
+        After Having a refress , results loaded are same as of last loaded but they are re-requested data.
+
+ 4.2 Considerations
+
+       For Search Results data submition to adapter is good enough as previous data is cleared before setting
+        new data,
+
+        But for Trending Result, since data are submitted in section wised batches
+        we need to keep the previous batches stored or say appended.
+
+ 4.3 Bugs
+
+ 4.4 Solved
+
+
+
+Integration Tests
+
+    All Combination is tested and results are correct.
+

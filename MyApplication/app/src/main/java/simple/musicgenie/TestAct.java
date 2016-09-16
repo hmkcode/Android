@@ -15,12 +15,14 @@ import simple.musicgenie.R;
 
 public class TestAct extends AppCompatActivity {
 
+    private CentralDataRepository centralDataRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        final CentralDataRepository centralDataRepository = CentralDataRepository.getInstance(this);
+        centralDataRepository = CentralDataRepository.getInstance(this);
         final TextView pad = (TextView) findViewById(R.id.pad);
 
         // here we will use same object for  pseudo-adapter mimic
@@ -36,14 +38,19 @@ public class TestAct extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    private void test(){
+
+        findViewById(R.id.firstLoad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //  initiating operation
                 // for first time load -  test
                 try {
-                    centralDataRepository.submitAction(CentralDataRepository.FLAG_RESTORE, new CentralDataRepository.ActionCompletedListener() {
+                    centralDataRepository.submitAction(CentralDataRepository.FLAG_FIRST_LOAD, new CentralDataRepository.ActionCompletedListener() {
                         @Override
                         public void onActionCompleted() {
 
@@ -128,6 +135,7 @@ public class TestAct extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 
