@@ -17,4 +17,39 @@ CDR Tests Report
 1.4 Solved:
 
 
-2
+2 Restore test
+
+2.1 Results
+           reads the last loaded type and accordingly reads particular type from db and sumbit it via callback
+
+ 2.2 Considerations
+
+           Submits data and at once via callback to CDR and same back to adapter via callback
+           and finally a callback to ActionCompleted to Operation Initiater
+
+ 2.3 Bugs:
+
+ 2.4 Solved:
+
+3 Search Test
+
+ 3.1 Results
+
+           after writing back the search term to SP and initiating the process by submitting to CDR.
+           results are submitted to adapter at once and a ActionCompleted Callback to parent.
+
+ 3.2 Considerations
+
+           Results are submitted at once so we need to clear off the previous data from adapters list and
+           re-fill with the new one.
+
+ 3.3 Bugs:
+
+ 3.4 Solved
+
+
+4 Refress
+
+ 4.1 Results
+
+        After Having a refress data

@@ -17,8 +17,25 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load"
+        android:text="FirstLoad"
+        android:id="@+id/firstLoad" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ReStore"
         android:id="@+id/button"
+        android:layout_toRightOf="@+id/firstLoad"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refress"
+        android:layout_toRightOf="@id/button"
+        android:id="@+id/refress"
         android:layout_centerHorizontal="true" />
 
     <Button
