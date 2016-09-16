@@ -1,42 +1,45 @@
 package simple.musicgenie.util;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 
 /**
- * A base implementation of {@link SystemUiHider}. Uses APIs available in all
- * API levels to show and hide the status bar.
+ /**
+ * An API 11+ implementation of {@link SystemUiHider}. Uses APIs available in
+ * Honeycomb and later (specifically {@link View#setSystemUiVisibility(int)}) to
+ * show and hide the system UI.
  */
-public class SystemUiHiderBase extends SystemUiHider {
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class SystemUiHiderHoneycomb extends SystemUiHiderBase {
     /**
-     * Whether or not the system UI is currently visible. This is a cached value
-     * from calls to {@link #hide()} and {@link #show()}.
+     * Flags for {@link View#setSystemUiVisibility(int)} to use when showing the
+     * system UI.
+     */
+    private int mShowFlags;
+
+    /**
+     * Flags for {@link View#setSystemUiVisibility(int)} to use when hiding the
+     * system UI.
+     */
+    private int mHideFlags;
+
+    /**
+     * Flags to test against the first parameter in
+     * {@link android.view.View.OnSystemUiVisibilityChangeListener#onSystemUiVisibilityChange(int)}
+     * to determine the system UI visibility state.
+     */
+    private int mTestFlags;
+
+    /**
+     * Whether or not the system UI is currently visible. This is cached from
+     * {@link android.view.View.OnSystemUiVisibilityChangeListener}.
      */
     private boolean mVisible = true;
 
-    /**
-     * Constructor not intended to be called by clients. Use
-     * {@link SystemUiHider#getInstance} to obtain an instance.
-     */
-    protected SystemUiHiderBase(Activity activity, View anchorView, int flags) {
-        super(activity, anchorView, flags);
-    }
-
-    @Override
-    public void setup() {
-        if ((mFlags & FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES) == 0) {
-            mActivity.getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                            | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                            | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-    }
-
-    @Override
-    public boolean isVisible() {
-        return mVisible;
+/**ble;
     }
 
     @Override
