@@ -3,6 +3,7 @@ package com.material.practice.socialsample;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -184,78 +185,125 @@ public class PostBirth extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-
-        /**
-         * This fragment shows general preferences only. It is used when the
-         * activity is showing a two-pane settings UI.
-         */
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-        public static class GeneralPreferenceFragment extends PreferenceFragment {
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                addPreferencesFromResource(R.xml.pref_general);
-
-                // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-                // to their values. When their values change, their summaries are
-                // updated to reflect the new value, per the Android Design
-                // guidelines.
-                bindPreferenceSummaryToValue(findPreference("example_text"));
-                bindPreferenceSummaryToValue(findPreference("example_list"));
-            }
-        }
-
-        /**
-         * This fragment shows notification preferences only. It is used when the
-         * activity is showing a two-pane settings UI.
-         */
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-        public static class NotificationPreferenceFragment extends PreferenceFragment {
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                addPreferencesFromResource(R.xml.pref_notification);
-
-                // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-                // to their values. When their values change, their summaries are
-                // updated to reflect the new value, per the Android Design
-                // guidelines.
-                bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
-            }
-        }
-
-        /**
-         * This fragment shows data and sync preferences only. It is used when the
-         * activity is showing a two-pane settings UI.
-         */
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-        public static class DataSyncPreferenceFragment extends PreferenceFragment {
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                addPreferencesFromResource(R.xml.pref_data_sync);
-
-                // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-                // to their values. When their values change, their summaries are
-                // updated to reflect the new value, per the Android Design
-                // guidelines.
-                bindPreferenceSummaryToValue(findPreference("sync_frequency"));
-            }
+    protected void onResume(){
+        super.onResume();
+        //   Log.e("Home", "vp stat ::" + viewPager);
+        if(SessionManager.getSendType().equals("1")){
+            viewPager.setCurrentItem(1);
+            SessionManager.setSendType("0");
         }
     }
 
-    return super.onOptionsItemSelected(item);
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        bDrawerToggle.onConfigurationChanged(configuration);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_Profile:
+                Intent aboutUsIntent = new Intent(this, Profile.class);
+                Bundle data=new Bundle();
+                //TODO: hard coded user name
+                data.putString("username","Ankit");
+                aboutUsIntent.putExtras(data);
+                startActivity(aboutUsIntent);
+                break;
+            case R.id.action_LogOut:
+                logout();
+                break;
+            case R.id.action_CreatePoll:
+                navigateToPollCreation();
+        }
+        return false;
+    }
+
+    private void like(final String PostID, final String UserId, final String UserToken) {
+
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                // Toast.makeText(context,response,Toast.LENGTH_LONG).show();
+                Log.e("IP", "" + response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("IP",""+volleyError);
+                Snackbar.make(userId, "Connection Problem ! ", Snackbar.LENGTH_LONG).show();
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "upvote");
+                Log.e("IP", UserId);
+                params.put("id", UserId);
+                params.put("postid", PostID);
+                Log.e("IP", PostID);
+                params.put("token", UserToken);
+                Log.e("IP", UserToken);;
+                return params;
+            }
+
+        };
+
+        // Log.e("instanse", "" + AppManager.getInstance());
+        AppManager.getInstance().addToRequestQueue(request, "lrq", this);
+
+    }
+
+
+    private void backoff(final String PostID,final String UserId,final String UserToken){
+        String TAG = "Backoff Vote";
+        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("IP","backoff>"+response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("IP",""+volleyError);
+                Snackbar.make(userId,"Connection Problem !",Snackbar.LENGTH_LONG).show();
+
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("action", "none");
+                params.put("id", UserId);
+                params.put("postid",PostID);
+                params.put("token", UserToken);
+                return params;
+            }
+
+        };
+
+        AppManager.getInstance().addToRequestQueue(request, "likeReq", new Contexter().getContext());
+    }
+turn super.onOptionsItemSelected(item);
     }
 
 
