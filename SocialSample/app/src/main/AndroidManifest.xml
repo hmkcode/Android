@@ -71,6 +71,12 @@
         <activity
             android:name=".LiveCardMenuActivity"
             android:theme="@style/MenuTheme" />
+
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>
