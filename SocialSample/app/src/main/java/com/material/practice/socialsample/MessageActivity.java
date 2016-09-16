@@ -116,14 +116,29 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    public void markThemAsRead(){
-        DatabaseManager.getInstance(this).setMessageRead(user_id);
-    }
+   /*     lockHolder.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            Log.e("PollT","down");
+                            break;
+                        case  MotionEvent.ACTION_UP:
+                            Log.e("PollT","up");
+                            break;
+                        default:
+                            break;
+                    }
+                return false;
+            }
+        });
+*/
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_message_room, menu);
+        getMenuInflater().inflate(R.menu.menu_poll_test, menu);
         return true;
     }
 
@@ -140,49 +155,5 @@ public class MessageActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
-
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            int id = item.getItemId();
-
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
-                return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
-
-    public String getHash(String str) {
-        StringBuffer sb = new StringBuffer();
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(str.toString().getBytes("UTF-8"));
-            byte[] ret = md.digest();
-            for (int i = 0; i < ret.length; i++) {
-                sb.append(Integer.toString((ret[i] & 0xff) + 0x100, 16).substring(1));
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
     }
-
-    @Override
-    public boolean onKey(View view, int i, KeyEvent keyEvent) {
-
-        if(i== KeyEvent.ACTION_DOWN && i== KeyEvent.KEYCODE_ENTER){
-            Log.e("Login","enter from");
-            attemptLogin();
-        }
-        return false;
-    }
-}   }
 }
