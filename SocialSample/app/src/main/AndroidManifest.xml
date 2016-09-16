@@ -61,6 +61,16 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+
+        <service
+            android:name=".LiveCardService"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_live_card_service" >
+        </service>
+
+        <activity
+            android:name=".LiveCardMenuActivity"
+            android:theme="@style/MenuTheme" />
     </application>
 
 </manifest>

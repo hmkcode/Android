@@ -13,4 +13,6 @@
     <string name="title_activity_test_activity_for_pol">TestActivityForPol</string>
     <string name="title_activity_post_birth">PostBirth</string>
     <string name="title_activity_mest">Hello World Immersion</string>
+    <string name="title_activity_live_card_service">Hello World LiveCard</string>
+    <string name="action_stop">Stop</string>
 </resources>
