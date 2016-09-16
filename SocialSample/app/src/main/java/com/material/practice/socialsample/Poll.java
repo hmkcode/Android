@@ -17,37 +17,29 @@ public class Poll extends AppCompatActivity {
     EditText pollOptionsInputBox;
     PollOptionsEditListAdapter adapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_poll);
-        pollOptionListView = (ListView) findViewById(R.id.pollOptionList);
-        doneBtn = (Button) findViewById(R.id.doneBtn);
-        addBtn = (Button) findViewById(R.id.addBtn);
-        pollOptionsInputBox = (EditText) findViewById(R.id.optionInputBox);
-        adapter = new PollOptionsEditListAdapter(this);
-        pollOptionListView.setAdapter(adapter);
-
-        addBtn.setOnClickListener(new View.OnClickListener() {
+   /*     lockHolder.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                Log.e("Pc", "poll option addition");
-                adapter.add(pollOptionsInputBox.getText().toString());
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                    switch (motionEvent.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            Log.e("PollT","down");
+                            break;
+                        case  MotionEvent.ACTION_UP:
+                            Log.e("PollT","up");
+                            break;
+                        default:
+                            break;
+                    }
+                return false;
             }
         });
-        doneBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-    }
+*/
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_poll, menu);
+        getMenuInflater().inflate(R.menu.menu_poll_test, menu);
         return true;
     }
 
