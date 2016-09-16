@@ -177,6 +177,8 @@ public class CentralDataRepository {
      */
     private void submitLastLoaded() {
 
+        L.m("CDR "," last loaded was "+mLastLoadedType);
+
         if (mLastLoadedType == TYPE_TRENDING) {
 
             mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {

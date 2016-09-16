@@ -162,13 +162,14 @@ public class DbHelper extends SQLiteOpenHelper {
                 long id = database.insert(TABLE_TRENDING, null, values);
 
                 if (id < 0) {
-                    Log.d("DBHelper (Trending)", "Cannot Add Row");
+//                    Log.d("DBHelper (Trending)", "Cannot Add Row");
                 } else {
-                    Log.d("DBHelper (Trending)", "Added Successfully ");
+  //                  Log.d("DBHelper (Trending)", "Added Successfully ");
                 }
             }
         }
 
+        Log.d("DBH","added "+list.get(0).sectionTitle);
 
         if (mTrendingLoadListener != null) {
             mTrendingLoadListener.onTrendingLoad(list);

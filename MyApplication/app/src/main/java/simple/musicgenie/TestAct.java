@@ -21,6 +21,7 @@ public class TestAct extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         final CentralDataRepository centralDataRepository = CentralDataRepository.getInstance(this);
+        final TextView pad = (TextView) findViewById(R.id.pad);
 
         // here we will use same object for  pseudo-adapter mimic
 
@@ -30,13 +31,12 @@ public class TestAct extends AppCompatActivity {
             @Override
             public void onDataSubmit(ArrayList<SectionModel> items) {
 
-
+                pad.setText(pad.getText() + "\n" + "Reported with " + items.get(0).sectionTitle);
 
             }
         });
 
 
-        final TextView pad = (TextView) findViewById(R.id.pad);
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,10 +44,12 @@ public class TestAct extends AppCompatActivity {
                 //  initiating operation
                 // for first time load -  test
                 try {
-                    centralDataRepository.submitAction(CentralDataRepository.FLAG_FIRST_LOAD, new CentralDataRepository.ActionCompletedListener() {
+                    centralDataRepository.submitAction(CentralDataRepository.FLAG_RESTORE, new CentralDataRepository.ActionCompletedListener() {
                         @Override
                         public void onActionCompleted() {
-                            Toast.makeText(TestAct.this,"Action Callback",Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(TestAct.this,"Action Callback Flag Restore",Toast.LENGTH_LONG).show();
+
                         }
                     });
                 } catch (CentralDataRepository.InvalidCallbackException e) {
@@ -56,6 +58,32 @@ public class TestAct extends AppCompatActivity {
 
             }
         });
+
+        findViewById(R.id.search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //  initiating operation
+                // for search -  test
+                // we need to set the search term to SP
+
+                SharedPrefrenceUtils.getInstance(TestAct.this).setLastSearchTerm("Pawan Singh");
+
+                try {
+                    centralDataRepository.submitAction(CentralDataRepository.FLAG_SEARCH, new CentralDataRepository.ActionCompletedListener() {
+                        @Override
+                        public void onActionCompleted() {
+
+                            Toast.makeText(TestAct.this,"Action Callback Flag: Search",Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                } catch (CentralDataRepository.InvalidCallbackException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
 }

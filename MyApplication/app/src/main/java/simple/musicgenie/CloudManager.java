@@ -92,7 +92,7 @@ public class CloudManager {
 
         try {
 
-            L.m("CM(test trending )", "" + response);
+            //L.m("CM(test trending )", "" + response);
 
             JSONObject resObj = new JSONObject(response);
 
@@ -101,6 +101,9 @@ public class CloudManager {
             String sections = resObj.getJSONObject("metadata").getString("type");
 
             JSONObject resultsSubObject = resObj.getJSONObject("results");
+
+
+            ArrayList<SectionModel> temp = new ArrayList<>();   // adding all section items at a time
 
             for (int i = 0; i < count; i++) {       // i represent current section Model item
 
@@ -119,20 +122,12 @@ public class CloudManager {
                             TIME_SINCE_UPLOADED_LEFT_VACCANT,
                             songObj.getString("views"),
                             sections);
-
                     itemModelArrayList.add(item);
-
                 }
-
                 trendingResult = new SectionModel(sections, itemModelArrayList);
-
-                //DB write test
-                L.m("CM(Cloud->DB)", "sending for write");
-                ArrayList<SectionModel> temp = new ArrayList<>();
                 temp.add(trendingResult);
-                dbHelper.addTrendingList(temp);
             }
-
+            dbHelper.addTrendingList(temp);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -238,7 +233,7 @@ public class CloudManager {
             JSONArray results = rootObj.getJSONArray("results");
             for (int i = 0; i < results_count; i++) {
                 String enc_v_id = results.getJSONObject(i).getString("get_url").substring(14);
-                L.m("CM", " video id " + enc_v_id);
+               // L.m("CM", " video id " + enc_v_id);
                 songs.add(new ItemModel(results.getJSONObject(i).getString("title"),
                         results.getJSONObject(i).getString("length"),
                         results.getJSONObject(i).getString("uploader"),

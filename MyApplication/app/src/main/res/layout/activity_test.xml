@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/pad"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/search"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content" />
 
@@ -20,5 +20,15 @@
         android:text="Load"
         android:id="@+id/button"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_below="@+id/button"
+        android:id="@+id/search"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
