@@ -57,6 +57,10 @@
             android:icon="@drawable/ic_glass_logo"
             android:label="@string/title_activity_mest" >
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
