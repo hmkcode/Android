@@ -45,14 +45,6 @@
             android:label="@string/title_activity_message" >
         </activity>
         <activity
-            android:name=".TestActivityForPol"
-            android:label="@string/title_activity_test_activity_for_pol" >
-        </activity>
-        <activity
-            android:name=".PostBirth"
-            android:label="@string/title_activity_post_birth" >
-        </activity>
-        <activity
             android:name=".Mest"
             android:icon="@drawable/ic_glass_logo"
             android:label="@string/title_activity_mest" >
