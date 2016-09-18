@@ -51,31 +51,6 @@ public class TestActivityForPol extends AppCompatActivity {
 
 
 
-/*
-
-        optionsListView= (ListView) findViewById(R.id.pollOptionList);
-        addBtn= (ImageView) findViewById(R.id.addBtn);
-        adapterEdit = new PollOptionsEditListAdapter(this);
-        inputBox= (EditText) findViewById(R.id.optionInputBox);
-        optionsListView.setAdapter(adapterEdit);
-
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e("polltest", "" + inputBox.getText().toString());
-                if (!inputBox.getText().toString().trim().isEmpty()) {
-                    adapterEdit.add(inputBox.getText().toString());
-                    inputBox.setText("");
-                }
-            }
-        });
-
-
-
-*/
-
-
-
         RecyclerView comments;
         CommentsAdapter adapter;
         ImageView userPic, likeImg, unlikeImg;
@@ -125,13 +100,25 @@ public class TestActivityForPol extends AppCompatActivity {
 
         userId = (TextView) findViewById(R.id.userId);
         userPic = (ImageView) findViewById(R.id.userPic);
-        nameDisplay = (TextView) findViewById(R.id.nameDisplay);
-        contentText = (TextView) findViewById(R.id.contentText);
-        likeText = (TextView) findViewById(R.id.likeText);
-        unlikeText = (TextView) findViewById(R.id.unlikeText);
-        likeImg = (ImageView) findViewById(R.id.likeImg);
-        unlikeImg = (ImageView) findViewById(R.id.unlikeImg);
+        nameDisplay = (TextView) findViewById(R.id.nameDisplay';'
         commentCount = (TextView) findViewById(R.id.commentCount);
+
+        optionsListView= (ListView) findViewById(R.id.pollOptionList);
+        addBtn= (ImageView) findViewById(R.id.addBtn);
+        adapterEdit = new PollOptionsEditListAdapter(this);
+        inputBox= (EditText) findViewById(R.id.optionInputBox);
+        optionsListView.setAdapter(adapterEdit);
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("polltest", "" + inputBox.getText().toString());
+                if (!inputBox.getText().toString().trim().isEmpty()) {
+                    adapterEdit.add(inputBox.getText().toString());
+                    inputBox.setText("");
+                }
+            }
+        });
 
         dataStore = new DataStore(IndivisualPost.this);
         pda= FeedsAdapter.getInstance(this);
