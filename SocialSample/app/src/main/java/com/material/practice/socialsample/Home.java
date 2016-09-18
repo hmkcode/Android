@@ -315,7 +315,18 @@ public class Home extends AppCompatActivity {
 
 
     private void parseAndSet(String response) {
-        ArrayList<CollegareComment> comments = new ArrayList<>();
+
+        post.comment=comments;
+        post.DisLikeCount = postObj.getString("downcount");
+        post.LikeCount = postObj.getString("upcount");
+        post.content = postObj.getString("content");
+        post.postid = postObj.getString("postid");
+
+        userId.setText(postObj.getString("id"));
+        userPic.setImageResource(R.drawable.user_pic);
+        likeText.setText(postObj.getString("upcount"));
+
+        unlikeText.setText(postObj.getString("downcount"));        ArrayList<CollegareComment> comments = new ArrayList<>();
 
         try {
             JSONObject postObj = new JSONObject(response);
@@ -334,17 +345,7 @@ public class Home extends AppCompatActivity {
                 );
                 CommentsAdapter.getInstance(this).setComments(comments);
             }
-            post.comment=comments;
-            post.DisLikeCount = postObj.getString("downcount");
-            post.LikeCount = postObj.getString("upcount");
-            post.content = postObj.getString("content");
-            post.postid = postObj.getString("postid");
 
-            userId.setText(postObj.getString("id"));
-            userPic.setImageResource(R.drawable.user_pic);
-            likeText.setText(postObj.getString("upcount"));
-
-            unlikeText.setText(postObj.getString("downcount"));
 
             nameDisplay.setText(postObj.getString("username"));
             contentText.setText(postObj.getString("content"));

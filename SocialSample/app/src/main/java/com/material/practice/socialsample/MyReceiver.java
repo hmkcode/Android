@@ -57,8 +57,17 @@ private void initialize() {
         commentCount = (TextView) findViewById(R.id.commentCount);
 
         dataStore = new DataStore(IndivisualPost.this);
-        pda= FeedsAdapter.getInstance(this);
-        progressDialoge = new ProgressDialog(this);
-        progressDialoge.setIndeterminate(true);
-        progressDialoge.setMessage("Crunching latest data...");
-        progressDialoge.setCancelable(false);
+
+
+        if (getIntent() != null)
+        pID = getIntent().getExtras().getString("postId");
+
+        if (!InternetManager.getInstance(this).isConnectedToNet()) {
+
+        post = DatabaseManager.getInstance(this).getPost(pID);
+        userId.setText(post.id);
+        userPic.setImageResource(R.drawable.user_pic);
+        likeText.setText(post.LikeCount);
+        unlikeText.setText(post.DisLikeCount);
+        nameDisplay.setText(post.username);
+        contentText.setText(post.content);

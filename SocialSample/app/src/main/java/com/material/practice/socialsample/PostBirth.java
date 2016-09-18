@@ -231,38 +231,6 @@ public class PostBirth extends AppCompatActivity {
 
     private void like(final String PostID, final String UserId, final String UserToken) {
 
-        StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                // Toast.makeText(context,response,Toast.LENGTH_LONG).show();
-                Log.e("IP", "" + response);
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.e("IP",""+volleyError);
-                Snackbar.make(userId, "Connection Problem ! ", Snackbar.LENGTH_LONG).show();
-
-
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("action", "upvote");
-                Log.e("IP", UserId);
-                params.put("id", UserId);
-                params.put("postid", PostID);
-                Log.e("IP", PostID);
-                params.put("token", UserToken);
-                Log.e("IP", UserToken);;
-                return params;
-            }
-
-        };
 
         // Log.e("instanse", "" + AppManager.getInstance());
         AppManager.getInstance().addToRequestQueue(request, "lrq", this);
@@ -279,6 +247,39 @@ public class PostBirth extends AppCompatActivity {
             }
 
         }, new Response.ErrorListener() {
+
+            StringRequest request = new StringRequest(Request.Method.POST, App_Config.Vote_URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    // Toast.makeText(context,response,Toast.LENGTH_LONG).show();
+                    Log.e("IP", "" + response);
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Log.e("IP",""+volleyError);
+                    Snackbar.make(userId, "Connection Problem ! ", Snackbar.LENGTH_LONG).show();
+
+
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    // Posting parameters to login url
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("action", "upvote");
+                    Log.e("IP", UserId);
+                    params.put("id", UserId);
+                    params.put("postid", PostID);
+                    Log.e("IP", PostID);
+                    params.put("token", UserToken);
+                    Log.e("IP", UserToken);;
+                    return params;
+                }
+
+            };
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("IP",""+volleyError);
