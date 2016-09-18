@@ -8,13 +8,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_gravity="right" />
-
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,9 +18,29 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar2" />
 
-    <RatingBar
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_gravity="center_horizontal" />
+
+    <DigitalClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
+        android:id="@+id/digitalClock" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/editText"
         android:layout_gravity="center_horizontal" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_gravity="right" />
+
 </LinearLayout>
