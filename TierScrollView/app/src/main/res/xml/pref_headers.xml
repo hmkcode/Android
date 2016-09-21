@@ -9,6 +9,12 @@
         android:title="@string/pref_header_notifications" />
 
     <header android:fragment="simple.tierscrollview.SettingsActivity$DataSyncPreferenceFragment"
+        android:title="@string/pref_header_data_sync" /><header
+        android:fragment="com.exam.Prefrence$GeneralPreferenceFragment"
+        android:title="@string/pref_header_general" /><header
+        android:fragment="com.exam.Prefrence$NotificationPreferenceFragment"
+        android:title="@string/pref_header_notifications" /><header
+        android:fragment="com.exam.Prefrence$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

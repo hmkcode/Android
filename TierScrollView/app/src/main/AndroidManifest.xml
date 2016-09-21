@@ -105,6 +105,10 @@
             android:name=".rightDrawer"
             android:label="@string/title_activity_right_drawer" >
         </activity>
+        <activity
+            android:name="com.exam.Prefrence"
+            android:label="@string/title_activity_prefrence" >
+        </activity>
     </application>
 
 </manifest>
