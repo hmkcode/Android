@@ -95,6 +95,11 @@
             android:icon="@drawable/ic_glass_logo"
             android:label="@string/title_activity_real_view" >
         </activity>
+
+        <service
+            android:name=".FeedSyncService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
