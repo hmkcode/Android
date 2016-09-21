@@ -109,6 +109,11 @@
             android:name="com.exam.Prefrence"
             android:label="@string/title_activity_prefrence" >
         </activity>
+
+        <service
+            android:name="com.exam.Mis"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
