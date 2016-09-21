@@ -90,6 +90,11 @@
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name=".RealView"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_real_view" >
+        </activity>
     </application>
 
 </manifest>
