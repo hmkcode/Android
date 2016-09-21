@@ -84,6 +84,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="simple.tierscrollview.ItemListActivity" />
         </activity>
+        <activity
+            android:name=".Splash"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
     </application>
 
 </manifest>
