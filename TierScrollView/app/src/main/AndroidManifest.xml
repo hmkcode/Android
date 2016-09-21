@@ -100,6 +100,11 @@
             android:name=".FeedSyncService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".rightDrawer"
+            android:label="@string/title_activity_right_drawer" >
+        </activity>
     </application>
 
 </manifest>
