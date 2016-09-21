@@ -36,6 +36,24 @@
             android:name=".Home"
             android:label="@string/title_activity_home" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
+        <service android:name=".MyMessagingService" >
+        </service>
+
+        <receiver android:name=".MessageReadReceiver" >
+            <intent-filter>
+                <action android:name="simple.tierscrollview.ACTION_MESSAGE_READ" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MessageReplyReceiver" >
+            <intent-filter>
+                <action android:name="simple.tierscrollview.ACTION_MESSAGE_REPLY" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
