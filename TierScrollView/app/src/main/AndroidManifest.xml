@@ -69,6 +69,10 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+        <activity
+            android:name=".Res"
+            android:label="@string/title_activity_res" >
+        </activity>
     </application>
 
 </manifest>
