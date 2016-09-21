@@ -73,6 +73,10 @@
             android:name=".Res"
             android:label="@string/title_activity_res" >
         </activity>
+        <activity
+            android:name=".nav"
+            android:label="@string/title_activity_nav" >
+        </activity>
     </application>
 
 </manifest>
