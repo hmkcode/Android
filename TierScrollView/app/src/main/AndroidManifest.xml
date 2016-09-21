@@ -77,6 +77,10 @@
             android:name=".nav"
             android:label="@string/title_activity_nav" >
         </activity>
+        <activity
+            android:name=".tabbed"
+            android:label="@string/title_activity_tabbed" >
+        </activity>
     </application>
 
 </manifest>
