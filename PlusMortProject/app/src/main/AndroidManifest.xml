@@ -31,6 +31,15 @@
             android:name=".Recall"
             android:label="@string/title_activity_recall" >
         </activity>
+        <activity
+            android:name=".Mediater"
+            android:label="@string/title_activity_mediater" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
