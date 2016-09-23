@@ -49,6 +49,11 @@
             android:enabled="true"
             android:exported="true" >
         </receiver>
+
+        <activity
+            android:name=".LeftNote"
+            android:label="@string/title_activity_left_note" >
+        </activity>
     </application>
 
 </manifest>
