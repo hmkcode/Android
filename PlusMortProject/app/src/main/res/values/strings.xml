@@ -31,4 +31,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_wheel_part">WheelPart</string>
+    <string name="title_resor_list">Items</string>
+    <string name="title_resor_detail">resor Detail</string>
 </resources>
