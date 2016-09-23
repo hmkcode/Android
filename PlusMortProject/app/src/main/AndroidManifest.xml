@@ -82,6 +82,10 @@
             android:label="@string/title_activity_launch_screen"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name=".WheelPart"
+            android:label="@string/title_activity_wheel_part" >
+        </activity>
     </application>
 
 </manifest>
