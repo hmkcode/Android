@@ -10,21 +10,18 @@ public class ExtThread extends Thread {
     int colorType;
     private Handler mHandler;
 
-    public ThreadMas() {
 
-    }
-
-    public ThreadMas setHandler(Handler handler) {
+    public ExtThread setHandler(Handler handler) {
         this.mHandler = handler;
         return this;
     }
 
-    public ThreadMas setColorType(int type) {
+    public ExtThread setColorType(int type) {
         this.colorType = type;
         return this;
     }
 
-    public ThreadMas setDelay(int delay) {
+    public ExtThread setDelay(int delay) {
         this.delay = delay;
         return this;
     }
