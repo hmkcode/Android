@@ -20,15 +20,6 @@ public class Notifier extends BroadcastReceiver {
         return super.clone();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 
     @Override
     public int hashCode() {
