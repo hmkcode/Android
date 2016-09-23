@@ -26,6 +26,11 @@
             android:name=".IntentServiceMort"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".Recall"
+            android:label="@string/title_activity_recall" >
+        </activity>
     </application>
 
 </manifest>
