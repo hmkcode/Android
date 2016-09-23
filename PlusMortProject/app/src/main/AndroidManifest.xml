@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".BackgroundMort"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name=".IntentServiceMort"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
