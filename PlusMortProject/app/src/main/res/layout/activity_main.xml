@@ -47,4 +47,11 @@
         android:layout_marginTop="51dp"
         android:layout_below="@+id/editText"
         android:layout_alignStart="@+id/editText" />
+
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
