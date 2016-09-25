@@ -46,11 +46,18 @@ public class Home extends AppCompatActivity {
     }
 
     private void redgisterAdapter() {
+
+        repository = CentralDataRepository.getInstance(this);
+
         repository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
             @Override
-            public void onDataSubmit(ArrayList<SectionModel> items) {
-                L.m("Home[dataSubmit Callback]","submitted :" +items.get(0).sectionTitle);
-                mRecyclerAdapter.appendSongs(items.get(0).sectionTitle,items);
+            public void onDataSubmit(ArrayList<SectionModel> items , int mode) {
+                L.m("Home[dataSubmit Callback]", "submitted :" + items.get(0).sectionTitle);
+                if(mode== CentralDataRepository.TYPE_TRENDING) {
+                    mRecyclerAdapter.appendSongs(items.get(0).sectionTitle, items);
+                }else{
+                    mRecyclerAdapter.setSongs(items,items.get(0).sectionTitle);
+                }
             }
         });
     }
@@ -61,7 +68,7 @@ public class Home extends AppCompatActivity {
      */
     public void invokeAction(int actionType) {
 
-        repository = CentralDataRepository.getInstance(this);
+
 
         switch (actionType) {
 
@@ -151,28 +158,6 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-
-//        if (savedInstanceState.getSerializable("mapSong") != null) {
-////
-////            // clear old data and append append new one
-//////            pushDataToRecyclerView(null , "");
-////
-////            subscribeToTaskAddListener();
-////            HashMap<String, ArrayList<BaseSong>> map = (HashMap<String, ArrayList<BaseSong>>) savedInstanceState.getSerializable("mapSong");
-////            Iterator iterator = map.entrySet().iterator();
-////            while (iterator.hasNext()) {
-////                Map.Entry pair = (Map.Entry) iterator.next();
-////                L.m("Home onRestoreInstance() ", "reading hashmap for key " + pair.getKey().toString());
-////                songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
-////
-//////                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
-////            }
-//
-//
-//
-//        }
-
     }
 
     private void subscribeToTaskAddListener() {
@@ -260,6 +245,8 @@ public class Home extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         plugAdapter();
 
+        setSearchView();
+
     }
 
     private boolean isPortrait(int orientation) {
@@ -326,15 +313,15 @@ public class Home extends AppCompatActivity {
         searchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
             @Override
             public void onActionMenuItemSelected(MenuItem menuItem) {
-//                int id = menuItem.getItemId();
-//                if (id == R.id.action_settings) {
-//                    Intent i = new Intent(Home.this, UserPreferenceSetting.class);
-//                    startActivity(i);
-//                }
-//                if (id == R.id.action_downloads) {
-//                    Intent i = new Intent(MainActivity.this, DowloadsActivity.class);
-//                    startActivity(i);
-//                }
+                int id = menuItem.getItemId();
+                if (id == R.id.action_settings) {
+                    Intent i = new Intent(Home.this, UserPreferenceSetting.class);
+                    startActivity(i);
+                }
+                if (id == R.id.action_downloads) {
+                    Intent i = new Intent(MainActivity.this, DowloadsActivity.class);
+                    startActivity(i);
+                }
             }
         });
 

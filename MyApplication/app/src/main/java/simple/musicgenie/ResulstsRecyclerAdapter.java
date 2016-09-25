@@ -62,18 +62,20 @@
             }
 
             /**
-             * @param list : new list of data
+             * @param inList : new list of data
              *  this method wipes out old data and sets new one
              * @param type : this is section to which list belongs to
              */
-            public void setSongs(ArrayList<BaseSong> list, String type) {
+            public void setSongs(ArrayList<SectionModel> inList, String type) {
                 this.songs.clear();
                 this.typeViewList.clear();
 
-                if (list != null) {
+                if (inList != null) {
+
                     addItem(null, type);
-                    for (BaseSong s : list) {
-                        addItem(s, "");
+                    ArrayList<ItemModel> list = inList.get(0).getList();
+                    for (int i =0; i<list.size();i++) {
+                        addItem(list.get(i), "");
                     }
                     notifyDataSetChanged();
                 }

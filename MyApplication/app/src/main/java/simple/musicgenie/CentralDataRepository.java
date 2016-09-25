@@ -31,12 +31,12 @@ public class CentralDataRepository {
     /**
      * Result type
      */
-    private static final int TYPE_TRENDING = 405;
+     public static final int TYPE_TRENDING = 405;
 
     /**
      * Result type
      */
-    private static final int TYPE_RESULT = 406;
+    public static final int TYPE_RESULT = 406;
 
     private ActionCompletedListener mActionCompletdListener;
     private DataReadyToSubmitListener dataReadyToSubmitListener;
@@ -121,7 +121,7 @@ public class CentralDataRepository {
                 public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
                     // now result are written to database
                     // so submit them to thirsty adapters
-                    dataReadyToSubmitListener.onDataSubmit(trendingList);
+                    dataReadyToSubmitListener.onDataSubmit(trendingList , CentralDataRepository.TYPE_TRENDING);
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
 
@@ -153,7 +153,7 @@ public class CentralDataRepository {
                 temp.add(new SectionModel(result.sectionTitle, result.getList()));
 
                 //callback to thirsty adapters
-                dataReadyToSubmitListener.onDataSubmit(temp);
+                dataReadyToSubmitListener.onDataSubmit(temp , CentralDataRepository.TYPE_RESULT);
 
                 // callback confirmation to operation initiater
                 mActionCompletdListener.onActionCompleted();
@@ -186,7 +186,7 @@ public class CentralDataRepository {
                 public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
                     // now result are written to database
                     // so submit them to thirsty adapters
-                    dataReadyToSubmitListener.onDataSubmit(trendingList);
+                    dataReadyToSubmitListener.onDataSubmit(trendingList, CentralDataRepository.TYPE_TRENDING);
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
                 }
@@ -204,7 +204,7 @@ public class CentralDataRepository {
 
                     ArrayList<SectionModel> temp = new ArrayList<>();
                     temp.add(new SectionModel(result.sectionTitle, result.getList()));
-                    dataReadyToSubmitListener.onDataSubmit(temp);
+                    dataReadyToSubmitListener.onDataSubmit(temp, CentralDataRepository.TYPE_RESULT);
 
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
@@ -239,7 +239,7 @@ public class CentralDataRepository {
             public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
                 // now result are written to database
                 // so submit them to thirsty adapters
-                dataReadyToSubmitListener.onDataSubmit(trendingList);
+                dataReadyToSubmitListener.onDataSubmit(trendingList , CentralDataRepository.TYPE_TRENDING);
                 // callback confirmation to operation initiater
                 mActionCompletdListener.onActionCompleted();
             }
@@ -288,7 +288,7 @@ public class CentralDataRepository {
 
         // for Result  there will be single item
         // for Trending there will be list of items
-        void onDataSubmit(ArrayList<SectionModel> items);
+        void onDataSubmit(ArrayList<SectionModel> items , int mode);
     }
 
     public class InvalidCallbackException extends Exception {
