@@ -171,8 +171,8 @@ public class DbHelper extends SQLiteOpenHelper {
             // must-pass flag for data reset
 
             passFlagToReset();
-
-            for (int i = 0; i < list.size(); i++) {
+            int min = (list.size()>12)?12:list.size();
+            for (int i = 0; i < min; i++) {
 
                 mTrendingLoadListener.onTrendingLoad(list.get(i));
 
@@ -380,7 +380,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
             passFlagToReset();
 
-            for (int i = 0; i < tempTrendingList.size(); i++)
+            int min = (tempTrendingList.size()>12)?12:tempTrendingList.size();
+            for (int i = 0; i < min ; i++)
                 mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(i));
 
         }

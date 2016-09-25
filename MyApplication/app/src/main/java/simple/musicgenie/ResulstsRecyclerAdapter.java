@@ -51,13 +51,14 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
      * @param type   : section to which list belongs to
      */
     private void appendSongs(String type, ArrayList<ItemModel> inList) {
-        L.m("Result Adapter", "appendSongs");
+
         addItem(null, type);
 
         for (int i = 0; i < inList.size(); i++) {
             addItem(inList.get(i), "");
         }
-        notifyDataSetChanged();
+
+        notifyItemInserted(songs.size());
 
     }
 
@@ -74,26 +75,6 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     }
 
-    /**
-     * @param inList : new list of data
-     *               this method wipes out old data and sets new one
-     * @param type   : this is section to which list belongs to
-     */
-    public void setSongs(ArrayList<SectionModel> inList, String type) {
-        this.songs.clear();
-        this.typeViewList.clear();
-
-        if (inList != null) {
-
-            addItem(null, type);
-            ArrayList<ItemModel> list = inList.get(0).getList();
-            for (int i = 0; i < list.size(); i++) {
-                addItem(list.get(i), "");
-            }
-            notifyDataSetChanged();
-        }
-
-    }
 
     private void addItem(BaseSong song, String section) {   //     create view list
 
@@ -111,7 +92,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private void resetData() {
         typeViewList.clear();
         songs.clear();
-        notifyDataSetChanged();
+ //       notifyDataSetChanged();
     }
 
     private void log(String s) {
@@ -133,7 +114,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (viewType == TYPE_SECTION_TITLE) {
             int hvti = getHeaderViewToInflate();
             view = LayoutInflater.from(context).inflate(hvti, parent, false);
-            log("returning section");
+            L.m("Result Adapter"," sectionTitle");
             return new SectionTitleViewHolder(view);
         } else {
             int vti = getViewToInflate();   // getView depending on screen screen sizes
