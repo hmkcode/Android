@@ -33,12 +33,30 @@ public class Home extends AppCompatActivity {
         // instantiate views
         instantiateViews();
 
+        redgisterAdapter();
+
         if (savedInstanceState == null) {
+            invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
+            // register adapter
 
         }
 
     }
 
+    private void redgisterAdapter() {
+        repository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
+            @Override
+            public void onDataSubmit(ArrayList<SectionModel> items) {
+                L.m("Home[dataSubmit Callback]","submitted :" +items.get(0).sectionTitle);
+                mRecyclerAdapter.appendSongs(items.get(0).sectionTitle,items);
+            }
+        });
+    }
+
+    /**
+     * @param actionType type of action to invoke
+     *                   todo: must- attach Adapters
+     */
     public void invokeAction(int actionType) {
 
         repository = CentralDataRepository.getInstance(this);
@@ -78,6 +96,22 @@ public class Home extends AppCompatActivity {
                 showProgress("Refressing Items");
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_REFRESS, new CentralDataRepository.ActionCompletedListener() {
+                        @Override
+                        public void onActionCompleted() {
+                            hideProgress();
+                        }
+                    });
+                } catch (CentralDataRepository.InvalidCallbackException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+
+            case Constants.ACTION_TYPE_SEARCH:
+                showProgress("Searching Item");
+                try {
+                    repository.submitAction(CentralDataRepository.FLAG_SEARCH, new CentralDataRepository.ActionCompletedListener() {
                         @Override
                         public void onActionCompleted() {
                             hideProgress();

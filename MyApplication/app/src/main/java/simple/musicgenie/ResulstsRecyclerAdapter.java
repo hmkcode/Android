@@ -46,15 +46,16 @@
             }
 
             /**
-             * @param list : list of items to be appended to existing list
+             * @param inList : list of items to be appended to existing list
              *               new items are appended and notifies
              * @param type  : section to which list belongs to
              */
-            public void appendSongs( String type , ArrayList<BaseSong> list) {
+            public void appendSongs( String type , ArrayList<SectionModel> inList) {
 
                 addItem(null, type);
-                for (BaseSong s : list) {
-                    addItem(s, "");
+                ArrayList<ItemModel> list = inList.get(0).getList();
+                for (int i =0; i<list.size();i++) {
+                    addItem(list.get(i), "");
                 }
                 notifyDataSetChanged();
 

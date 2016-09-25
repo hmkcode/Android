@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
-    <!--<include layout="@layout/sectioned_view"/>-->
+    <include layout="@layout/content_layout_main"/>
 
     <com.arlib.floatingsearchview.FloatingSearchView
         android:paddingTop="10dp"
