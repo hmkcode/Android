@@ -2,6 +2,9 @@ package simple.musicgenie;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +31,8 @@ public class Home extends AppCompatActivity {
     private HashMap<String, ArrayList<BaseSong>> songMap;
     private CentralDataRepository repository;
     private FloatingSearchView searchView;
+    private SwipeRefreshLayout swiperefressLayout;
+    private SwipeRefreshLayout swipeRefressLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +56,12 @@ public class Home extends AppCompatActivity {
 
         repository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
             @Override
-            public void onDataSubmit(ArrayList<SectionModel> items , int mode) {
+            public void onDataSubmit(ArrayList<SectionModel> items, int mode) {
                 L.m("Home[dataSubmit Callback]", "submitted :" + items.get(0).sectionTitle);
-                if(mode== CentralDataRepository.TYPE_TRENDING) {
+                if (mode == CentralDataRepository.TYPE_TRENDING) {
                     mRecyclerAdapter.appendSongs(items.get(0).sectionTitle, items);
-                }else{
-                    mRecyclerAdapter.setSongs(items,items.get(0).sectionTitle);
+                } else {
+                    mRecyclerAdapter.setSongs(items, items.get(0).sectionTitle);
                 }
             }
         });
@@ -67,8 +72,6 @@ public class Home extends AppCompatActivity {
      *                   todo: must- attach Adapters
      */
     public void invokeAction(int actionType) {
-
-
 
         switch (actionType) {
 
@@ -129,10 +132,7 @@ public class Home extends AppCompatActivity {
                 } catch (CentralDataRepository.InvalidCallbackException e) {
                     e.printStackTrace();
                 }
-
                 break;
-
-
         }
 
     }
@@ -180,28 +180,6 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_home, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private int screenMode() {
         DisplayMetrics metrics = new DisplayMetrics();
@@ -229,18 +207,41 @@ public class Home extends AppCompatActivity {
     private void instantiateViews() {
 
         int maxCols = (isPortrait(getOrientation())) ? ((screenMode() == Constants.SCREEN_MODE_MOBILE) ? 2 : 3) : 4;
+        swipeRefressLayout = (SwipeRefreshLayout) findViewById(R.id.content_refresser);
         mRecyclerView = (RecyclerView) findViewById(R.id.trendingRecylerView);
         layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
         mRecyclerAdapter = ResulstsRecyclerAdapter.getInstance(this);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        swiperefressLayout.setColorSchemeColors(getResources().getColor(R.color.PrimaryColor),Color.WHITE);
+        swiperefressLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refressContent();
+            }
+        });
+
         plugAdapter();
-
         setSearchView();
-
     }
 
     private boolean isPortrait(int orientation) {
         return orientation % 2 == 0;
+    }
+
+    private void refressContent(){
+
+        if(ConnectivityUtils.getInstance(this).isConnectedToNet()){
+
+            invokeAction(Constants.ACTION_TYPE_REFRESS);
+            swiperefressLayout.setRefreshing(true);
+            swiperefressLayout.setEnabled(false);
+
+        }else{
+            Snackbar.make(swiperefressLayout, "No Connectivity !!", Snackbar.LENGTH_SHORT).show();
+            swiperefressLayout.setRefreshing(false);
+        }
+
     }
 
     public void setSearchView() {

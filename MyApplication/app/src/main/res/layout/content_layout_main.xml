@@ -10,8 +10,13 @@
         android:layout_height="@dimen/searchview_wrapper_height">
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/content_refresser"
         android:layout_below="@+id/wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/trendingRecylerView"
@@ -20,6 +25,8 @@
         android:paddingTop="@dimen/search_result_content_padding_top"
         android:paddingBottom="@dimen/search_result_content_padding_bottom"
         />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </RelativeLayout>
