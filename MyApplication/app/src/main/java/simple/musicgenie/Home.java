@@ -279,9 +279,9 @@ public class Home extends AppCompatActivity {
                 } else {
 
                     searchView.showProgress();
-                    SearchSuggestionHelper.getInstance(MainActivity.this).findSuggestion(s1, new SearchSuggestionHelper.OnFindSuggestionListener() {
+                    SearchSuggestionHelper.getInstance(Home.this).findSuggestion(s1, new SearchSuggestionHelper.OnFindSuggestionListener() {
                         @Override
-                        public void onResult(ArrayList<musicgenie.com.musicgenie.models.SearchSuggestion> list) {
+                        public void onResult(ArrayList<SearchSuggestion> list) {
                             searchView.swapSuggestions(list);
                             searchView.hideProgress();
                         }
@@ -292,50 +292,26 @@ public class Home extends AppCompatActivity {
 
 
         searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+//            @Override
+//            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
+////                fireSearch(searchSuggestion.getBody());
+////                mLastQuery = searchSuggestion.getBody();
+//            }
+
             @Override
-            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
-                fireSearch(searchSuggestion.getBody());
-                mLastQuery = searchSuggestion.getBody();
+            public void onSuggestionClicked(com.arlib.floatingsearchview.suggestions.model.SearchSuggestion searchSuggestion) {
+
             }
 
             @Override
             public void onSearchAction(String query) {
-                mLastQuery = query;
+//                mLastQuery = query;
                 fireSearch(query);
-                Log.d(TAG, "onSearchAction()");
+//                Log.d(TAG, "onSearchAction()");
             }
         });
 
 
-//        searchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
-//            @Override
-//            public void onFocus() {
-//                int headerHeight = getResources().getDimensionPixelOffset(R.dimen.sliding_search_view_header_height);
-//                ObjectAnimator anim = ObjectAnimator.ofFloat(searchView, "translationY",
-//                        headerHeight, 0);
-//                anim.setDuration(350);
-//                //fadeDimBackground(0, 150, null);
-//                anim.addListener(new AnimatorListenerAdapter() {
-//
-//                    @Override
-//                    public void onAnimationEnd(Animator animation) {
-//                        //show suggestions when search bar gains focus (typically history suggestions)
-//                        searchView.swapSuggestions(SearchSuggestionHelper.getHistory(MainActivity.this));
-//
-//                    }
-//                });
-//                anim.start();
-//
-//                Log.d(TAG, "onFocus()");
-//            }
-//
-//            @Override
-//            public void onFocusCleared() {
-//                int headerHeight = getResources().getDimensionPixelOffset(R.dimen.sliding_search_view_header_height);
-//                ObjectAnimator anim = ObjectAnimator.ofFloat(searchView, "translationY",
-//                        0, headerHeight);
-//                anim.setDuration(350);
-//                anim.start();
 //                // fade back ground call
 //                //set the title of the bar so that when focus is returned a new query begins
 //                searchView.setSearchBarTitle(mLastQuery);
@@ -350,21 +326,27 @@ public class Home extends AppCompatActivity {
         searchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
             @Override
             public void onActionMenuItemSelected(MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                if (id == R.id.action_settings) {
-                    Intent i = new Intent(MainActivity.this, UserPreferenceSetting.class);
-                    startActivity(i);
-                }
-                if (id == R.id.action_downloads) {
-                    Intent i = new Intent(MainActivity.this, DowloadsActivity.class);
-                    startActivity(i);
-                }
+//                int id = menuItem.getItemId();
+//                if (id == R.id.action_settings) {
+//                    Intent i = new Intent(Home.this, UserPreferenceSetting.class);
+//                    startActivity(i);
+//                }
+//                if (id == R.id.action_downloads) {
+//                    Intent i = new Intent(MainActivity.this, DowloadsActivity.class);
+//                    startActivity(i);
+//                }
             }
         });
 
 
     }
 
+    private void fireSearch(String query) {
+
+        SharedPrefrenceUtils.getInstance(this).setLastSearchTerm(query);
+        invokeAction(Constants.ACTION_TYPE_SEARCH);
+
+    }
 
 
     private void configureStorageDirectory(Bundle savedInstance) {
