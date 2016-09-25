@@ -12,6 +12,7 @@ import android.util.Log;
 /**
  * Created by Ankit on 9/25/2016.
  */
+
 public class DowloadsActivity extends AppCompatActivity {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
@@ -79,11 +80,16 @@ public class DowloadsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//
+//        Intent intent= new Intent(DowloadsActivity.this,MainActivity.class);
+//        overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
         finish();
     }
 
     public void log(String msg){
-        Log.d("DownloadsActivity", msg);
+        Log.d("DownloadsActivity",msg);
     }
 
 }

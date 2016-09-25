@@ -33,6 +33,21 @@
             android:label="@string/title_activity_test" >
 
         </activity>
+
+        <activity
+            android:parentActivityName=".Home"
+            android:name=".DowloadsActivity"
+            android:label="@string/activity_downloads" >
+
+        </activity>
+
+        <activity
+            android:parentActivityName=".Home"
+            android:name=".UserPreferenceSetting"
+            android:label="@string/activity_downloads" >
+
+        </activity>
+
     </application>
 
 </manifest>
