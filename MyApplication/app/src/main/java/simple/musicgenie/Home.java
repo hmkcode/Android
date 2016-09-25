@@ -55,13 +55,10 @@ public class Home extends AppCompatActivity {
 
         repository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
             @Override
-            public void onDataSubmit(ArrayList<SectionModel> items, int mode) {
-                L.m("Home[dataSubmit Callback]", "submitted :" + items.get(0).sectionTitle);
-                if (mode == CentralDataRepository.TYPE_TRENDING) {
-                    mRecyclerAdapter.appendSongs(items.get(0).sectionTitle, items);
-                } else {
-                    mRecyclerAdapter.setSongs(items, items.get(0).sectionTitle);
-                }
+            public void onDataSubmit(SectionModel item) {
+
+                    mRecyclerAdapter.enque(item);
+
             }
         });
     }

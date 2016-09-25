@@ -161,21 +161,32 @@ public class DbHelper extends SQLiteOpenHelper {
                 values.put(COL_TYPE, list.get(i).sectionTitle);
                 long id = database.insert(TABLE_TRENDING, null, values);
 
-                if (id < 0) {
-//                    Log.d("DBHelper (Trending)", "Cannot Add Row");
-                } else {
-  //                  Log.d("DBHelper (Trending)", "Added Successfully ");
-                }
             }
         }
 
-        Log.d("DBH","added "+list.get(0).sectionTitle);
+        Log.d("DBH", "added " + list.get(0).sectionTitle);
 
         if (mTrendingLoadListener != null) {
-            mTrendingLoadListener.onTrendingLoad(list);
+
+            // must-pass flag for data reset
+
+            passFlagToReset();
+
+            for (int i = 0; i < list.size(); i++) {
+
+                mTrendingLoadListener.onTrendingLoad(list.get(i));
+
+            }
         }
 
     }
+
+    private void passFlagToReset() {
+
+        SectionModel tModel = new SectionModel(Constants.FLAG_RESET_ADAPTER_DATA,null);
+        mTrendingLoadListener.onTrendingLoad(tModel);
+    }
+
 
     /**
      * @return Read Trending From database
@@ -303,8 +314,10 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
 
-        if (mResultLoadListener != null)
+        if (mResultLoadListener != null) {
+            passFlagToReset();
             mResultLoadListener.onResultLoadListener(modelItem);
+        }
 
     }
 
@@ -362,21 +375,30 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void pokeForTrending() {
 
-        if (mTrendingLoadListener != null)
-            mTrendingLoadListener.onTrendingLoad(getTrendingList());
+        if (mTrendingLoadListener != null) {
+            ArrayList<SectionModel> tempTrendingList = getTrendingList();
 
+            passFlagToReset();
+
+            for (int i = 0; i < tempTrendingList.size(); i++)
+                mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(i));
+
+        }
     }
 
     public void pokeForResults() {
 
-        if (mResultLoadListener != null)
-            mResultLoadListener.onResultLoadListener(getResultList());
+        if (mResultLoadListener != null) {
 
+            passFlagToReset();
+
+            mResultLoadListener.onResultLoadListener(getResultList());
+        }
     }
 
 
     interface TrendingLoadListener {
-        void onTrendingLoad(ArrayList<SectionModel> trendingList);
+        void onTrendingLoad(SectionModel trendingItem);
     }
 
     ResultLoadListener mResultLoadListener;

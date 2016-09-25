@@ -31,7 +31,7 @@ public class CentralDataRepository {
     /**
      * Result type
      */
-     public static final int TYPE_TRENDING = 405;
+    public static final int TYPE_TRENDING = 405;
 
     /**
      * Result type
@@ -118,10 +118,10 @@ public class CentralDataRepository {
 
             mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
                 @Override
-                public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+                public void onTrendingLoad(SectionModel trendingItem) {
                     // now result are written to database
                     // so submit them to thirsty adapters
-                    dataReadyToSubmitListener.onDataSubmit(trendingList , CentralDataRepository.TYPE_TRENDING);
+                    dataReadyToSubmitListener.onDataSubmit(trendingItem);
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
 
@@ -149,11 +149,11 @@ public class CentralDataRepository {
             @Override
             public void onResultLoadListener(SectionModel result) {
 
-                ArrayList<SectionModel> temp = new ArrayList<>();
-                temp.add(new SectionModel(result.sectionTitle, result.getList()));
+//                ArrayList<SectionModel> temp = new ArrayList<>();
+//                temp.add(new SectionModel(result.sectionTitle, result.getList()));
 
                 //callback to thirsty adapters
-                dataReadyToSubmitListener.onDataSubmit(temp , CentralDataRepository.TYPE_RESULT);
+                dataReadyToSubmitListener.onDataSubmit(result);
 
                 // callback confirmation to operation initiater
                 mActionCompletdListener.onActionCompleted();
@@ -177,16 +177,16 @@ public class CentralDataRepository {
      */
     private void submitLastLoaded() {
 
-        L.m("CDR "," last loaded was "+mLastLoadedType);
+        L.m("CDR ", " last loaded was " + mLastLoadedType);
 
         if (mLastLoadedType == TYPE_TRENDING) {
 
             mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
                 @Override
-                public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+                public void onTrendingLoad(SectionModel trendingItem) {
                     // now result are written to database
                     // so submit them to thirsty adapters
-                    dataReadyToSubmitListener.onDataSubmit(trendingList, CentralDataRepository.TYPE_TRENDING);
+                    dataReadyToSubmitListener.onDataSubmit(trendingItem);
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
                 }
@@ -202,9 +202,7 @@ public class CentralDataRepository {
                 @Override
                 public void onResultLoadListener(SectionModel result) {
 
-                    ArrayList<SectionModel> temp = new ArrayList<>();
-                    temp.add(new SectionModel(result.sectionTitle, result.getList()));
-                    dataReadyToSubmitListener.onDataSubmit(temp, CentralDataRepository.TYPE_RESULT);
+                    dataReadyToSubmitListener.onDataSubmit(result);
 
                     // callback confirmation to operation initiater
                     mActionCompletdListener.onActionCompleted();
@@ -236,10 +234,10 @@ public class CentralDataRepository {
         // subscribe for callback from database
         mDBHelper.setTrendingLoadListener(new DbHelper.TrendingLoadListener() {
             @Override
-            public void onTrendingLoad(ArrayList<SectionModel> trendingList) {
+            public void onTrendingLoad(SectionModel trendingItem) {
                 // now result are written to database
                 // so submit them to thirsty adapters
-                dataReadyToSubmitListener.onDataSubmit(trendingList , CentralDataRepository.TYPE_TRENDING);
+                dataReadyToSubmitListener.onDataSubmit(trendingItem);
                 // callback confirmation to operation initiater
                 mActionCompletdListener.onActionCompleted();
             }
@@ -288,7 +286,7 @@ public class CentralDataRepository {
 
         // for Result  there will be single item
         // for Trending there will be list of items
-        void onDataSubmit(ArrayList<SectionModel> items , int mode);
+        void onDataSubmit(SectionModel item);
     }
 
     public class InvalidCallbackException extends Exception {
