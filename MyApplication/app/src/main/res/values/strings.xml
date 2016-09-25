@@ -24,4 +24,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="action_downloads_title">Downloads</string>
     <string name="activity_downloads">Downloads</string>
+    <string name="activity_preferences">Preferences</string>
 </resources>

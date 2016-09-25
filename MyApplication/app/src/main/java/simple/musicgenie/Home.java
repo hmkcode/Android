@@ -180,28 +180,28 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_home, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private int screenMode() {
         DisplayMetrics metrics = new DisplayMetrics();
@@ -217,17 +217,7 @@ public class Home extends AppCompatActivity {
             return Constants.SCREEN_MODE_MOBILE;
         }
     }
-//
-//    private void appendDataToReclerView(String type , ArrayList<Song> list) {
-//        mRecyclerAdapter.appendSongs( type,list );
-//    }
-//
-//    private void pushDataToRecyclerView(ArrayList<Song> newList,String type){
-//
-//        mRecyclerAdapter = TrendingRecyclerViewAdapter.getInstance(this);
-//        mRecyclerAdapter.setSongs(newList , type);
-//
-//    }
+
 
     private void plugAdapter() {
         mRecyclerAdapter.setOrientation(getOrientation());
@@ -254,7 +244,6 @@ public class Home extends AppCompatActivity {
     }
 
     public void setSearchView() {
-        //mFloatingSearchViewSet = true;
         searchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
         searchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
 
@@ -279,22 +268,13 @@ public class Home extends AppCompatActivity {
 
 
         searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
-//            @Override
-//            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
-////                fireSearch(searchSuggestion.getBody());
-////                mLastQuery = searchSuggestion.getBody();
-//            }
-
             @Override
             public void onSuggestionClicked(com.arlib.floatingsearchview.suggestions.model.SearchSuggestion searchSuggestion) {
-
             }
 
             @Override
             public void onSearchAction(String query) {
-//                mLastQuery = query;
                 fireSearch(query);
-//                Log.d(TAG, "onSearchAction()");
             }
         });
 
@@ -334,7 +314,6 @@ public class Home extends AppCompatActivity {
         invokeAction(Constants.ACTION_TYPE_SEARCH);
 
     }
-
 
     private void configureStorageDirectory(Bundle savedInstance) {
 

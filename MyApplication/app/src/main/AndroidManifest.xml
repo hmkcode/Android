@@ -44,7 +44,7 @@
         <activity
             android:parentActivityName=".Home"
             android:name=".UserPreferenceSetting"
-            android:label="@string/activity_downloads" >
+            android:label="@string/activity_preferences" >
 
         </activity>
 
