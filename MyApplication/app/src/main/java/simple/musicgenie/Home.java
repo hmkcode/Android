@@ -319,7 +319,7 @@ public class Home extends AppCompatActivity {
                     startActivity(i);
                 }
                 if (id == R.id.action_downloads) {
-                    Intent i = new Intent(MainActivity.this, DowloadsActivity.class);
+                    Intent i = new Intent(Home.this, DowloadsActivity.class);
                     startActivity(i);
                 }
             }
