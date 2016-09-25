@@ -22,21 +22,25 @@ public class TestAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        centralDataRepository = CentralDataRepository.getInstance(this);
-        final TextView pad = (TextView) findViewById(R.id.pad);
+        if(savedInstanceState==null){
+            L.m("Home","first time load");
+        }
 
-        // here we will use same object for  pseudo-adapter mimic
-
-        // pseudo-adapter registration
-
-        centralDataRepository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
-            @Override
-            public void onDataSubmit(ArrayList<SectionModel> items) {
-
-                pad.setText(pad.getText() + "\n" + "Reported with " + items.get(0).sectionTitle);
-
-            }
-        });
+//        centralDataRepository = CentralDataRepository.getInstance(this);
+//        final TextView pad = (TextView) findViewById(R.id.pad);
+//
+//        // here we will use same object for  pseudo-adapter mimic
+//
+//        // pseudo-adapter registration
+//
+//        centralDataRepository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
+//            @Override
+//            public void onDataSubmit(ArrayList<SectionModel> items) {
+//
+//                pad.setText(pad.getText() + "\n" + "Reported with " + items.get(0).sectionTitle);
+//
+//            }
+//        });
 
 
     }

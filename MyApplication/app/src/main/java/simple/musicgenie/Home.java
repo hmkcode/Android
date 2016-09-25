@@ -22,23 +22,88 @@ public class Home extends AppCompatActivity {
     private ResulstsRecyclerAdapter mRecyclerAdapter;
     private ProgressDialog progressDialog;
     private HashMap<String, ArrayList<BaseSong>> songMap;
+    private CentralDataRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         // create download directory
         configureStorageDirectory(savedInstanceState);
-
         // instantiate views
         instantiateViews();
 
+        if (savedInstanceState == null) {
+
+        }
+
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
+    public void invokeAction(int actionType) {
+
+        repository = CentralDataRepository.getInstance(this);
+
+        switch (actionType) {
+
+            case Constants.ACTION_TYPE_FIRST_LOAD:
+                showProgress("Presenting Trending...");
+                try {
+                    repository.submitAction(CentralDataRepository.FLAG_FIRST_LOAD, new CentralDataRepository.ActionCompletedListener() {
+                        @Override
+                        public void onActionCompleted() {
+                            hideProgress();
+                        }
+                    });
+                } catch (CentralDataRepository.InvalidCallbackException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case Constants.ACTION_TYPE_RESUME:
+                showProgress("Presenting Your Items");
+                try {
+                    repository.submitAction(CentralDataRepository.FLAG_RESTORE, new CentralDataRepository.ActionCompletedListener() {
+                        @Override
+                        public void onActionCompleted() {
+                            hideProgress();
+                        }
+                    });
+                } catch (CentralDataRepository.InvalidCallbackException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case Constants.ACTION_TYPE_REFRESS:
+                showProgress("Refressing Items");
+                try {
+                    repository.submitAction(CentralDataRepository.FLAG_REFRESS, new CentralDataRepository.ActionCompletedListener() {
+                        @Override
+                        public void onActionCompleted() {
+                            hideProgress();
+                        }
+                    });
+                } catch (CentralDataRepository.InvalidCallbackException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+
+        }
+
+    }
+
+    private void showProgress(String msg) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(msg);
+        progressDialog.show();
+    }
+
+    private void hideProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override
@@ -50,22 +115,26 @@ public class Home extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        if (savedInstanceState.getSerializable("mapSong") != null) {
 
-            // clear old data and append append new one
-//            pushDataToRecyclerView(null , "");
-
-            subscribeToTaskAddListener();
-            HashMap<String, ArrayList<BaseSong>> map = (HashMap<String, ArrayList<BaseSong>>) savedInstanceState.getSerializable("mapSong");
-            Iterator iterator = map.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry pair = (Map.Entry) iterator.next();
-                L.m("Home onRestoreInstance() ", "reading hashmap for key " + pair.getKey().toString());
-                songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
-                // todo: add lists to central data repo
-//                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
-            }
-        }
+//        if (savedInstanceState.getSerializable("mapSong") != null) {
+////
+////            // clear old data and append append new one
+//////            pushDataToRecyclerView(null , "");
+////
+////            subscribeToTaskAddListener();
+////            HashMap<String, ArrayList<BaseSong>> map = (HashMap<String, ArrayList<BaseSong>>) savedInstanceState.getSerializable("mapSong");
+////            Iterator iterator = map.entrySet().iterator();
+////            while (iterator.hasNext()) {
+////                Map.Entry pair = (Map.Entry) iterator.next();
+////                L.m("Home onRestoreInstance() ", "reading hashmap for key " + pair.getKey().toString());
+////                songMap.put(pair.getKey().toString(), map.get(pair.getKey()));
+////
+//////                appendDataToReclerView( pair.getKey().toString() , map.get(pair.getKey()));
+////            }
+//
+//
+//
+//        }
 
     }
 

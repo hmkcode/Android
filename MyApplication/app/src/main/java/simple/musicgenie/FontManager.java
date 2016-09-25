@@ -9,7 +9,6 @@
             public static final String FONT_RALEWAY_REGULAR = "Raleway-Regular.ttf";
             public static final String FONT_RALEWAY_BOLD = "Raleway-Bold.ttf";
             public static final String FONT_AWESOME = "fontawesome.ttf";
-
             private static Context context;
             private static FontManager mInstance;
 

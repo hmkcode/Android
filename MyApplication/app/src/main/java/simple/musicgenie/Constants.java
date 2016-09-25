@@ -23,6 +23,9 @@ public class Constants {
     public static final String EXTRAA_STREAM_FILE = "stream_file_name";
     public static final String EXTRAA_ACTIVITY_PRE_LOAD_FLAG = "actvity_preloaded";
     public static final String FLAG_STREAMING_CONTINUED = "streamingWillContinue";
-
+    public static final int ACTION_TYPE_FIRST_LOAD = 0;
+    public static final int ACTION_TYPE_RESUME = 1;
+    public static final int ACTION_TYPE_REFRESS = 2;
+    public static final int ACTION_TYPE_SEARCH = 3;
     public static final String KEY_SEARCH_TERM = "searchTerm";
 }
