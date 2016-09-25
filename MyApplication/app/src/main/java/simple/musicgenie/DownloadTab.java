@@ -1,111 +1,65 @@
 package simple.musicgenie;
 
+import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Typeface;
 import android.os.Parcelable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
+import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * Created by Ankit on 9/25/2016.
- */
-public class DownloadTab extends PagerAdapter {
-    @Override
-    public int getCount() {
-        return 0;
+
+public class DownloadTab extends TabLayout {
+
+    private Typeface mTypeface;
+    private Context context;
+    public DownloadTab(Context context) {
+        super(context);
+        this.context = context;
+        init();
     }
 
-    public DownloadTab() {
-        super();
+    public DownloadTab(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
     }
 
-    @Override
-    public void startUpdate(ViewGroup container) {
-        super.startUpdate(container);
+    public DownloadTab(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
     }
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container, position);
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
-    }
-
-    @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        super.setPrimaryItem(container, position, object);
+    private void init() {
+        mTypeface = FontManager.getInstance(context).getTypeFace(FontManager.FONT_MATERIAL);
     }
 
     @Override
-    public void finishUpdate(ViewGroup container) {
-        super.finishUpdate(container);
+    public void addTab(Tab tab) {
+        super.addTab(tab);
+        ViewGroup mainView = (ViewGroup) getChildAt(0);
+        ViewGroup tabView = (ViewGroup) mainView.getChildAt(tab.getPosition());
+
+        int tabChildCount = tabView.getChildCount();
+        for (int i = 0; i < tabChildCount; i++) {
+            View tabViewChild = tabView.getChildAt(i);
+            if (tabViewChild instanceof TextView) {
+                ((TextView) tabViewChild).setTypeface(mTypeface,Typeface.BOLD);
+                ((TextView) tabViewChild).setHeight(60);
+                ((TextView) tabViewChild).setTextSize(TypedValue.COMPLEX_UNIT_SP,60);
+                ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.White));
+            }
+        }
     }
 
-    @Override
-    public void startUpdate(View container) {
-        super.startUpdate(container);
-    }
+    public void setUpTab(DownloadTab tab){
+        String downloadingTab = " \uE2C4 ";
+        String downloadedTab =" \uE149 ";
+        addTab(tab.newTab().setText(downloadingTab));
+        addTab(tab.newTab().setText(downloadedTab));
 
-    @Override
-    public Object instantiateItem(View container, int position) {
-        return super.instantiateItem(container, position);
-    }
-
-    @Override
-    public void destroyItem(View container, int position, Object object) {
-        super.destroyItem(container, position, object);
-    }
-
-    @Override
-    public void setPrimaryItem(View container, int position, Object object) {
-        super.setPrimaryItem(container, position, object);
-    }
-
-    @Override
-    public void finishUpdate(View container) {
-        super.finishUpdate(container);
-    }
-
-    @Override
-    public Parcelable saveState() {
-        return super.saveState();
-    }
-
-    @Override
-    public void restoreState(Parcelable state, ClassLoader loader) {
-        super.restoreState(state, loader);
-    }
-
-    @Override
-    public int getItemPosition(Object object) {
-        return super.getItemPosition(object);
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
-
-    @Override
-    public void registerDataSetObserver(DataSetObserver observer) {
-        super.registerDataSetObserver(observer);
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver observer) {
-        super.unregisterDataSetObserver(observer);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return false;
     }
 }
