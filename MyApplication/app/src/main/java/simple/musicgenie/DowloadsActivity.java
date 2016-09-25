@@ -79,11 +79,6 @@ public class DowloadsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        Intent intent= new Intent(DowloadsActivity.this,MainActivity.class);
-        overridePendingTransition(R.anim.animation_enter,R.anim.animation_leave);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
         finish();
     }
 
