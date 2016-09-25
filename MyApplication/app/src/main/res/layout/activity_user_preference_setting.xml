@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="musicgenie.com.musicgenie.activity.UserPreferenceSetting">
+
+    <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
+    <FrameLayout
+        android:padding="10dp"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/trendingChoiceFrame"
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <TextView
+            android:id="@+id/loadTrendingTextMessage"
+            android:layout_gravity="center_vertical"
+            android:text="Load Trending At StartUp"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadTrendingSwitch"
+            android:layout_gravity="right|center_vertical" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:padding="10dp"
+        android:layout_below="@+id/trendingChoiceFrame"
+        android:id="@+id/thumbnailChoiceFrame"
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <TextView
+            android:id="@+id/loadThumbnailTextMessage"
+            android:layout_gravity="center_vertical"
+            android:text="Load Thumbnail\n(Slow Internet Connection)"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadThumbnailSwitch"
+            android:layout_gravity="right|center_vertical" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:padding="10dp"
+        android:layout_below="@+id/thumbnailChoiceFrame"
+        android:id="@+id/IssuesTextFrame"
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <TextView
+            android:id="@+id/issuesTextMessage"
+            android:layout_gravity="center_vertical"
+            android:text="Have Issues With App ? "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="right|center_vertical"
+            android:id="@+id/issueBtn"
+            android:text=""
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>
