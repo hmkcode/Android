@@ -44,7 +44,7 @@ public class DownloadFragment extends Fragment {
 
     private static void setUpAdapter(){
         ArrayList<String> files = new ArrayList<>();
-        File dir = new File(AppConfig.FILES_DIR);
+        File dir = new File(Constants.FILES_DIR);
         File[] _files = dir.listFiles();
         for (File f:_files) {
             //Log.d(TAG, "setUpAdapter f-size"+f.getTotalSpace());
