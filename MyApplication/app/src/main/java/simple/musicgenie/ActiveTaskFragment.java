@@ -155,7 +155,7 @@ public class ActiveTaskFragment extends Fragment {
 
     private void registerForBroadcastListen(Activity activity) {
         receiver = new ProgressUpdateBroadcastReceiver();
-        activity.registerReceiver(receiver, new IntentFilter(AppConfig.ACTION_PROGRESS_UPDATE_BROADCAST));
+        activity.registerReceiver(receiver, new IntentFilter(Constants.ACTION_PROGRESS_UPDATE_BROADCAST));
         mReceiverRegistered = true;
 
     }
@@ -180,12 +180,12 @@ public class ActiveTaskFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if (intent.getAction().equals(AppConfig.ACTION_PROGRESS_UPDATE_BROADCAST)) {
+            if (intent.getAction().equals(Constants.ACTION_PROGRESS_UPDATE_BROADCAST)) {
 
-                log("update via broadcast " + intent.getStringExtra(AppConfig.EXTRA_PROGRESS));
-                String taskID = intent.getStringExtra(AppConfig.EXTRA_TASK_ID);
-                String progress = intent.getStringExtra(AppConfig.EXTRA_PROGRESS);
-                String contentSize = intent.getStringExtra(AppConfig.EXTRA_CONTENT_SIZE);
+                log("update via broadcast " + intent.getStringExtra(Constants.EXTRA_PROGRESS));
+                String taskID = intent.getStringExtra(Constants.EXTRA_TASK_ID);
+                String progress = intent.getStringExtra(Constants.EXTRA_PROGRESS);
+                String contentSize = intent.getStringExtra(Constants.EXTRA_CONTENT_SIZE);
                 updateItem(getPosition(taskID), Integer.valueOf(progress), contentSize);
             }
         }
