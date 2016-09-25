@@ -31,7 +31,6 @@ public class Home extends AppCompatActivity {
     private HashMap<String, ArrayList<BaseSong>> songMap;
     private CentralDataRepository repository;
     private FloatingSearchView searchView;
-    private SwipeRefreshLayout swiperefressLayout;
     private SwipeRefreshLayout swipeRefressLayout;
 
     @Override
@@ -105,12 +104,17 @@ public class Home extends AppCompatActivity {
                 break;
 
             case Constants.ACTION_TYPE_REFRESS:
-                showProgress("Refressing Items");
+
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_REFRESS, new CentralDataRepository.ActionCompletedListener() {
                         @Override
                         public void onActionCompleted() {
-                            hideProgress();
+                            // disable refressing
+                            L.m("Callback[Refress] ","Refressed");
+                            if(swipeRefressLayout.isRefreshing()) {
+                                swipeRefressLayout.setRefreshing(false);
+                                swipeRefressLayout.setEnabled(true);
+                            }
                         }
                     });
                 } catch (CentralDataRepository.InvalidCallbackException e) {
@@ -213,8 +217,8 @@ public class Home extends AppCompatActivity {
         mRecyclerAdapter = ResulstsRecyclerAdapter.getInstance(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        swiperefressLayout.setColorSchemeColors(getResources().getColor(R.color.PrimaryColor),Color.WHITE);
-        swiperefressLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeRefressLayout.setColorSchemeColors(getResources().getColor(R.color.PrimaryColor), Color.WHITE);
+        swipeRefressLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refressContent();
@@ -234,12 +238,12 @@ public class Home extends AppCompatActivity {
         if(ConnectivityUtils.getInstance(this).isConnectedToNet()){
 
             invokeAction(Constants.ACTION_TYPE_REFRESS);
-            swiperefressLayout.setRefreshing(true);
-            swiperefressLayout.setEnabled(false);
+            swipeRefressLayout.setRefreshing(true);
+            swipeRefressLayout.setEnabled(false);
 
         }else{
-            Snackbar.make(swiperefressLayout, "No Connectivity !!", Snackbar.LENGTH_SHORT).show();
-            swiperefressLayout.setRefreshing(false);
+            Snackbar.make(swipeRefressLayout, "No Connectivity !!", Snackbar.LENGTH_SHORT).show();
+            swipeRefressLayout.setRefreshing(false);
         }
 
     }
@@ -250,13 +254,14 @@ public class Home extends AppCompatActivity {
 
 
             @Override
-            public void onSearchTextChanged(String s, String s1) {
-                if (!s.equals("") && s1.equals("")) {
+            public void onSearchTextChanged(String oldText, String newText) {
+                if (!oldText.equals("") && newText.equals("")) {
                     searchView.clearSuggestions();
                 } else {
 
                     searchView.showProgress();
-                    SearchSuggestionHelper.getInstance(Home.this).findSuggestion(s1, new SearchSuggestionHelper.OnFindSuggestionListener() {
+                    SearchSuggestionHelper.getInstance(Home.this).findSuggestion(newText,
+                            new SearchSuggestionHelper.OnFindSuggestionListener() {
                         @Override
                         public void onResult(ArrayList<SearchSuggestion> list) {
                             searchView.swapSuggestions(list);
@@ -271,6 +276,7 @@ public class Home extends AppCompatActivity {
         searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
             @Override
             public void onSuggestionClicked(com.arlib.floatingsearchview.suggestions.model.SearchSuggestion searchSuggestion) {
+                fireSearch(searchSuggestion.getBody());
             }
 
             @Override
@@ -278,18 +284,6 @@ public class Home extends AppCompatActivity {
                 fireSearch(query);
             }
         });
-
-
-//                // fade back ground call
-//                //set the title of the bar so that when focus is returned a new query begins
-//                searchView.setSearchBarTitle(mLastQuery);
-//
-//                //you can also set setSearchText(...) to make keep the query there when not focused and when focus returns
-//                //mSearchView.setSearchText(searchSuggestion.getBody());
-//
-//                Log.d(TAG, "onFocusCleared()");
-//            }
-//        });
 
         searchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
             @Override
@@ -344,9 +338,7 @@ public class Home extends AppCompatActivity {
         });
 
     }
-
     private int getOrientation() {
         return getWindowManager().getDefaultDisplay().getOrientation();
     }
-
 }
