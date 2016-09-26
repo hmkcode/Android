@@ -53,7 +53,6 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private void appendSongs(String type, ArrayList<ItemModel> inList) {
 
         addItem(null, type);
-
         for (int i = 0; i < inList.size(); i++) {
             addItem(inList.get(i), "");
         }
@@ -67,9 +66,11 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         if (sectionModel.sectionTitle.equals(Constants.FLAG_RESET_ADAPTER_DATA)) {
             //reset previous data
+            L.m("Result Adapter[enque]","Data wiping out!");
             resetData();
         } else {
             //append
+            L.m("Result Adapter[enque] ","Section Title : "+sectionModel.sectionTitle);
             appendSongs(sectionModel.sectionTitle, sectionModel.getList());
         }
 
@@ -83,23 +84,24 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             songs.add(song);
             typeViewList.add(new ViewTypeModel(TYPE_SONG, " ", index));
         } else {
+            L.m("Result Adapter"," TypeViewList Addition ->"+section);
             typeViewList.add(new ViewTypeModel(TYPE_SECTION_TITLE, section, -1));
         }
 
-        logListValues(typeViewList);
+        //logListValues(typeViewList);
 
     }
 
     private void logListValues(ArrayList<ViewTypeModel> list){
         L.m("Result Adapter","Logging Values");
         for(int i= 0;i<list.size();i++){
-            L.m(""+i,list.get(i).sectionTitle);
+            L.m("Result Adapter","Title = "+list.get(i).sectionTitle);
         }
     }
 
     private void resetData() {
-        typeViewList.clear();
-        songs.clear();
+        typeViewList = new ArrayList<>();
+        songs = new ArrayList<>();
  //       notifyDataSetChanged();
     }
 
