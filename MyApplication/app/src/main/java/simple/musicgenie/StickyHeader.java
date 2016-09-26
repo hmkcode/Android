@@ -1,9 +1,18 @@
 package simple.musicgenie;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Adapter;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 
-public class StickyHeader extends FrameLayout{
+public class StickyHeader extends FrameLayout implements AbsListView.OnScrollListener{
+
     private static final String TAG = "StickyHeaderListView";
     protected boolean mChildViewsCreated = false;
     protected boolean mDoHeaderReset = false;
@@ -16,6 +25,7 @@ public class StickyHeader extends FrameLayout{
     protected ListView.OnScrollListener mListener = null;
     private int mSeparatorWidth;
     private View mSeparatorView;
+
     // This code is needed only if dataset changes do not force a call to OnScroll
     // protected DataSetObserver mListDataObserver = null;
     protected int mCurrentSectionPos = -1; // Position of section that has its header on the
@@ -110,7 +120,7 @@ public class StickyHeader extends FrameLayout{
      * @param context - application context.
      * @param attrs - layout attributes.
      */
-    public StickyHeaderListView(Context context, AttributeSet attrs) {
+    public StickyHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         // This code is needed only if dataset changes do not force a call to OnScroll

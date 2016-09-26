@@ -86,8 +86,16 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             typeViewList.add(new ViewTypeModel(TYPE_SECTION_TITLE, section, -1));
         }
 
+        logListValues(typeViewList);
+
     }
 
+    private void logListValues(ArrayList<ViewTypeModel> list){
+        L.m("Result Adapter","Logging Values");
+        for(int i= 0;i<list.size();i++){
+            L.m(""+i,list.get(i).sectionTitle);
+        }
+    }
 
     private void resetData() {
         typeViewList.clear();
