@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CardApproach</string>
+    <string name="title_activity_measure">MeasureAct</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

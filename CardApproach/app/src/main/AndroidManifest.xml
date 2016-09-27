@@ -27,6 +27,16 @@
             android:enabled="true"
             android:exported="true" >
         </provider>
+
+        <activity
+            android:name=".MeasureAct"
+            android:label="@string/title_activity_measure" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
