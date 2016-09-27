@@ -45,15 +45,19 @@ public class Resettlment extends AppCompatActivity {
         super.onSupportActionModeFinished(mode);
     }
 
-    @Nullable
     @Override
-    public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
-        return super.onWindowStartingSupportActionMode(callback);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mTitle = getTitle();
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    @Nullable
-    @Override
-    public ActionMode startSupportActionMode(ActionMode.Callback callback) {
-        return super.startSupportActionMode(callback);
-    }
 }
