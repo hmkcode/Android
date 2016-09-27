@@ -13,18 +13,18 @@ CDR Tests Report
         Else data will be summitted at once from data base and ActionCompleted Callback at last.
 
 1.3 Bugs:
-       1.3.1  >> while loading from database only the first type is passed and rest songs of other type is included
-        under first category
+       1.3.1  >> while loading from database only the first type is passed and rest songs of other
+                 type is included
+                 under first category
 
         [solution] : send data from database section by section (not at a time)
 
-
-        >> Data get wiped out after every load
+       1.3.2 >> Data get wiped out after every load
 
 
 1.4 Solved:
             1.3.1 [Solved]
-
+            1.3.2 [Solved]
 2 Restore test
 
 2.1 Results
