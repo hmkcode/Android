@@ -14,10 +14,26 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <VideoView
+    <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/videoView"
-        android:layout_below="@+id/searchView"
+        android:id="@+id/numberPicker"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <android.gesture.GestureOverlayView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gestureOverlayView2"
+        android:layout_below="@+id/searchView"
+        android:layout_centerHorizontal="true"></android.gesture.GestureOverlayView>
+
+    <StackView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stackView"
+        android:layout_below="@+id/numberPicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp" />
+
 </RelativeLayout>
