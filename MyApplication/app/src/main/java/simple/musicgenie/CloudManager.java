@@ -25,6 +25,7 @@ public class CloudManager {
     private static Context context;
     private static CloudManager mInstance;
     private DbHelper dbHelper;
+    private boolean doReset;
 
     public CloudManager(Context context) {
         this.context = context;
@@ -46,6 +47,7 @@ public class CloudManager {
 
         // clear out back stored data
         dbHelper.resetTrendingList();
+        doReset = true;
         requestSupportedPlaylist();
 
     }
@@ -127,7 +129,8 @@ public class CloudManager {
                 trendingResult = new SectionModel(sections, itemModelArrayList);
                 temp.add(trendingResult);
             }
-            dbHelper.addTrendingList(temp);
+            dbHelper.addTrendingList(temp,doReset);
+            doReset = false;
 
         } catch (JSONException e) {
             e.printStackTrace();

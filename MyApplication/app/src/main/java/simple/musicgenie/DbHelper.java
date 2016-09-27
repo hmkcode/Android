@@ -146,7 +146,7 @@ public class DbHelper extends SQLiteOpenHelper {
         L.m("DBH", "Wiped Out Trending Data");
     }
 
-    public void addTrendingList(ArrayList<SectionModel> list) {
+    public void addTrendingList(ArrayList<SectionModel> list , boolean doReset) {
 
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values;
@@ -170,13 +170,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
             // must-pass flag for data reset
 
-            passFlagToReset();
+            if(doReset)passFlagToReset();
             int min = (list.size()>12)?12:list.size();
-            for (int i = 0; i < min; i++) {
+           // for (int i = 0; i < min; i++) {
+               // L.m("RADP"," sending "+list.get(i).sectionTitle);
+                mTrendingLoadListener.onTrendingLoad(list.get(0));
 
-                mTrendingLoadListener.onTrendingLoad(list.get(i));
-
-            }
+            //}
         }
 
     }

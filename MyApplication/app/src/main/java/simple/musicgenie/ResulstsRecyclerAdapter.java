@@ -52,12 +52,14 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
      */
     private void appendSongs(String type, ArrayList<ItemModel> inList) {
 
+        L.m("RADP","adding type "+type);
         addItem(null, type);
         for (int i = 0; i < inList.size(); i++) {
+            L.m("RADP","adding song "+inList.get(i).Title);
             addItem(inList.get(i), "");
         }
 
-        notifyItemInserted(songs.size());
+        notifyItemInserted( songs.size() + typeViewList.size());
 
     }
 
