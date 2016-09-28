@@ -382,7 +382,7 @@
 
                         int min = (tempTrendingList.size()>12)?12:tempTrendingList.size();
                         for (int i = 0; i < min ; i++)
-                            mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(i));
+                            mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(0));
 
                     }
                 }

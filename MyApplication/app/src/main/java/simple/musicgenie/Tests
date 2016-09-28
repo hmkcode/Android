@@ -21,6 +21,10 @@ CDR Tests Report
 
        1.3.2 >> Data get wiped out after every load
 
+       1.3.3 >> Repetition of songs set under single type
+
+       [solution] : while getting/reading songs from DB we are repeteadly adding songs . fix it .....
+
 
 1.4 Solved:
             1.3.1 [Solved]
