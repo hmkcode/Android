@@ -1,0 +1,78 @@
+[Bug] - > same song is added to all the groups
+
+09-28 08:48:50.010    1288-1288/? D/DBH﹕ type - >weekly size - 64
+09-28 08:48:50.010    1288-1288/? D/DBH﹕ type - >edm size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >christian size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >reggae size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >mexican size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >hardrock size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >soul size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >pop size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >trap size - 64
+09-28 08:48:50.014    1288-1288/? D/DBH﹕ type - >altrock size - 64
+
+09-28 09:18:35.762  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.782  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.790  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.798  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.806  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.818  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.826  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.834  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.846  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.854  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.870  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.878  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.886  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.898  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.906  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.914  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.926  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.938  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.946  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.958  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.970  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.978  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:35.990  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.002  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.010  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.030  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.038  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.050  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.058  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.070  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.082  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.094  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.106  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.118  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.130  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.166  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.182  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.190  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.210  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.222  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.234  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.242  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.254  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.262  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.278  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.294  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.310  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.330  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.346  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.362  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.382  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.398  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.410  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.422  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.430  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.442  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.454  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.458  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.474  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.486  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.498  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.514  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.530  13130-13130/? D/DBH﹕ size : 8 in latest
+09-28 09:18:36.542  13130-13130/? D/DBH﹕ size : 8 in latest
+

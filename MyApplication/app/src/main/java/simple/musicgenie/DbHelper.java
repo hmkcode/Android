@@ -154,11 +154,14 @@
                     for (int i = 0; i < list.size(); i++) {
 
                         ArrayList<ItemModel> itemModels = list.get(i).getList();
-
+                        String type = list.get(i).sectionTitle;
+                      //  L.m("DBH"," size : "+itemModels.size()+" in "+type);
                         for (int j = 0; j < itemModels.size(); j++) {
+                            ItemModel itemModel = itemModels.get(j);
 
-                            values = getCVObject(itemModels.get(j));
-                            values.put(COL_TYPE, list.get(i).sectionTitle);
+                            values = getCVObject(itemModel);
+
+                            values.put(COL_TYPE, type);
                             long id = database.insert(TABLE_TRENDING, null, values);
 
                         }
@@ -224,9 +227,7 @@
                     boolean hasNext = cr.getCount() > 0;
                     while (hasNext) {
                         // get type of song from cursor
-
                         ItemModel itemModelObj;
-
                         String type = cr.getString(cr.getColumnIndex(COL_TYPE));
                         itemModelObj = new ItemModel(cr.getString(cr.getColumnIndex(COL_TITLE)),
                                 cr.getString(cr.getColumnIndex(COL_TRACK_DURATION)),
@@ -238,17 +239,17 @@
                                 cr.getString(cr.getColumnIndex(COL_TYPE)));
 
                         ArrayList<ItemModel> mapList = trendingMap.get(type);
-
+                        L.m("DBH","mapList type - "+type);
                         if (mapList == null) {       // accessing list from map for first time
                             mapList = new ArrayList<>();
                             trendingMap.put(type, mapList);
+                            L.m("DBH", "[1st ent]mapList type - " + type);
                             mapList.add(itemModelObj);
                         } else {
+                            L.m("DBH","mapList type - "+type);
                             mapList.add(itemModelObj);
                         }
-
                         hasNext = cr.moveToNext();
-
                     }
 
                     // get each item from map and get list and add
@@ -256,7 +257,8 @@
                     Iterator iterator = trendingMap.entrySet().iterator();
                     while (iterator.hasNext()) {
                         Map.Entry pair = (Map.Entry) iterator.next();
-                        L.m("DBHelper", " Iterator " + pair.getKey().toString());
+                        //L.m("DBHelper", " Iterator " + pair.getKey().toString());
+                        L.m("DBH","type - >"+pair.getKey().toString()+" size - "+trendingMap.get(pair.getKey()).size());
                         trendingFromDbList.add(new SectionModel(pair.getKey().toString(), trendingMap.get(pair.getKey())));
                     }
 
