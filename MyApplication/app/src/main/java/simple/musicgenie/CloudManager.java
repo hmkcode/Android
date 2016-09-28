@@ -89,6 +89,7 @@ public class CloudManager {
      */
     private void handleTrending(String response) {
 
+        L.m("CMG","resp - "+response);
         SectionModel trendingResult = null;
         ItemModel item;
 
@@ -105,9 +106,9 @@ public class CloudManager {
             JSONObject resultsSubObject = resObj.getJSONObject("results");
 
 
-            ArrayList<SectionModel> temp = new ArrayList<>();   // adding all section items at a time
+            //ArrayList<SectionModel> sectionModelsToDB = new ArrayList<>();   // adding all section items at a time
 
-            for (int i = 0; i < count; i++) {       // i represent current section Model item
+         ///   for (int i = 0; i < count; i++) {       // i represent current section Model item
 
                 JSONArray typeArray = resultsSubObject.getJSONArray(sections);
 
@@ -124,12 +125,15 @@ public class CloudManager {
                             TIME_SINCE_UPLOADED_LEFT_VACCANT,
                             songObj.getString("views"),
                             sections);
+                    L.m("CMG","adding "+songObj.getString("title")+" of type "+item.type+" to local");
                     itemModelArrayList.add(item);
                 }
+            L.m("CMG"," creating model with list size "+itemModelArrayList.size());
                 trendingResult = new SectionModel(sections, itemModelArrayList);
-                temp.add(trendingResult);
-            }
-            dbHelper.addTrendingList(temp,doReset);
+            L.m("CMG","adding local list for db addition");
+//                sectionModelsToDB.add(trendingResult);
+            //}
+            dbHelper.addTrendingList(trendingResult,doReset);
             doReset = false;
 
         } catch (JSONException e) {

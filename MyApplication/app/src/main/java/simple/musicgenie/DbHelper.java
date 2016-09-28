@@ -146,40 +146,25 @@
                     L.m("DBH", "Wiped Out Trending Data");
                 }
 
-                public void addTrendingList(ArrayList<SectionModel> list , boolean doReset) {
+                public void addTrendingList(SectionModel list , boolean doReset) {
 
                     SQLiteDatabase database = getWritableDatabase();
                     ContentValues values;
 
-                    for (int i = 0; i < list.size(); i++) {
-
-                        ArrayList<ItemModel> itemModels = list.get(i).getList();
-                        String type = list.get(i).sectionTitle;
-                      //  L.m("DBH"," size : "+itemModels.size()+" in "+type);
+                        ArrayList<ItemModel> itemModels = list.getList();
+                        String type = list.sectionTitle;
+                        L.m("DBH"," size : "+itemModels.size()+" in "+type);
                         for (int j = 0; j < itemModels.size(); j++) {
                             ItemModel itemModel = itemModels.get(j);
-
                             values = getCVObject(itemModel);
-
                             values.put(COL_TYPE, type);
                             long id = database.insert(TABLE_TRENDING, null, values);
-
                         }
-                    }
-
-                    Log.d("DBH", "added " + list.get(0).sectionTitle);
-
+                    Log.d("DBH", "added " + list.sectionTitle);
                     if (mTrendingLoadListener != null) {
-
                         // must-pass flag for data reset
-
                         if(doReset)passFlagToReset();
-                        int min = (list.size()>12)?12:list.size();
-                       // for (int i = 0; i < min; i++) {
-                           // L.m("RADP"," sending "+list.get(i).sectionTitle);
-                            mTrendingLoadListener.onTrendingLoad(list.get(0));
-
-                        //}
+                            mTrendingLoadListener.onTrendingLoad(list);
                     }
 
                 }
