@@ -89,7 +89,7 @@ public class CloudManager {
      */
     private void handleTrending(String response) {
 
-        L.m("CMG","resp - "+response);
+      //  L.m("CMG","resp - "+response);
         SectionModel trendingResult = null;
         ItemModel item;
 
@@ -125,12 +125,12 @@ public class CloudManager {
                             TIME_SINCE_UPLOADED_LEFT_VACCANT,
                             songObj.getString("views"),
                             sections);
-                    L.m("CMG","adding "+songObj.getString("title")+" of type "+item.type+" to local");
+    //                L.m("CMG","adding "+songObj.getString("title")+" of type "+item.type+" to local");
                     itemModelArrayList.add(item);
                 }
-            L.m("CMG"," creating model with list size "+itemModelArrayList.size());
+  //          L.m("CMG"," creating model with list size "+itemModelArrayList.size());
                 trendingResult = new SectionModel(sections, itemModelArrayList);
-            L.m("CMG","adding local list for db addition");
+//            L.m("CMG","adding local list for db addition");
 //                sectionModelsToDB.add(trendingResult);
             //}
             dbHelper.addTrendingList(trendingResult,doReset);
@@ -140,7 +140,7 @@ public class CloudManager {
             e.printStackTrace();
         }
 
-        L.m("CM(test)", " Trending Type " + trendingResult.sectionTitle);
+//        L.m("CM(test)", " Trending Type " + trendingResult.sectionTitle);
 
     }
 
@@ -216,7 +216,7 @@ public class CloudManager {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
 
-                L.m("CM", "error " + volleyError);
+      //          L.m("CM", "error " + volleyError);
 
             }
         });

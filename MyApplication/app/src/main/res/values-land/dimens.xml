@@ -29,7 +29,7 @@
     <dimen name="time_stamp_padding_bottom">2dp</dimen>
     <dimen name="time_stamp_margin_right">4dp</dimen>
     <dimen name="time_stamp_margin_left">4dp</dimen>
-    <dimen name="time_stamp_margin_bottom">0dp</dimen>
+    <dimen name="time_stamp_margin_bottom">30dp</dimen>
 
     <dimen name="song_card_meta_data_holder_padding">6dp</dimen>
 

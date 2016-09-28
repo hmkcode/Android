@@ -16,7 +16,7 @@
     <dimen name="stream_button_text_height">40dp</dimen>
     <dimen name="stream_button_text_width">40dp</dimen>
     <dimen name="stream_button_text_size">12sp</dimen>
-    <dimen name="stream_button_text_margin_right">0dp</dimen>
+    <dimen name="stream_button_text_margin_right">30dp</dimen>
 
 
     <dimen name="donwload_button_margin_left">26dp</dimen>

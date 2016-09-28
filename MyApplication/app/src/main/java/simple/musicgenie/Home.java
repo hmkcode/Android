@@ -34,7 +34,7 @@ public class Home extends AppCompatActivity {
     private FloatingSearchView searchView;
     private SwipeRefreshLayout swipeRefressLayout;
     private Handler mHandler;
-
+    private SharedPrefrenceUtils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +45,20 @@ public class Home extends AppCompatActivity {
         instantiateViews();
         redgisterAdapter();
 
-        if (savedInstanceState != null) {
-            L.m("Home", " invoking action first load");
-            if(!savedInstanceState.getBoolean(Constants.KEY_BUNDLE_FIRST_LOAD_DONE))
+        utils = SharedPrefrenceUtils.getInstance(this);
+
+        if(!utils.getFirstPageLoadedStatus()){
                 invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
+                utils.setFirstPageLoadedStatus(true);
+            // on stop of every activity set Preference value to false
         }
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        utils.setFirstPageLoadedStatus(false);
     }
 
     @Override

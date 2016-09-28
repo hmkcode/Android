@@ -13,6 +13,7 @@ public class SharedPrefrenceUtils {
     private SharedPreferences.Editor editor;
     private static int MODE = 0;
     private static final String PREF_NAME = "musicgenie_tasks";
+    private boolean firstPageLoadedStatus;
 
 
     public SharedPrefrenceUtils(Context context) {
@@ -147,6 +148,15 @@ public class SharedPrefrenceUtils {
 
     public void setLastSearchTerm(String term) {
         editor.putString(Constants.KEY_SEARCH_TERM, term);
+        editor.commit();
+    }
+
+    public boolean getFirstPageLoadedStatus() {
+        return preferences.getBoolean(Constants.KEY_FIRST_PAGE_LOADED,false);
+    }
+
+    public void setFirstPageLoadedStatus(boolean firstPageLoadedStatus) {
+        editor.putBoolean(Constants.KEY_FIRST_PAGE_LOADED,firstPageLoadedStatus);
         editor.commit();
     }
 }

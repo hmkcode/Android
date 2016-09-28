@@ -33,7 +33,7 @@
                     android:layout_width="@dimen/stream_button_text_height"
                     android:layout_height="@dimen/stream_button_text_width"
                     android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/stream_button_text_margin_right"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/stream_btn_on_card"
                     android:gravity="center"
                     android:text=""

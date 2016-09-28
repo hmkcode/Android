@@ -28,14 +28,6 @@ public class DowloadsActivity extends AppCompatActivity {
         tabLayout = (DownloadTab) findViewById(R.id.tab_layout);
         tabLayout.setUpTab(tabLayout);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        //color filter to tab 0
-//        int leftTabIconColor = ContextCompat.getColor(DowloadsActivity.this, R.color.White);
-//        tabLayout.getTabAt(0).getIcon().setColorFilter(leftTabIconColor, PorterDuff.Mode.SRC_IN);
-//        // color filter to tab1
-//        int rightTabIconColor = ContextCompat.getColor(DowloadsActivity.this, R.color.TabUnselectionColor);
-//        tabLayout.getTabAt(1).getText().set
-//        tabLayout.getTabAt(1).getIcon().setColorFilter(rightTabIconColor, PorterDuff.Mode.SRC_IN);
-
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"));
         tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
