@@ -365,12 +365,13 @@
                     if (mTrendingLoadListener != null) {
                         ArrayList<SectionModel> tempTrendingList = getTrendingList();
 
+                        for(int i=0;i<tempTrendingList.size();i++){
+                            L.m("DBHT"," section "+tempTrendingList.get(i).sectionTitle);
+                            L.m("DBHT"," size "+tempTrendingList.get(i).getList().size()+" first ele"+tempTrendingList.get(i).getList().get(0).Title);
+                        }
+
                         passFlagToReset();
-
-                        int min = (tempTrendingList.size()>12)?12:tempTrendingList.size();
-                        for (int i = 0; i < min ; i++)
-                            mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(0));
-
+//                        mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(0));
                     }
                 }
 

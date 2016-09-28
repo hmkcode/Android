@@ -46,6 +46,7 @@ public class Home extends AppCompatActivity {
         redgisterAdapter();
 
         if (savedInstanceState == null) {
+            L.m("Home"," invoking action first load");
             invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
         }
 
@@ -310,6 +311,7 @@ public class Home extends AppCompatActivity {
     private void fireSearch(String query) {
 
         SharedPrefrenceUtils.getInstance(this).setLastSearchTerm(query);
+        L.m("Home"," invoking action search");
         invokeAction(Constants.ACTION_TYPE_SEARCH);
 
     }
