@@ -83,6 +83,8 @@ public class CentralDataRepository {
 
     public void submitAction(int type, ActionCompletedListener callback) throws InvalidCallbackException {
 
+        L.m("CDR","Action Invoke Type:"+type);
+
         if (callback != null)
             setListener(callback);
         else throw new InvalidCallbackException("Callback in Invalid");
@@ -177,7 +179,7 @@ public class CentralDataRepository {
      */
     private void submitLastLoaded() {
 
-        L.m("CDR ", " last loaded was " + mLastLoadedType);
+       // L.m("CDR ", " last loaded was " + mLastLoadedType);
 
         if (mLastLoadedType == TYPE_TRENDING) {
 

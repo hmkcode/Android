@@ -52,15 +52,13 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
      */
     private void appendSongs(String type, ArrayList<ItemModel> inList) {
 
-        L.m("RADP","adding type "+type);
+     //   L.m("RADP","adding type "+type);
         addItem(null, type);
         for (int i = 0; i < inList.size(); i++) {
-            L.m("RADP","adding song "+inList.get(i).Title);
+       //     L.m("RADP","adding song "+inList.get(i).Title);
             addItem(inList.get(i), "");
         }
-
-        notifyItemInserted( songs.size() + typeViewList.size());
-
+        notifyDataSetChanged();
     }
 
 
@@ -68,11 +66,11 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         if (sectionModel.sectionTitle.equals(Constants.FLAG_RESET_ADAPTER_DATA)) {
             //reset previous data
-            L.m("Result Adapter[enque]","Data wiping out!");
+         //   L.m("Result Adapter[enque]","Data wiping out!");
             resetData();
         } else {
             //append
-            L.m("Result Adapter[enque] ","Section Title : "+sectionModel.sectionTitle);
+           // L.m("Result Adapter[enque] ","Section Title : "+sectionModel.sectionTitle);
             appendSongs(sectionModel.sectionTitle, sectionModel.getList());
         }
 
@@ -86,7 +84,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             songs.add(song);
             typeViewList.add(new ViewTypeModel(TYPE_SONG, " ", index));
         } else {
-            L.m("Result Adapter"," TypeViewList Addition ->"+section);
+            //L.m("Result Adapter"," TypeViewList Addition ->"+section);
             typeViewList.add(new ViewTypeModel(TYPE_SECTION_TITLE, section, -1));
         }
 
@@ -95,9 +93,9 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     private void logListValues(ArrayList<ViewTypeModel> list){
-        L.m("Result Adapter","Logging Values");
+        //L.m("Result Adapter","Logging Values");
         for(int i= 0;i<list.size();i++){
-            L.m("Result Adapter","Title = "+list.get(i).sectionTitle);
+          //  L.m("Result Adapter","Title = "+list.get(i).sectionTitle);
         }
     }
 
@@ -126,12 +124,12 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (viewType == TYPE_SECTION_TITLE) {
             int hvti = getHeaderViewToInflate();
             view = LayoutInflater.from(context).inflate(hvti, parent, false);
-            L.m("Result Adapter"," sectionTitle");
+  //          L.m("Result Adapter"," sectionTitle");
             return new SectionTitleViewHolder(view);
         } else {
             int vti = getViewToInflate();   // getView depending on screen screen sizes
             view = LayoutInflater.from(context).inflate(vti, parent, false);
-            log("returning song item");
+//            log("returning song item");
             return new SongViewHolder(view);
         }
     }

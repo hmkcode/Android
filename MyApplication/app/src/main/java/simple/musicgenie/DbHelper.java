@@ -143,7 +143,7 @@
                     String deleteClause = "";
                     String[] selectionArgs = {};
                     db.delete(TABLE_TRENDING, deleteClause, selectionArgs);
-                    L.m("DBH", "Wiped Out Trending Data");
+                 //   L.m("DBH", "Wiped Out Trending Data");
                 }
 
                 public void addTrendingList(SectionModel list , boolean doReset) {
@@ -153,14 +153,14 @@
 
                         ArrayList<ItemModel> itemModels = list.getList();
                         String type = list.sectionTitle;
-                        L.m("DBH"," size : "+itemModels.size()+" in "+type);
+                   //     L.m("DBH"," size : "+itemModels.size()+" in "+type);
                         for (int j = 0; j < itemModels.size(); j++) {
                             ItemModel itemModel = itemModels.get(j);
                             values = getCVObject(itemModel);
                             values.put(COL_TYPE, type);
                             long id = database.insert(TABLE_TRENDING, null, values);
                         }
-                    Log.d("DBH", "added " + list.sectionTitle);
+                    //Log.d("DBH", "added " + list.sectionTitle);
                     if (mTrendingLoadListener != null) {
                         // must-pass flag for data reset
                         if(doReset)passFlagToReset();
@@ -198,15 +198,7 @@
                     Cursor cr = getReadableDatabase().query(TABLE_TRENDING, cols, "", selectionArgs, null, null, null);
 
                     cr.moveToFirst();
-
-                    //temp.put(COL_TITLE, data.Title);
-            //        temp.put(COL_TIME_SINCE_UPLOADED, data.TimeSinceUploaded);
-            //        temp.put(COL_THUMB_URL, data.Thumbnail_url);
-            //        temp.put(COL_TYPE, data.type);
-            //        temp.put(COL_TRACK_DURATION, data.TrackDuration);
-            //        temp.put(COL_UPLOADED_BY, data.UploadedBy);
-            //        temp.put(COL_VIDEO_ID, data.Video_id);
-            //        temp.put(COL_USER_VIEWS, data.UserViews);
+                  //  L.m("DBHT"," cursor size "+cr.getCount());
 
                     HashMap<String, ArrayList<ItemModel>> trendingMap = new HashMap<>();
                     boolean hasNext = cr.getCount() > 0;
@@ -224,14 +216,14 @@
                                 cr.getString(cr.getColumnIndex(COL_TYPE)));
 
                         ArrayList<ItemModel> mapList = trendingMap.get(type);
-                        L.m("DBH","mapList type - "+type);
+                        //L.m("DBH","mapList type - "+type);
                         if (mapList == null) {       // accessing list from map for first time
                             mapList = new ArrayList<>();
                             trendingMap.put(type, mapList);
-                            L.m("DBH", "[1st ent]mapList type - " + type);
+                      //      L.m("DBH", "[1st ent]mapList type - " + type);
                             mapList.add(itemModelObj);
                         } else {
-                            L.m("DBH","mapList type - "+type);
+                    //        L.m("DBH","mapList type - "+type);
                             mapList.add(itemModelObj);
                         }
                         hasNext = cr.moveToNext();
@@ -243,11 +235,11 @@
                     while (iterator.hasNext()) {
                         Map.Entry pair = (Map.Entry) iterator.next();
                         //L.m("DBHelper", " Iterator " + pair.getKey().toString());
-                        L.m("DBH","type - >"+pair.getKey().toString()+" size - "+trendingMap.get(pair.getKey()).size());
+                      //  L.m("DBH","type - >"+pair.getKey().toString()+" size - "+trendingMap.get(pair.getKey()).size());
                         trendingFromDbList.add(new SectionModel(pair.getKey().toString(), trendingMap.get(pair.getKey())));
                     }
 
-                    L.m("DBHelper", " collected total " + trendingFromDbList.size());
+                    //L.m("DBHelper", " collected total " + trendingFromDbList.size());
                     return trendingFromDbList;
                 }
 
@@ -364,14 +356,11 @@
 
                     if (mTrendingLoadListener != null) {
                         ArrayList<SectionModel> tempTrendingList = getTrendingList();
-
+                        passFlagToReset();
                         for(int i=0;i<tempTrendingList.size();i++){
-                            L.m("DBHT"," section "+tempTrendingList.get(i).sectionTitle);
-                            L.m("DBHT"," size "+tempTrendingList.get(i).getList().size()+" first ele"+tempTrendingList.get(i).getList().get(0).Title);
+                            mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(i));
                         }
 
-                        passFlagToReset();
-//                        mTrendingLoadListener.onTrendingLoad(tempTrendingList.get(0));
                     }
                 }
 
@@ -384,7 +373,6 @@
                         mResultLoadListener.onResultLoadListener(getResultList());
                     }
                 }
-
 
                 interface TrendingLoadListener {
                     void onTrendingLoad(SectionModel trendingItem);

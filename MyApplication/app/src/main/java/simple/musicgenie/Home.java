@@ -45,11 +45,24 @@ public class Home extends AppCompatActivity {
         instantiateViews();
         redgisterAdapter();
 
-        if (savedInstanceState == null) {
-            L.m("Home"," invoking action first load");
-            invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
+        if (savedInstanceState != null) {
+            L.m("Home", " invoking action first load");
+            if(!savedInstanceState.getBoolean(Constants.KEY_BUNDLE_FIRST_LOAD_DONE))
+                invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(Constants.KEY_BUNDLE_FIRST_LOAD_DONE,true);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        invokeAction(Constants.ACTION_TYPE_RESUME);
     }
 
     private void redgisterAdapter() {
@@ -60,7 +73,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onDataSubmit(SectionModel item) {
 
-                    mRecyclerAdapter.enque(item);
+                mRecyclerAdapter.enque(item);
 
             }
         });
@@ -153,16 +166,6 @@ public class Home extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-    }
 
     private void subscribeToTaskAddListener() {
         ResulstsRecyclerAdapter.getInstance(this).setOnTaskAddListener(new TaskAddListener() {

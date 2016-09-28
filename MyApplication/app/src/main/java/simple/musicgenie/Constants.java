@@ -29,4 +29,5 @@ public class Constants {
     public static final int ACTION_TYPE_SEARCH = 3;
     public static final String KEY_SEARCH_TERM = "searchTerm";
     public static final String FLAG_RESET_ADAPTER_DATA = "reset_data_0x879SADF8dsfkdfjd";
+    public static final String KEY_BUNDLE_FIRST_LOAD_DONE = "key_first_load_done";
 }
