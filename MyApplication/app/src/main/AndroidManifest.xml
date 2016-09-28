@@ -19,6 +19,7 @@
             android:label="@string/title_activity_error_splash" >
         </activity>
         <activity
+            android:configChanges="orientation"
             android:name=".Home"
             android:label="@string/title_activity_home" >
             <intent-filter>
@@ -42,6 +43,7 @@
         </activity>
 
         <activity
+            android:configChanges="orientation"
             android:parentActivityName=".Home"
             android:name=".UserPreferenceSetting"
             android:label="@string/activity_preferences" >

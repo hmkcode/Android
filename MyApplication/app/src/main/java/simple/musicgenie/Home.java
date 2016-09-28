@@ -51,19 +51,21 @@ public class Home extends AppCompatActivity {
                 invokeAction(Constants.ACTION_TYPE_FIRST_LOAD);
                 utils.setFirstPageLoadedStatus(true);
             // on stop of every activity set Preference value to false
+        }else{
+            invokeAction(Constants.ACTION_TYPE_RESUME);
         }
 
     }
 
     @Override
     protected void onStop() {
+        L.m("Home", "onStop()");
         super.onStop();
-        utils.setFirstPageLoadedStatus(false);
+        //utils.setFirstPageLoadedStatus(false);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(Constants.KEY_BUNDLE_FIRST_LOAD_DONE,true);
         super.onSaveInstanceState(outState);
     }
 

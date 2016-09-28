@@ -12,9 +12,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-/**
- * Created by Ankit on 9/25/2016.
- */
 public class UserPreferenceSetting extends AppCompatActivity{
     TextView trendingTxtView;
     TextView thumbnailTxtView;
@@ -118,18 +115,15 @@ public class UserPreferenceSetting extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_dn) {
-//            Intent i= new Intent(UserPreferenceSetting.this,DowloadsActivity.class);
-//            startActivity(i);
-//            finish();
-//        }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPrefrenceUtils.getInstance(this).setFirstPageLoadedStatus(false);
     }
 }

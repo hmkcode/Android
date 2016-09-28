@@ -51,7 +51,7 @@
 
     <dimen name="song_card_uploader_text_size">16sp</dimen>
 
-    <dimen name="song_card_views_wrapper_margin_top">-6dp</dimen>
+    <dimen name="song_card_views_wrapper_margin_top">4dp</dimen>
     <dimen name="song_card_views_wrapper_margin_bottom">4dp</dimen>
 
 

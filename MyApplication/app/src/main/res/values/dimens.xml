@@ -40,7 +40,7 @@
     <dimen name="song_card_tittle_text_size">16sp</dimen>
 
 
-    <dimen name="song_card_uploader_icon_wrapper_margin_top">0dp</dimen>
+    <dimen name="song_card_uploader_icon_wrapper_margin_top">4dp</dimen>
     <dimen name="song_card_uploader_icon_wrapper_margin_bottom">0dp</dimen>
 
     <dimen name="song_card_uploader_icon_width">16sp</dimen>
@@ -49,7 +49,7 @@
 
     <dimen name="song_card_uploader_text_size">14sp</dimen>
 
-    <dimen name="song_card_views_wrapper_margin_top">-4dp</dimen>
+    <dimen name="song_card_views_wrapper_margin_top">4dp</dimen>
     <dimen name="song_card_views_wrapper_margin_bottom">4dp</dimen>
 
 

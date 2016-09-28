@@ -34,8 +34,6 @@ public class DowloadsActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-//                int tabIconColor = ContextCompat.getColor(DowloadsActivity.this, R.color.White);
-//                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
 
             }
 
@@ -67,6 +65,12 @@ public class DowloadsActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //unRegisterBroadcast();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPrefrenceUtils.getInstance(this).setFirstPageLoadedStatus(false);
     }
 
     @Override

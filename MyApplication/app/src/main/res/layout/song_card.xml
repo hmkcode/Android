@@ -137,6 +137,8 @@
                             android:layout_toRightOf="@+id/uploader_icon"
                             android:gravity="center_vertical"
                             android:text="Adele"
+                            android:lines="1"
+                            android:maxLines="1"
                             android:textColor="@color/PrimaryColor"
                             android:textSize="@dimen/song_card_uploader_text_size" />
 
@@ -166,6 +168,8 @@
                             android:layout_toRightOf="@+id/views_icon"
                             android:gravity="center_vertical"
                             android:text="100,000 views"
+                            android:lines="1"
+                            android:maxLines="1"
                             android:textColor="@color/PrimaryColor"
                             android:textSize="@dimen/song_card_views_text_size" />
 
