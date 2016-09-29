@@ -30,20 +30,6 @@ public static final int FLAG_FULLSCREEN = 0x2;
      */
     protected OnVisibilityChangeListener mOnVisibilityChangeListener = sDummyListener;
 
-    /**
-     * Creates and returns an instance of {@link SystemUiHider} that is
-     * appropriate for this device. The object will be either a
-     * {@link SystemUiHiderBase} or {@link SystemUiHiderHoneycomb} depending on
-     * the device.
-     *
-     * @param activity   The activity whose window's system UI should be
-     *                   controlled by this class.
-     * @param anchorView The view on which
-     *                   {@link View#setSystemUiVisibility(int)} will be called.
-     * @param flags      Either 0 or any combination of {@link #FLAG_FULLSCREEN},
-     *                   {@link #FLAG_HIDE_NAVIGATION}, and
-     *                   {@link #FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES}.
-     */
     public static SystemUiHider getInstance(Activity activity, View anchorView, int flags) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             return new SystemUiHiderHoneycomb(activity, anchorView, flags);

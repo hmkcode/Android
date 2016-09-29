@@ -2,6 +2,7 @@ package simple.tierscrollview.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,6 +24,11 @@ public class SystemUiHiderHoneycomb extends SystemUiHiderBase {
         mShowFlags = View.SYSTEM_UI_FLAG_VISIBLE;
         mHideFlags = View.SYSTEM_UI_FLAG_LOW_PROFILE;
         mTestFlags = View.SYSTEM_UI_FLAG_LOW_PROFILE;
+        Intent intent = new Intent(context, FeedSyncService.class);
+        intent.setAction(ACTION_BAZ);
+        intent.putExtra(EXTRA_PARAM1, param1);
+        intent.putExtra(EXTRA_PARAM2, param2);
+        context.startService(intent);
 
         if ((mFlags & FLAG_FULLSCREEN) != 0) {
             // If the client requested fullscreen, add flags relevant to hiding
