@@ -1,5 +1,6 @@
 package simple.musicgenie;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,9 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arlib.floatingsearchview.util.Util;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private int viewToInflate;
     private TaskAddListener taskAddListener;
     private OnStreamingSourceAvailableListener streamingSourceAvailableListener;
+    private int mLastAnimatedItemPosition =-1;
 
     public ResulstsRecyclerAdapter(Context context) {
         this.context = context;
@@ -190,6 +194,20 @@ public class ResulstsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             ((SectionTitleViewHolder) holder).sectionTitle.setTypeface(ralewayTfRegular);
         }
 
+        if(mLastAnimatedItemPosition < position){
+            animateItem(holder.itemView);
+            mLastAnimatedItemPosition = position;
+        }
+
+    }
+
+    private void animateItem(View view) {
+        view.setTranslationY(Util.getScreenHeight((Activity) view.getContext()));
+        view.animate()
+                .translationY(0)
+                .setInterpolator(new DecelerateInterpolator(3.f))
+                .setDuration(700)
+                .start();
     }
 
     @Override

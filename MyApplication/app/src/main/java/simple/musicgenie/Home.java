@@ -257,6 +257,7 @@ public class Home extends AppCompatActivity {
         mRecyclerAdapter = ResulstsRecyclerAdapter.getInstance(this);
         mRecyclerView.setLayoutManager(layoutManager);
         progressBar = (ProgressBar) findViewById(R.id.homeProgressBar);
+        progressBarMsgPanel = (TextView) findViewById(R.id.ProgressMsgPanel);
         swipeRefressLayout.setColorSchemeColors(getResources().getColor(R.color.PrimaryColor), Color.WHITE);
         swipeRefressLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

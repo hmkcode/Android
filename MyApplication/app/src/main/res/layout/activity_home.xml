@@ -8,8 +8,8 @@
 
     <com.arlib.floatingsearchview.FloatingSearchView
         android:paddingTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -42,7 +42,7 @@
 
     <TextView
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:textSize="@dimen/progress_bar_message_panel_text_size"
         android:layout_centerHorizontal="true"
         android:text="Refressing Your Content"
         android:layout_below="@+id/homeProgressBar"

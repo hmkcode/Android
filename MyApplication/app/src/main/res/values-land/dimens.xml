@@ -71,7 +71,7 @@
     <dimen name="section_title_underline_margin_top">6dp</dimen>
     <dimen name="section_title_underline_width">30dp</dimen>
     <dimen name="section_title_underline_height">1.5dp</dimen>
-
+    <dimen name="progress_bar_message_panel_text_size">16sp</dimen>
 
 
 </resources>

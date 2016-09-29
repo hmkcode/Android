@@ -8,8 +8,8 @@
     android:layout_marginLeft="@dimen/song_card_margin_left"
     android:layout_marginRight="@dimen/song_card_margin_right"
     android:background="@color/PrimaryColor"
-    android:elevation="1dp"
-    cardView:cardCornerRadius="2dp">
+    android:elevation="0dp"
+    cardView:cardCornerRadius="1dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:src="@drawable/hqdefault"
                 android:id="@+id/Videothumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/song_thumb_height" />
