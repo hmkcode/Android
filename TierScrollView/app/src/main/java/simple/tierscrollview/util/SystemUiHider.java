@@ -38,48 +38,6 @@ public static final int FLAG_FULLSCREEN = 0x2;
         }
     }
 
-    protected SystemUiHider(Activity activity, View anchorView, int flags) {
-        mActivity = activity;
-        mAnchorView = anchorView;
-        mFlags = flags;
-    }
-
-    /**
-     * Sets up the system UI hider. Should be called from
-     * {@link Activity#onCreate}.
-     */
-    public abstract void setup();
-
-    /**
-     * Returns whether or not the system UI is visible.
-     */
-    public abstract boolean isVisible();
-
-    /**
-     * Hide the system UI.
-     */
-    public abstract void hide();
-
-    /**
-     * Show the system UI.
-     */
-    public abstract void show();
-
-    /**
-     * Toggle the visibility of the system UI.
-     */
-    public void toggle() {
-        if (isVisible()) {
-            hide();
-        } else {
-            show();
-        }
-    }
-
-    /**
-     * Registers a callback, to be triggered when the system UI visibility
-     * changes.
-     */
     public void setOnVisibilityChangeListener(OnVisibilityChangeListener listener) {
         if (listener == null) {
             listener = sDummyListener;
