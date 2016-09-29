@@ -99,6 +99,10 @@ public class SearchSuggestionHelper {
 
     }
 
+    public void cancelFuthurRequestUntilQueryChange(){
+        VolleyUtils.getInstance().cancelPendingRequests(TAG);
+    }
+
     private void log(String s) {
         Log.d(TAG, "log " + s);
     }

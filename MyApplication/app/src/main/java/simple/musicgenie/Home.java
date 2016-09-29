@@ -294,6 +294,10 @@ public class Home extends AppCompatActivity {
         searchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
             @Override
             public void onSuggestionClicked(com.arlib.floatingsearchview.suggestions.model.SearchSuggestion searchSuggestion) {
+                //stop futhur suggestion requests
+
+                SearchSuggestionHelper.getInstance(Home.this).cancelFuthurRequestUntilQueryChange();
+
                 fireSearch(searchSuggestion.getBody());
             }
 
