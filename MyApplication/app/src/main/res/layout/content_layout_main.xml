@@ -17,6 +17,7 @@
         android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/trendingRecylerView"
@@ -28,7 +29,26 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <ProgressBar
+        android:indeterminateBehavior="cycle"
+        android:indeterminate="true"
+        android:visibility="visible"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/homeProgressBar" />
 
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:text="Refressing Your Content"
+        android:layout_below="@+id/homeProgressBar"
+        android:id="@+id/ProgressMsgPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

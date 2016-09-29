@@ -14,6 +14,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
@@ -35,6 +38,9 @@ public class Home extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefressLayout;
     private Handler mHandler;
     private SharedPrefrenceUtils utils;
+    private ProgressBar progressBar;
+    private TextView progressBarMsgPanel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +88,9 @@ public class Home extends AppCompatActivity {
         repository.registerForDataLoadListener(new CentralDataRepository.DataReadyToSubmitListener() {
             @Override
             public void onDataSubmit(SectionModel item) {
+                mRecyclerView.setVisibility(RecyclerView.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                progressBarMsgPanel.setVisibility(View.GONE);
 
                 mRecyclerAdapter.enque(item);
 
@@ -95,10 +104,20 @@ public class Home extends AppCompatActivity {
      */
     public void invokeAction(int actionType) {
 
+        // regardless of any action Type
+        // make Recycler View Invisible and progress bar visible
+        mRecyclerView.setVisibility(RecyclerView.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBarMsgPanel.setVisibility(View.VISIBLE);
+
+
         switch (actionType) {
 
             case Constants.ACTION_TYPE_FIRST_LOAD:
-                showProgress("Presenting Trending...");
+              //  showProgress("Presenting Trending...");
+
+                progressBarMsgPanel.setText("Loading Trending");
+
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_FIRST_LOAD, new CentralDataRepository.ActionCompletedListener() {
                         @Override
@@ -112,7 +131,10 @@ public class Home extends AppCompatActivity {
 
                 break;
             case Constants.ACTION_TYPE_RESUME:
-                showProgress("Presenting Your Items");
+                //showProgress("Presenting Your Items");
+
+                progressBarMsgPanel.setText("Resuming Contents");
+
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_RESTORE, new CentralDataRepository.ActionCompletedListener() {
                         @Override
@@ -127,6 +149,8 @@ public class Home extends AppCompatActivity {
                 break;
 
             case Constants.ACTION_TYPE_REFRESS:
+
+                progressBarMsgPanel.setText("Refressing Content");
 
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_REFRESS, new CentralDataRepository.ActionCompletedListener() {
@@ -148,7 +172,10 @@ public class Home extends AppCompatActivity {
 
 
             case Constants.ACTION_TYPE_SEARCH:
-                showProgress("Searching Item");
+                //showProgress("Searching Item");
+                String searchQuery = SharedPrefrenceUtils.getInstance(this).getLastSearchTerm();
+                progressBarMsgPanel.setText("Searching For.. "+searchQuery);
+
                 try {
                     repository.submitAction(CentralDataRepository.FLAG_SEARCH, new CentralDataRepository.ActionCompletedListener() {
                         @Override
@@ -229,17 +256,12 @@ public class Home extends AppCompatActivity {
         layoutManager = new StaggeredGridLayoutManager(maxCols, 1);
         mRecyclerAdapter = ResulstsRecyclerAdapter.getInstance(this);
         mRecyclerView.setLayoutManager(layoutManager);
-
+        progressBar = (ProgressBar) findViewById(R.id.homeProgressBar);
         swipeRefressLayout.setColorSchemeColors(getResources().getColor(R.color.PrimaryColor), Color.WHITE);
         swipeRefressLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                mHandler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        refressContent();
-//                    }
-//                });
+                    refressContent();
             }
         });
 
@@ -254,7 +276,6 @@ public class Home extends AppCompatActivity {
     private void refressContent(){
 
         if(ConnectivityUtils.getInstance(this).isConnectedToNet()){
-
             invokeAction(Constants.ACTION_TYPE_REFRESS);
             swipeRefressLayout.setRefreshing(true);
             swipeRefressLayout.setEnabled(false);
@@ -262,6 +283,7 @@ public class Home extends AppCompatActivity {
         }else{
             Snackbar.make(swipeRefressLayout, "No Connectivity !!", Snackbar.LENGTH_SHORT).show();
             swipeRefressLayout.setRefreshing(false);
+            swipeRefressLayout.setVisibility(View.VISIBLE);
         }
 
     }
