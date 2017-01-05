@@ -1,4 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res-auto/android" >
 
     <item
         android:id="@+id/action_settings"
