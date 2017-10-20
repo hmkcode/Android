@@ -1,0 +1,394 @@
+[
+    {
+        "outputFile": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/res/merged/debug/values-v11/values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 7,
+                    "endColumn": 12,
+                    "endOffset": 469
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 7,
+                        "endColumn": 12,
+                        "endOffset": 469
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 474,
+                    "endLine": 13,
+                    "endColumn": 12,
+                    "endOffset": 894
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 474,
+                        "endLine": 13,
+                        "endColumn": 12,
+                        "endOffset": 894
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 899,
+                    "endLine": 19,
+                    "endColumn": 12,
+                    "endOffset": 1322
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 899,
+                        "endLine": 19,
+                        "endColumn": 12,
+                        "endOffset": 1322
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1327,
+                    "endLine": 25,
+                    "endColumn": 12,
+                    "endOffset": 1748
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1327,
+                        "endLine": 25,
+                        "endColumn": 12,
+                        "endOffset": 1748
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1753,
+                    "endLine": 31,
+                    "endColumn": 12,
+                    "endOffset": 2175
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1753,
+                        "endLine": 31,
+                        "endColumn": 12,
+                        "endOffset": 2175
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 2180,
+                    "endLine": 37,
+                    "endColumn": 12,
+                    "endOffset": 2600
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 2180,
+                        "endLine": 37,
+                        "endColumn": 12,
+                        "endOffset": 2600
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 38,
+                    "startColumn": 4,
+                    "startOffset": 2605,
+                    "endColumn": 88,
+                    "endOffset": 2689
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 38,
+                        "startColumn": 4,
+                        "startOffset": 2605,
+                        "endColumn": 88,
+                        "endOffset": 2689
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 2694,
+                    "endColumn": 100,
+                    "endOffset": 2790
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 2694,
+                        "endColumn": 100,
+                        "endOffset": 2790
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 40,
+                    "startColumn": 4,
+                    "startOffset": 2795,
+                    "endColumn": 102,
+                    "endOffset": 2893
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2795,
+                        "endColumn": 102,
+                        "endOffset": 2893
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 41,
+                    "startColumn": 4,
+                    "startOffset": 2898,
+                    "endLine": 45,
+                    "endColumn": 12,
+                    "endOffset": 3301
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2898,
+                        "endLine": 45,
+                        "endColumn": 12,
+                        "endOffset": 3301
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 46,
+                    "startColumn": 4,
+                    "startOffset": 3306,
+                    "endLine": 50,
+                    "endColumn": 12,
+                    "endOffset": 3721
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 3306,
+                        "endLine": 50,
+                        "endColumn": 12,
+                        "endOffset": 3721
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 3726,
+                    "endLine": 55,
+                    "endColumn": 12,
+                    "endOffset": 4143
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 51,
+                        "startColumn": 4,
+                        "startOffset": 3726,
+                        "endLine": 55,
+                        "endColumn": 12,
+                        "endOffset": 4143
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 56,
+                    "startColumn": 4,
+                    "startOffset": 4148,
+                    "endLine": 57,
+                    "endColumn": 12,
+                    "endOffset": 4250
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 4148,
+                        "endLine": 57,
+                        "endColumn": 12,
+                        "endOffset": 4250
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 58,
+                    "startColumn": 4,
+                    "startOffset": 4255,
+                    "endLine": 59,
+                    "endColumn": 12,
+                    "endOffset": 4379
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 58,
+                        "startColumn": 4,
+                        "startOffset": 4255,
+                        "endLine": 59,
+                        "endColumn": 12,
+                        "endOffset": 4379
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 60,
+                    "startColumn": 4,
+                    "startOffset": 4384,
+                    "endColumn": 70,
+                    "endOffset": 4450
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 4,
+                        "startOffset": 4384,
+                        "endColumn": 70,
+                        "endOffset": 4450
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 61,
+                    "startColumn": 4,
+                    "startOffset": 4455,
+                    "endColumn": 82,
+                    "endOffset": 4533
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 4,
+                        "startOffset": 4455,
+                        "endColumn": 82,
+                        "endOffset": 4533
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 62,
+                    "startColumn": 4,
+                    "startOffset": 4538,
+                    "endLine": 110,
+                    "endColumn": 12,
+                    "endOffset": 8148
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 62,
+                        "startColumn": 4,
+                        "startOffset": 4538,
+                        "endLine": 110,
+                        "endColumn": 12,
+                        "endOffset": 8148
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 111,
+                    "startColumn": 4,
+                    "startOffset": 8153,
+                    "endLine": 160,
+                    "endColumn": 12,
+                    "endOffset": 11903
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 111,
+                        "startColumn": 4,
+                        "startOffset": 8153,
+                        "endLine": 160,
+                        "endColumn": 12,
+                        "endOffset": 11903
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 161,
+                    "startColumn": 4,
+                    "startOffset": 11908,
+                    "endColumn": 90,
+                    "endOffset": 11994
+                },
+                "from": {
+                    "file": "/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 161,
+                        "startColumn": 4,
+                        "startOffset": 11908,
+                        "endColumn": 90,
+                        "endOffset": 11994
+                    }
+                }
+            }
+        ]
+    }
+]
