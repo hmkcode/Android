@@ -47,10 +47,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		// check if you are connected or not
 		if(isConnected()){
 			tvIsConnected.setBackgroundColor(0xFF00CC00);
-			tvIsConnected.setText("You are conncted");
+			tvIsConnected.setText("You are connected");
         }
 		else{
-			tvIsConnected.setText("You are NOT conncted");
+			tvIsConnected.setText("You are NOT connected");
 		}
 		
 		// add click listener to Button "POST"
