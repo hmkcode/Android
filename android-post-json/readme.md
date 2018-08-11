@@ -1,0 +1,3 @@
+![android-post-json]({{ "http://hmkcode.github.io/images/android/android-post-json.png" | android-post-json }})
+
+Sending data to the cloud is a common task. Here we will consume an open REST service to practice sending data to the server in JSON format . We will use `HttpURLConnection` to POST JSON data to the server. Then, we can verify that our request is successful by going to this [page](http://hmkcode.appspot.com/post-json/index.html)
