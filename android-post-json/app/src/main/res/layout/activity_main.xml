@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.hmkcode.MainActivity">
+
+
+
+    <TextView
+        android:id="@+id/tvIsConnected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#FF0000"
+        android:textColor="#FFF"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="is connected? " />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name..."/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilCountry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/til">
+
+        <EditText
+            android:id="@+id/etCountry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country..."/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilTwitter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilTwitter">
+
+        <EditText
+            android:id="@+id/etTwitter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Twitter..."/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:text="Send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="send"/>
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="" />
+</LinearLayout>
