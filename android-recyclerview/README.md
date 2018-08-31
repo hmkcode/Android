@@ -1,6 +1,10 @@
 Android | Create a List with RecyclerView
 =========================================
 
+> `app` written in Java
+> `app-kotlin` is the same as `app` but written in Kotlin
+
+
 ![android-recyclerview-app-layout](http://hmkcode.github.io/images/android/android-recyclerview-app_layout.png)
 
 
@@ -8,7 +12,7 @@ Creating a scrollable list of elements is a common pattern in mobile application
 
 ## Overview
 
-We will build a simple app that lists a hard-coded `Link` in a `RecyclerView`. To display items on `RecyclerView` you need to have the following components:
+We will build two versions of a simple app (one in Java and one in Kotlin) that displays a list of hard-coded instances of class `Link` in a `RecyclerView`. To display items on `RecyclerView` you need to the following:
 
 - `RecyclerView` widget added to the activity layout.  
 - A class extending `RecyclerView.Adapter`. 
