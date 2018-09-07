@@ -1,8 +1,9 @@
 Android | Create a List with RecyclerView
 =========================================
 
-> `app` written in Java
-> `app-kotlin` is the same as `app` but written in Kotlin
+- `app` written in Java
+- `app-kotlin` is the same as `app` but written in Kotlin
+
 
 
 ![android-recyclerview-app-layout](http://hmkcode.github.io/images/android/android-recyclerview-app_layout.png)
@@ -22,3 +23,13 @@ We will build two versions of a simple app (one in Java and one in Kotlin) that 
 Files we need for this app are shown in the image below. 
 
 ![android-recyclerview-app-files](http://hmkcode.github.io/images/android/android-recyclerview-app-files.png)
+
+
+Android | RecyclerView Using Support Library ListAdapter
+========================================================
+
+- `app-listadapter` building recyclerview with `ListAdapter`
+
+![android-recyclerview-listadapter](http://hmkcode.github.io/images/android/android-recyclerview-listadapter.gif)
+
+<code>ListAdapter</code> for <code>RecyclerView</code> has been introduced in <a href="https://developer.android.com/topic/libraries/support-library/revisions.html#27-1-0">Revision 27.1.0 Release of Support Library</a>. <code>ListAdapter</code> uses <code>DiffUtil</code> under the hood to compute list diffs on a background thread. This will help <code>RecyclerView</code> animate changes automatically with less work on the UI thread. 
