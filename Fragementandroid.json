@@ -1,0 +1,27 @@
+public class ActivityForFragement extends AppCompatActivity implements BlankFragment.OnFragmentInteractionListener {
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_for_fragement);
+
+        BlankFragment fragment = new BlankFragment();
+        Bundle bundle= new Bundle();
+        bundle.putInt(BlankFragment.WHICH_IMAGE,R.mipmap.imagee);
+        bundle.putString(BlankFragment.WHICH_TEXT, "IMAGEE");
+        fragment.setArguments(bundle);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.theLinearLayout,fragment);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(String uri) {
+        Toast.makeText(ActivityForFragement.this,uri,Toast.LENGTH_LONG).show();
+
+
+    }
+}
