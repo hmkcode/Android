@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onAvailable(network: Network) {
                         lifecycleScope.launch {
-                            Log.i("MainActivity", "onAvailable!"+network.toString())
+                            Log.i("MainActivity", "onAvailable!")
 
                             // check if NetworkCapabilities has TRANSPORT_WIFI
                             val isWifi:Boolean = cm.getNetworkCapabilities(network).hasTransport(
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onLost(network: Network) {
                         lifecycleScope.launch {
-                            Log.i("MainActivity", "onLost!"+network.toString())
+                            Log.i("MainActivity", "onLost!")
                             doSomething(false)
                         }
                     }
