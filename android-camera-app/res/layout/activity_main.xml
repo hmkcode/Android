@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"      
-		android:background="#FF0000"
+		android:background="#FF1100"
 		android:textColor="#FFF"
 		android:textSize="18dp" 
+	      android:margin="20dp"
 		android:layout_marginBottom="5dp"
         android:text="Has Camera? " />
 
