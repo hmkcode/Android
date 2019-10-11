@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"      
-		android:background="#FF0000"
+		android:background="#FF0011"
 		android:textColor="#FFF"
 		android:textSize="18dp" 
 		android:layout_marginBottom="5dp"
