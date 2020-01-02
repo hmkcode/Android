@@ -38,6 +38,8 @@
         android:id="@+id/btnTakePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+	       android:textColor="@android:color/black"
+	    android:textSize="25dp"
         android:layout_gravity="center_horizontal"      
         android:text="Take a Picture" />
 
