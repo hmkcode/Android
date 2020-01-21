@@ -1,0 +1,3 @@
+CHANGED,/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/example/mayur/gestures/Main2Activity$1$override.class
+CHANGED,/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
+CHANGED,/Users/mayur/AndroidStudioProjects/Gestures/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/example/mayur/gestures/Main2Activity$override.class
