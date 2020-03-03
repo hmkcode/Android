@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="simple.tierscrollview" >
+
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".GooglePlayServicesActivity"
+            android:label="@string/title_activity_google_play_services" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
+        <service android:name=".MyMessagingService" >
+        </service>
+
+        <receiver android:name=".MessageReadReceiver" >
+            <intent-filter>
+                <action android:name="simple.tierscrollview.ACTION_MESSAGE_READ" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MessageReplyReceiver" >
+            <intent-filter>
+                <action android:name="simple.tierscrollview.ACTION_MESSAGE_REPLY" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name=".Res"
+            android:label="@string/title_activity_res" >
+        </activity>
+        <activity
+            android:name=".nav"
+            android:label="@string/title_activity_nav" >
+        </activity>
+        <activity
+            android:name=".tabbed"
+            android:label="@string/title_activity_tabbed" >
+        </activity>
+        <activity
+            android:name=".ItemListActivity"
+            android:label="@string/title_item_list" >
+        </activity>
+        <activity
+            android:name=".ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ItemListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="simple.tierscrollview.ItemListActivity" />
+        </activity>
+        <activity
+            android:name=".Splash"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".RealView"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_real_view" >
+        </activity>
+
+        <service
+            android:name=".FeedSyncService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".rightDrawer"
+            android:label="@string/title_activity_right_drawer" >
+        </activity>
+        <activity
+            android:name="com.exam.Prefrence"
+            android:label="@string/title_activity_prefrence" >
+        </activity>
+
+        <service
+            android:name="com.exam.Mis"
+            android:exported="false" >
+        </service>
+    </application>
+
+</manifest>

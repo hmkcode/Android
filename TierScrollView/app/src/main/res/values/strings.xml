@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">TierScrollView</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_google_play_services">GooglePlayServicesActivity</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_res">Res</string>
+    <string name="title_activity_nav">na</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_tabbed">tabbed</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+
+    <string name="title_activity_splash">Splash</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_real_view">Hello World Immersion</string>
+    <string name="title_activity_right_drawer">rightDrawer</string>
+</resources>

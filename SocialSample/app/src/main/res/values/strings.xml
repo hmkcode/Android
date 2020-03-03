@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SocialSample</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_poll">Poll</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_post_detail">PostDetailActivity</string>
+    <string name="title_activity_authentication">AuthenticationActivity</string>
+    <string name="title_activity_center">CenterActivity</string>
+    <string name="title_activity_message">MessageActivity</string>
+    <string name="title_activity_test_activity_for_pol">TestActivityForPol</string>
+    <string name="title_activity_post_birth">PostBirth</string>
+    <string name="title_activity_mest">Hello World Immersion</string>
+    <string name="title_activity_live_card_service">Hello World LiveCard</string>
+    <string name="action_stop">Stop</string>
+</resources>

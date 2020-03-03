@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="simple.tierscrollview.LoginActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/cordinator_layout"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:fitsSystemWindows="true">
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:expandedTitleMarginEnd="50dp"
+                app:expandedTitleMarginStart="10dp"
+                app:contentScrim="@color/PrimaryColor"
+                app:layout_scrollFlags="scroll">
+
+                <RelativeLayout android:layout_height="match_parent"
+                    android:background="@color/ContinueBtnPressedColor"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|center_horizontal">
+
+
+                    <com.arlib.floatingsearchview.FloatingSearchView
+                        android:paddingTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:id="@+id/floating_search_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:floatingSearch_hintTextColor="@color/PrimaryColor"
+                        app:floatingSearch_searchHint="Search Your Favorites "
+                        app:floatingSearch_suggestionsListAnimDuration="250"
+                        app:floatingSearch_showSearchKey="true"
+                        app:floatingSearch_leftActionMode="showSearch"
+                        app:floatingSearch_menu="@menu/menu_main"
+                        app:floatingSearch_close_search_on_keyboard_dismiss="true" />
+
+
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:layout_collapseMode="pin"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    />
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_gravity="fill"
+            android:background="#eeeeee"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/trendingRecylerView"/>
+
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>
+

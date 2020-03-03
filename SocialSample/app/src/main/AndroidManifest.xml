@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.material.practice.socialsample" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Poll"
+            android:label="@string/title_activity_poll" >
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".PostDetailActivity"
+            android:label="@string/title_activity_post_detail" >
+        </activity>
+        <activity
+            android:name=".AuthenticationActivity"
+            android:label="@string/title_activity_authentication" >
+        </activity>
+        <activity
+            android:name=".CenterActivity"
+            android:label="@string/title_activity_center" >
+        </activity>
+        <activity
+            android:name=".MessageActivity"
+            android:label="@string/title_activity_message" >
+        </activity>
+        <activity
+            android:name=".Mest"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_mest" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+
+        <service
+            android:name=".LiveCardService"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activity_live_card_service" >
+        </service>
+
+        <activity
+            android:name=".LiveCardMenuActivity"
+            android:theme="@style/MenuTheme" />
+
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+    </application>
+
+</manifest>

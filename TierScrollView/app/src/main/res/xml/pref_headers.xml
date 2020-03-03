@@ -1,0 +1,20 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header android:fragment="simple.tierscrollview.SettingsActivity$GeneralPreferenceFragment"
+        android:title="@string/pref_header_general" />
+
+    <header android:fragment="simple.tierscrollview.SettingsActivity$NotificationPreferenceFragment"
+        android:title="@string/pref_header_notifications" />
+
+    <header android:fragment="simple.tierscrollview.SettingsActivity$DataSyncPreferenceFragment"
+        android:title="@string/pref_header_data_sync" /><header
+        android:fragment="com.exam.Prefrence$GeneralPreferenceFragment"
+        android:title="@string/pref_header_general" /><header
+        android:fragment="com.exam.Prefrence$NotificationPreferenceFragment"
+        android:title="@string/pref_header_notifications" /><header
+        android:fragment="com.exam.Prefrence$DataSyncPreferenceFragment"
+        android:title="@string/pref_header_data_sync" />
+
+</preference-headers>
