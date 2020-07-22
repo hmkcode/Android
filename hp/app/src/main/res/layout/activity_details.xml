@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hack.galert.DetailsActivity">
+
+    <include
+        layout="@layout/details_article_page_header"
+        android:id="@+id/pageHeader" />
+
+    <ScrollView
+        android:layout_below="@+id/pageHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:visibility="gone"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/articleImageDetailsPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:maxLines="3"
+            android:textColor="@color/ListItems"
+            android:textStyle="bold"
+            android:paddingLeft="8dp"
+            android:paddingBottom="16dp"
+            android:paddingRight="8dp"
+            android:lineSpacingExtra="2dp"
+            android:textSize="20sp"
+            android:paddingTop="4dp"
+            android:text="5 Tips to get Topper\ndf\nsdf\ndsf"
+            android:id="@+id/articlesHeaderDetailsPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/articleText"
+                android:text="hello ankit"
+                android:textSize="16sp"
+                android:textColor="@color/ListItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,85 @@
+<resources>
+
+    <dimen name="searchview_wrapper_height">72dp</dimen>
+    <dimen name="search_result_content_padding_left">4dp</dimen>
+    <dimen name="search_result_content_padding_right">4dp</dimen>
+    <dimen name="search_result_content_padding_top">0dp</dimen>
+    <dimen name="search_result_content_padding_bottom">0dp</dimen>
+
+    <dimen name="song_card_width">180dp</dimen>
+    <dimen name="song_card_margin_bottom">12dp</dimen>
+    <dimen name="song_card_margin_right">8dp</dimen>
+    <dimen name="song_card_margin_left">8dp</dimen>
+
+    <dimen name="song_thumb_height">147dp</dimen>
+
+    <dimen name="stream_button_text_height">40dp</dimen>
+    <dimen name="stream_button_text_width">40dp</dimen>
+    <dimen name="stream_button_text_size">12sp</dimen>
+    <dimen name="stream_button_text_margin_right">30dp</dimen>
+
+
+    <dimen name="donwload_button_margin_left">26dp</dimen>
+    <dimen name="download_button_dimen">40dp</dimen>
+    <dimen name="download_button_text_size">14sp</dimen>
+
+    <dimen name="time_stamp_text_size">12sp</dimen>
+    <dimen name="time_stamp_padding_left">2dp</dimen>
+    <dimen name="time_stamp_padding_right">3dp</dimen>
+    <dimen name="time_stamp_padding_bottom">2dp</dimen>
+    <dimen name="time_stamp_margin_right">0dp</dimen>
+    <dimen name="time_stamp_margin_left">0dp</dimen>
+    <dimen name="time_stamp_margin_bottom">0dp</dimen>
+
+    <dimen name="song_card_meta_data_holder_padding">10dp</dimen>
+
+    <dimen name="song_card_title_frame_padding_left">2dp</dimen>
+    <dimen name="song_card_title_frame_padding_right">2dp</dimen>
+    <dimen name="song_card_title_frame_margin_top">4dp</dimen>
+
+    <dimen name="song_card_tittle_text_size">16sp</dimen>
+
+
+    <dimen name="song_card_uploader_icon_wrapper_margin_top">4dp</dimen>
+    <dimen name="song_card_uploader_icon_wrapper_margin_bottom">0dp</dimen>
+
+    <dimen name="song_card_uploader_icon_width">16sp</dimen>
+    <dimen name="song_card_uploader_icon_margin_right">4dp</dimen>
+    <dimen name="song_card_uploader_icon_text_size">12sp</dimen>
+
+    <dimen name="song_card_uploader_text_size">14sp</dimen>
+
+    <dimen name="song_card_views_wrapper_margin_top">4dp</dimen>
+    <dimen name="song_card_views_wrapper_margin_bottom">4dp</dimen>
+
+
+    <dimen name="song_card_views_icon_dimen">16sp</dimen>
+    <dimen name="song_card_views_icon_margin_right">4dp</dimen>
+    <dimen name="song_card_views_icon_text_size">12sp</dimen>
+
+
+    <dimen name="song_card_views_text_size">12sp</dimen>
+
+
+    <!-- section header layout-->
+    <dimen name="section_header_wrapper_padding_left">6dp</dimen>
+    <dimen name="section_header_wrapper_padding_top">16dp</dimen>
+    <dimen name="section_header_wrapper_padding_right">0dp</dimen>
+    <dimen name="section_header_wrapper_padding_bottom">16dp</dimen>
+
+    <dimen name="section_title_text_size">22sp</dimen>
+    <dimen name="section_title_underline_margin_left">1dp</dimen>
+    <dimen name="section_title_underline_margin_top">6dp</dimen>
+    <dimen name="section_title_underline_width">30dp</dimen>
+    <dimen name="section_title_underline_height">1.5dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="progress_bar_message_panel_text_size">16sp</dimen>
+
+
+</resources>

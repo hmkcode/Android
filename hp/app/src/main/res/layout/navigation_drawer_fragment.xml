@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="280dp"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:background="@color/PrimaryColor"
+        android:layout_height="144dp">
+
+        <TextView
+            android:clickable="false"
+            android:id="@+id/userSamplePic"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="96sp"
+            android:textColor="@color/White"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/userName"
+            android:paddingBottom="40dp"
+            android:paddingRight="16dp"
+            android:layout_gravity="bottom|end"
+            android:textSize="24sp"
+            android:text="Ankit Kumar"
+            android:textColor="@color/White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/userEmil"
+            android:paddingBottom="16dp"
+            android:paddingRight="16dp"
+            android:layout_gravity="bottom|end"
+            android:textSize="18sp"
+            android:text="ankit@gmail.com"
+            android:textColor="@color/White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/addInterestBtnText"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/login_btn_state"
+            android:textColor="@color/White"
+            android:textSize="14sp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Add Interests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ListView
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/addInterestBtnText"
+            android:visibility="visible"
+            android:background="@drawable/list_items_state"
+            android:divider="#ffffff"
+            android:dividerHeight="0dp"
+            android:id="@+id/navList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/navigationDrawerProgressBar" />
+
+
+</LinearLayout>

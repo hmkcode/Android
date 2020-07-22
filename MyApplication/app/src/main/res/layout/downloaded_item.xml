@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/downloaded_item_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:elevation="0dp"
+    cardView:cardBackgroundColor="#ffffff"
+    cardView:cardCornerRadius="0dp">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_centerVertical="true"
+            android:background="#009988"
+            android:id="@+id/albumArt_frame"
+            android:layout_width="60dp  "
+            android:layout_height="45dp">
+
+            <RelativeLayout
+                android:layout_marginLeft="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/albumArt"
+                    android:src="@drawable/hqdefault"
+                    android:layout_width="60dp"
+                    android:layout_height="45dp" />
+
+                <RelativeLayout
+                    android:gravity="bottom"
+                    android:layout_width="60dp"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/content_time_length"
+                        android:background="@drawable/thumbnail_overleaf"
+                        android:textColor="@color/White"
+                        android:textSize="10sp"
+                        android:gravity="bottom|end"
+                        android:layout_alignParentRight="true"
+                        android:text="12:00"
+                        android:paddingRight="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/albumArt_frame"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:weightSum="9">
+
+            <LinearLayout
+                android:paddingLeft="8dp"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/albumArt_frame"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="45dp"
+                android:weightSum="5">
+
+                <FrameLayout
+                    android:padding="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2">
+
+                    <TextView
+                        android:id="@+id/song_title"
+                        android:textColor="@color/TrackTitleColor"
+                        android:textSize="12dp"
+                        android:text="Sanam Re | Arjit Singh \nFull Track Songs \nTitle Songs -Remix"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1.5"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:id="@+id/artist"
+                        android:textColor="@color/ExtraInfoTextColor"
+                        android:textSize="10dp"
+                        android:text="artist block"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:paddingLeft="4dp"
+                android:weightSum="2"
+                android:orientation="vertical"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:textColor="@color/PrimaryColor"
+                    android:textSize="30dp"
+                    android:gravity="center"
+                    android:text="P"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>

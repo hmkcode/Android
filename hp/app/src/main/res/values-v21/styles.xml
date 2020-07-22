@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/PrimaryColor</item>
+        <item name="android:colorPrimaryDark">@color/PrimaryColorDark</item>
+        <item name="android:homeAsUpIndicator">@color/White</item>
+        <item name="android:colorAccent">@color/SecondaryColor</item>
+    </style>
+</resources>

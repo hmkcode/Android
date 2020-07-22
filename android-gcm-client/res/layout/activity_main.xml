@@ -10,10 +10,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get RegId"/>
-    
-    <EditText
-        android:id="@+id/etRegId"
-        android:layout_width="match_parent"
-        android:layout_height="250dp" />
+    <Button 
+        android:id="@+id/btnGetRegId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get RegId"/>
+
+<Button 
+        android:id="@+id/btnGetRegId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get RegId"/>
+
+<Button 
+        android:id="@+id/btnGetRegId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get RegId"/>
+
+<Button 
+        android:id="@+id/btnGetRegId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get RegId"/>
+
+
     
 </LinearLayout>

@@ -1,0 +1,86 @@
+CDR Tests Report
+
+1 First Load Test:
+
+1.1 Results:
+        as expected
+1.2 Considerations:
+        (In case of web request)
+        After each trending section loads from web, data is written back to database in section batches
+        and after each batch a callback to CDR is given.
+        And further Operation Initiater and Registered Adapter get the data via callback in same batch fashion.
+
+        Else data will be summitted at once from data base and ActionCompleted Callback at last.
+
+1.3 Bugs:
+       1.3.1  >> while loading from database only the first type is passed and rest songs of other
+                 type is included
+                 under first category
+
+        [solution] : send data from database section by section (not at a time)
+
+       1.3.2 >> Data get wiped out after every load
+
+       1.3.3 >> Repetition of songs set under single type
+
+       [solution] : while getting/reading songs from DB we are repeteadly adding songs . fix it .....
+
+
+1.4 Solved:
+            1.3.1 [Solved]
+            1.3.2 [Solved]
+2 Restore test
+
+2.1 Results
+           reads the last loaded type and accordingly reads particular type from db and sumbit it via callback
+
+ 2.2 Considerations
+
+           Submits data and at once via callback to CDR and same back to adapter via callback
+           and finally a callback to ActionCompleted to Operation Initiater
+
+ 2.3 Bugs:
+
+ 2.4 Solved:
+
+3 Search Test
+
+ 3.1 Results
+
+           after writing back the search term to SP and initiating the process by submitting to CDR.
+           results are submitted to adapter at once and a ActionCompleted Callback to parent.
+
+ 3.2 Considerations
+
+           Results are submitted at once so we need to clear off the previous data from adapters list and
+           re-fill with the new one.
+
+ 3.3 Bugs:
+
+ 3.4 Solved
+
+
+4 Refress
+
+ 4.1 Results
+
+        After Having a refress , results loaded are same as of last loaded but they are re-requested data.
+
+ 4.2 Considerations
+
+       For Search Results data submition to adapter is good enough as previous data is cleared before setting
+        new data,
+
+        But for Trending Result, since data are submitted in section wised batches
+        we need to keep the previous batches stored or say appended.
+
+ 4.3 Bugs
+
+ 4.4 Solved
+
+
+
+Integration Tests
+
+    All Combination is tested and results are correct.
+

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Music</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_error_splash">ErrorSplash</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_delete">delete</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_test">TestAct</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_downloads_title">Downloads</string>
+    <string name="activity_downloads">Downloads</string>
+    <string name="activity_preferences">Preferences</string>
+</resources>

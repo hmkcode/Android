@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:weightSum="5">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        >
+
+        <FrameLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="120dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="120dp">
+            <TextView
+                android:id="@+id/no_connection_wifi_icon"
+                android:text=""
+                android:gravity="center"
+                android:textSize="100sp"
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+        </FrameLayout>
+
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:textSize="25dp"
+            android:text="No Connectivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/no_con_text" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@drawable/continue_btn_states"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/continueBtn"
+                android:textColor="@color/White"
+                android:textSize="14sp"
+                android:text="Continue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/poweredBy"
+            android:gravity="center_horizontal|bottom"
+            android:textColor="#44000000"
+            android:padding="4dp"
+            android:textSize="10sp"
+            android:layout_margin="2dp"
+            android:text="Powered By : MusicGenie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</LinearLayout>
