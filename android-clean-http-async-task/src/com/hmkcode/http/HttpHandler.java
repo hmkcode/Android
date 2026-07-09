@@ -11,7 +11,7 @@ public abstract class HttpHandler {
 	public abstract void onResponse(String result);
 	
 	public void execute(){
-		new AsyncHttpTask(this).execute();
+		new AsyncHttpTask(this).execute(); demo
 	}
 
 	
